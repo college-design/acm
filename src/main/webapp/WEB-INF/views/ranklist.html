@@ -1,0 +1,51 @@
+<% var body={%>
+<div class="container">
+	<ul class="breadcrumb">
+		<li><a href="${contentPath}">首页</a> <span class="divider">/</span></li>
+		<li><a href="${contentPath}/ranklist/1/${pageSize}">总排名</a><span
+			class="divider">/</span></li>
+		<li class="active">排名如下</li>
+	</ul>
+	<div class="row">
+		<div class="span12">
+			<div class="pagination">
+				<ul pg pg-range="[1,${total},${currentPage},${pageSize},6]"
+					pg-top="置顶" pg-pre="上一页" pg-next="下一页">
+					<li><a
+						href="${contentPath}/ranklist/#{pg-index}/#{pg-pagesize}">#{pg-index}</a>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="span12">
+			<table class="table table-striped table-bordered table-hover">
+				<thead>
+					<tr>
+						<th><strong class="text-info">排名</strong></th>
+						<th><strong class="text-info">用户名</strong></th>
+						<th><strong class="text-info">通过题数</strong></th>
+						<th><strong class="text-info">通过次数</strong></th>
+						<th><strong class="text-info">提交数</strong></th>
+						<th><strong class="text-info">正确率</strong></th>
+					</tr>
+				</thead>
+				<% for(user in userList){%>
+				<tbody>
+					<tr>
+						<td class="span1">${userLP.index+(page-1)*pageSize}</td>
+						<td class="span4"><a
+							href="${contentPath}/user/userinfo/${user.uid}">${user.username}</a></td>
+						<td>${user.solved}</td>
+						<td>${user.accepted}</td>
+						<td>${user.submit}</td>
+						<td>${100.0*user.solved/(user.submit+0.0000001),"##.##"}%</td>
+					</tr>
+				</tbody>
+				<%}%>
+			</table>
+		</div>
+	</div>
+</div>
+<%}; include("commons/_layout.html",{body:body}){}%>
+

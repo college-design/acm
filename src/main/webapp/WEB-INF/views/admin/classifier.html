@@ -1,0 +1,26 @@
+<% var body={%>
+<div class="container">
+	<div class="row">
+		<div align="center">
+			<h4 class="muted">添加分类</h4>
+		</div>
+	</div>
+
+	<div class="row">
+
+		<div class="span12">
+			<form class="form-inline" method="get" action="#">
+				<strong>Classifier Id：new classifier</strong><br><br>
+				<span class="text-info">题目类型:</span>
+		<input	type="text" name="title" value="" size="20" class="input-medium" placeholder="hello world" style="width:200px;"/><br><br>
+			<div class="control-group" align="center">
+				<div class="controls">
+					<button class="btn btn-primary">提交</button>
+				</div>
+			</div>	
+			</form>
+		</div>
+	</div>
+</div>
+
+<%}; include("_layout.html",{body:body}){}%>

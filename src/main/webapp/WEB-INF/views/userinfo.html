@@ -1,0 +1,90 @@
+<% var body={%>
+
+<div class="container">
+	<div class="row">
+		<div class="span12">
+			<ul class="breadcrumb">
+				<li><a href="${contentPath}">首页</a> <span class="divider">/</span></li>
+				<li><a href="${contentPath}/user/userinfo/${user.uid}">用户</a> <span
+					class="divider">/</span></li>
+				<li class="active">个人信息</li>
+			</ul>
+		</div>
+	</div>
+	<div class="row">
+		<div class="span12">
+			<div class="tabbable">
+				<!-- Only required for left/right tabs -->
+				<ul class="nav nav-tabs">
+					<li class="active"><a
+						href="${contentPath}/user/userinfo/${user.uid}">个人信息</a></li> <%
+					if(so.isLogined()){%>
+					<li><a href="${contentPath}/user/update/${session.user.uid}">修改账号</a></li>
+					<%}%>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="span4">
+			<div class="well">
+				<table class="table">
+					<tbody>
+						<tr>
+							<td class="span2">用户名</td>
+							<td>${user.username}</td>
+						</tr>
+						<tr>
+							<td>学校</td>
+							<td>${user.school}</td>
+						</tr>
+						<tr>
+							<td>专业班级</td>
+							<td>${user.majorClass}</td>
+						</tr>
+						<tr>
+							<td>学号</td>
+							<td>${user.stuid}</td>
+						</tr>
+						<tr>
+							<td>邮箱</td>
+							<td>${user.email}</td>
+						</tr>
+						<tr>
+							<td>QQ</td>
+							<td>${user.qq}</td>
+						</tr>
+						<tr>
+							<td>通过次数</td>
+							<td>${user.accepted}</td>
+						</tr>
+						<tr>
+							<td>解题数</td>
+							<td>${user.solved}</td>
+						</tr>
+						<tr>
+							<td>提交次数</td>
+							<td>${user.submit}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="span8">
+			<div class="well">
+				<div class="text-success">已提交成功的题</div>
+				<hr class="hr">
+				<% for(var pid in problemSolvedList){%> <a
+					href="${contentPath}/problem/${pid}">${pid}</a>&nbsp;&nbsp; <%}%>
+			</div>
+			<hr class="btn-info">
+			<div class="well">
+				<div class="text-success">未提交成功的题</div>
+				<hr class="hr">
+				<% for(var pid in problemNotSolvedList){%> <a
+					href="${contentPath}/problem/${pid}">${pid}</a>&nbsp;&nbsp; <%}%>
+			</div>
+		</div>
+	</div>
+</div>
+<%}; include("commons/_layout.html",{body:body}){}%>

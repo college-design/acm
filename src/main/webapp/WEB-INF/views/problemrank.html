@@ -1,0 +1,63 @@
+<% var body={%>
+<div class="container">
+	<ul class="breadcrumb">
+		<li><a href="${contentPath}">首页</a> <span class="divider">/</span></li>
+		<li><a href="${contentPath}/problem/${s_uid}">题目信息</a> <span class="divider">/</span></li>
+		<li class="active">排名如下</li>
+	</ul>
+	<div class="row">
+		<div class="span12">
+			<div class="pagination">
+				<ul>
+					<li class=""><a href="${contentPath}/rank/${s_uid}/1/${pageSize}">置顶</a>
+					</li>
+					<li class="${currentPage==1?'disabled':''}"><a
+						href="${contentPath}/rank/${s_uid}/${currentPage-1}/${pageSize}">上一页</a></li> <%
+					for(var page=1;page<=5;page++){%>
+					<li class="${page==currentPage?'active':''}"><a
+						href="${contentPath}/rank/${s_uid}/${page}/${pageSize}">${page}</a></li> <%}%>
+					<li class="${currentPage==pageSize?'disabled':''}"><a
+						href="${contentPath}/rank/${s_uid}/${currentPage+1}/${pageSize}">下一页</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="span12">
+			<table class="table table-striped table-bordered table-hover">
+				<thead>
+					<tr>
+						<th><strong class="text-info">排名</strong></th>
+						<th><strong class="text-info">运行号</strong></th>
+						<th><strong class="text-info">用户名</strong></th>
+						<th><strong class="text-success">时间</strong></th>
+						<th><strong class="text-info">内存</strong></th>
+						<th><strong class="text-info">代码长度</strong></th>
+						<th><strong class="text-info">语言</strong></th>
+						<th><strong class="text-info">提交时间</strong></th>
+					</tr>
+				</thead>
+				<% var rankid=(page-1)*pageSize; 
+				var	statusLanguage=["Pascal","C++","Java","GCC","Python","C#","PHP"];
+				for(rank in rankList){ rankid++;%>
+				<tbody>
+					<tr>
+						<td class="span1"><strong >${rankid}</strong></td>
+						<td>${rank.s_runid}</td>
+						<td class="span2"><a
+							href="${contentPath}/user/userinfo/${rank.s_pid}">${rank.s_username}</a></td>
+						<td>${rank.s_time}</td>
+						<td>${rank.s_memory}</td>
+						<td>${rank.s_codelength}</td>
+						<td>${statusLanguage[rank.s_language]}</td>
+						<td>${rank.s_submittime,"yyyy-MM-dd hh:mm:ss"}</td>
+					</tr>
+				</tbody>
+				<%}%>
+			</table>
+		</div>
+	</div>
+</div>
+
+
+<%}; include("commons/_layout.html",{body:body}){}%>

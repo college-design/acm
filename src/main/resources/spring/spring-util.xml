@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cache="http://www.springframework.org/schema/cache"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-4.1.xsd">
+
+	<!-- 注入SpringUtil工具类 -->
+	<bean id="springUtil" class="com.lxg.acm.util.SpringUtil"></bean>
+
+	<!-- 加载配置文件 -->
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:properties/*.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 缓存 -->
+<!-- 	<bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager"> -->
+<!-- 		<property name="caches" ref="ehCacheManager"></property> -->
+<!-- 	</bean> -->
+
+<!-- 	<cache:annotation-driven cache-manager="cacheManager" /> -->
+
+<!-- 	<bean id="cacheManagerFactory" -->
+<!-- 		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean"> -->
+<!-- 		<property name="configLocation" value="WEB-INF/ehcache/ehcache.xml" /> -->
+<!-- 	</bean> -->
+
+<!-- 	<bean id="ehCacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager"> -->
+<!-- 		<property name="cacheManager" ref="cacheManagerFactory" /> -->
+<!-- 	</bean> -->
+
+</beans>

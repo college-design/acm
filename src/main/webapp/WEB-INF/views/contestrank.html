@@ -1,0 +1,18 @@
+
+<table class="table table-striped table-bordered table-hover">
+
+	<% var body={%> <% for(rank in ranklist) {%>
+	<tr>
+		<td>${rank.nick}</td>
+		<td>${rank.accepts}</td>
+		<td>${rank.penalty}</td>
+		
+		<% for(var i=0;i< num;i++){%>
+		<% var time=so.getRankTime(i);var wrong=so.getRankWrong(i);%>
+		<td>${rank[time] }</td>
+		<td>${rank[wrong] }</td>
+		<%}%>
+	</tr>
+	<%}%>
+</table>
+<%}; include("commons/_contest_layout.html",{body:body}){}%>

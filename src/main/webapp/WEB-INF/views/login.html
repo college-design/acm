@@ -1,0 +1,72 @@
+<% var body={%>
+
+<div class="container">
+	<div class="row">
+		<div class="span12">
+			<ul class="breadcrumb">
+				<li>
+					<a href="${contentPath}">首页</a> 
+					<span class="divider">/</span>
+				</li>
+				<li>
+					<a href="">用户</a>
+					<span class="divider">/</span>
+				</li>
+				<li class="active">用户登录</li>
+			</ul>
+		</div>
+	</div>
+	<div class="row">
+		<div class="span12">
+			<div class="tabbable">
+				<!-- Only required for left/right tabs -->
+				<ul class="nav nav-tabs">
+					<li class="active"><a href="${contentPath}/user/regist">登录账号</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="span3"></div>
+		<div class="span9">
+			<form class="form-horizontal" method="post" action="${contentPath}/user/login">
+				<br>
+				${shiroLoginFailure!}
+				<br>
+				<div class="control-group">
+					<label class="control-label">用户名</label>
+					<div class="controls">
+						<input type="text" name="username" placeholder="username" value="root">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">密&nbsp;&nbsp;&nbsp;&nbsp;码</label>
+					<div class="controls">
+						<input type="password" name="password" value="rootpass" placeholder="password">
+					</div>
+				</div>
+				<div class="control-group">
+					<div class="controls">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<button type="submit" class="btn btn-primary input-mini">提&nbsp;&nbsp;交</button>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<button type="reset" class="btn btn-primary input-mini">重&nbsp;&nbsp;置</button>
+					</div>
+				</div>
+				
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				
+			</form>
+		</div>
+	</div>
+</div>
+<%}; include("commons/_layout.html",{body:body}){}%>

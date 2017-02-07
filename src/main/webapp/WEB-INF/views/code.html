@@ -1,0 +1,58 @@
+<% var js={%>
+<script type="text/javascript"
+	src="${contentPath}/resources/prettify/prettify-min.js"></script>
+<script type="text/javascript"
+	src="${contentPath}/resources/ZeroClipboard/ZeroClipboard.min.js"></script>
+<script type="text/javascript">
+	prettyPrint();
+	ZeroClipboard.config({
+		moviePath : "${contentPath}/resources/ZeroClipboard/ZeroClipboard.swf"
+	});
+	var clip = new ZeroClipboard($("pre"));
+	clip.on('dataRequested', function(client, args) {
+		var code=$(this).clone();
+		code.find("li").each(function() {
+			$(this).append("\r\n");
+		});
+		client.setText(code.text());
+	});
+	clip.on('complete', function(client, args) {
+		alert("复制成功");
+	});
+</script>
+<%}; var css={%>
+<link rel="stylesheet" type="text/css"
+	href="${contentPath}/resources/prettify/prettify-min.css">
+<style>
+</style>
+<%}; var body={%>
+<div class="container">
+	<div class="row">
+		<div class="span12">
+			<ul class="breadcrumb">
+				<li><a href="${contentPath}">首页</a> <span class="divider">/</span></li>
+				<li><a href="${contentPath}/statuslist/1/${STATUS_PAGE_SIZE}">运行</a>
+					<span class="divider">/</span></li>
+				<li class="active">代码</li>
+			</ul>
+		</div>
+	</div>
+	<div class="row">
+		<div class="span12">
+			<% var
+			statusLanguage=["GCC","C++","Java","Pascal","Python","C#","PHP"]; %>
+			<h4 class="text-info">题目 ID:${status.pid}</h4>
+			运行时间:<span><strong class="text-error">${status.time}MS</strong>&nbsp;|&nbsp;运行内存:<strong
+				class="text-error">${status.memory}K</strong></span><br> 运行语言:<span><strong>${statusLanguage[status.language]}</strong>
+				运行结果:<span status-res="${status.result}"></span> </span>
+		</div>
+		<div class="span12">
+			<h4 class="text-info">源码如下</h4>
+			<p class="muted">
+				点击代码区域，可<span class="label label-success">复制</span>代码
+			</p>
+			<pre class="prettyprint linenums">${code}</pre>
+		</div>
+	</div>
+</div>
+<%}; include("commons/_layout.html",{js:js,css:css,body:body}){}%>

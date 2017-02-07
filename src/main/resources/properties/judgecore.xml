@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+
+	<default>
+		<data>d:\data</data>
+		<temp>d:\temp</temp>
+		<!-- 3s -->
+		<timelimit>3000</timelimit>
+		<!-- 64M -->
+		<memorylimit>65535</memorylimit>
+		<buildpath>
+		</buildpath>
+	</default>
+
+	<languages>
+		<!-- 不要随意动 lang type的顺序 -->
+		<lang type="c++">
+			<ext>cpp</ext>
+			<exe>exe</exe>
+			<path></path>
+			<timelimit>3000</timelimit>
+			<memorylimit>65535</memorylimit>
+			<comshell>g++ -o ${path}${name} ${path}${name}.${ext}
+			</comshell>
+			<runshell>${path}${name}.${exe}</runshell>
+		</lang>
+		<lang type="c">
+			<!-- 源文件，扩展名 -->
+			<ext>c</ext>
+			<!-- 可执行文件，扩展名 -->
+			<exe>exe</exe>
+			<timelimit>3000</timelimit>
+			<memorylimit>65535</memorylimit>
+			<comshell>gcc -o ${path}${name} ${path}${name}.${ext}
+			</comshell>
+			<runshell>${path}${name}.${exe}</runshell>
+		</lang>
+		<lang type="pascal">
+			<ext>cpp</ext>
+			<exe>exe</exe>
+			<path></path>
+			<timelimit>3000</timelimit>
+			<memorylimit>65535</memorylimit>
+			<comshell>g++ -o ${path}${name} ${path}${name}.${ext}
+			</comshell>
+			<runshell>${path}${name}.${exe}</runshell>
+		</lang>
+		<lang type="java">
+			<ext>java</ext>
+			<exe>class</exe>
+			<timelimit>3000</timelimit>
+			<memorylimit>65535</memorylimit>
+			<comshell>javac ${path}${name}.${ext}
+			</comshell>
+			<runshell>java -classpath ${path} ${name}
+			</runshell>
+		</lang>
+	</languages>
+
+</config>

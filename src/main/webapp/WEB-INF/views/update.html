@@ -1,0 +1,94 @@
+<% var body={%>
+
+<div class="container">
+	<div class="row">
+		<div class="span12">
+			<ul class="breadcrumb">
+				<li><a href="${contentPath}">首页</a> <span class="divider">/</span></li>
+				<li><a href="${contentPath}/user/userinfo/${user.uid}">用户</a> <span
+					class="divider">/</span></li>
+				<li class="active">修改账号</li>
+			</ul>
+		</div>
+	</div>
+	<div class="row">
+		<div class="span12">
+			<div class="tabbable">
+				<!-- Only required for left/right tabs -->
+				<ul class="nav nav-tabs">
+					<li class="active"><a
+						href="${contentPath}/user/userinfo/${user.uid}">个人信息</a></li> 
+						<%if(so.isLogined()){%>
+					<li><a href="${contentPath}/user/update/${session.user.uid}">修改账号</a></li>
+					<%}%>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="span3"></div>
+		<div class="span9">
+			<form class="form-horizontal" method="post" action="/user/update">
+				<input type="hidden" value="${user.uid}" name="uid">
+				<div class="control-group">
+					<label class="control-label">用户名</label>
+					<div class="controls">
+						<input type="text" value="${user.username}" placeholder="请输入用户名" readonly="readonly"
+							name="username">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">旧密码</label>
+					<div class="controls">
+						<input type="password" placeholder="">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">新密码</label>
+					<div class="controls">
+						<input type="password" placeholder="请输入新密码" name="password">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">确认密码</label>
+					<div class="controls">
+						<input type="password" placeholder="">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">邮箱</label>
+					<div class="controls">
+						<input type="text" placeholder="请输入邮箱" value="${user.email}" name="email">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">QQ</label>
+					<div class="controls">
+						<input type="text" placeholder="请输入QQ" value="${user.qq}" name="qq">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">昵称</label>
+					<div class="controls">
+						<input type="text" placeholder="${user.nick}" name="nick">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">学校</label>
+					<div class="controls">
+						<input type="text" placeholder="请输入学校" value="${user.school}" name="school">
+					</div>
+				</div>
+				<div class="control-group">
+					<div class="controls">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<button type="submit" class="btn btn-primary input-mini">提交</button>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<button type="reset" class="btn btn-primary input-mini">重置</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<%}; include("commons/_layout.html",{body:body}){}%>

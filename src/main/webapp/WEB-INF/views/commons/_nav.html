@@ -1,0 +1,38 @@
+<div id="top"></div>
+<div class="navbar navbar-inverse">
+	<div class="navbar-inner">
+		<div class="container">
+			<a class="brand" href="#">Title</a>
+			<ul class="nav">
+				<li class="active"><a href="${contentPath}/">首页</a></li>
+				<li><a href="${contentPath}/problemlist/1/${PROBLEM_PAGE_SIZE}">练习</a></li>
+				<li><a
+					href="${contentPath}/classifier/1/${CLASSIFIER_PAGE_SIZE}">分类</a></li>
+				<li><a href="${contentPath}/statuslist/1/${STATUS_PAGE_SIZE}">运行</a></li>
+				<li><a
+					href="${contentPath}/contestlist/1/${CONTEST_PAGE_SIZE}">比赛</a></li>
+				<li><a href="${contentPath}/ranklist/1/${RANK_PAGE_SIZE}">排名</a></li>
+			</ul>
+			<span class="pull-right" id="signInId"> <%if(so.isLogined()){
+				%> <a class="brand"
+				href="${contentPath}/user/userinfo/${session.user.uid}"><span>欢迎你，</span>${session.user.username}</a>
+				<a class="brand" href="${contentPath}/user/logout">登出</a> <%}else{%>
+				<a class="brand" href="${contentPath}/user/login">登录</a> <a
+				class="brand" href="${contentPath}/user/regist">注册</a> <%}%>
+			</span>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="span12 ">
+			<small class="pull-right muted">在线人数${userOnlineNum!100}&nbsp;&nbsp;&nbsp;总访问次数${accessNum!100001}</small>
+		</div>
+	</div>
+</div>
+
+<div id="myModal" class="modal hide well fade" tabindex="-1"
+	role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<% include("_login.html",{}){} %></div>
+
+<div class="clearfix"></div>

@@ -1,0 +1,16 @@
+<% var body={%>
+<div class="container">
+	<div class="row">
+		<ul class="nav nav-list">
+			<li class="nav-header"><h4>what can we do:</h4></li>
+			<li ><a href="${adminPath}/problemlist/1/${PROBLEM_PAGE_SIZE}">查看题目列表</a></li><br>
+			<li><a href="${adminPath}/add/problem">添加题目</a></li><br>
+			<li><a href="${adminPath}/classifierlist/1/5">查看分类列表</a></li><br>
+			<li><a href="${adminPath}/add/classifier">添加分类</a></li><br>
+			<li><a href="${adminPath}/contestlist/1/${CONTEST_PAGE_SIZE}">查看比赛列表</a></li><br>
+			<li><a href="${adminPath}/add/contest">添加比赛</a></li><br>
+			<li><a href="${adminPath}/manager/user">用户管理</a></li><br>
+		</ul>
+	</div>
+</div>
+<%}; include("_layout.html",{body:body}){}%>

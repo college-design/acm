@@ -1,0 +1,56 @@
+<% var body={%>
+<div class="container">
+    <div class="row">
+        <div class="span4">
+            <h2>用户管理</h2>
+            <h3>超级管理员用户</h3>
+            <table class="table">
+                <tr>
+                    <td>uid</td>
+                    <td>username</td>
+                </tr>
+                <% for(user in rootUserList){%>
+                <tr>
+                    <td>${user.uid}</td>
+                    <td>${user.username}</td>
+                </tr>
+                <%}%>
+            </table>
+        </div>
+        <div class="span4">
+            <h3>管理员用户</h3>
+            <table class="table">
+                <tr>
+                    <td>uid</td>
+                    <td>username</td>
+                    <td>操作</td>
+                </tr>
+                <% for(user in adminUserList){%>
+                <tr>
+                    <td>${user.uid}</td>
+                    <td>${user.username}</td>
+                    <td><a href="">移权</a></td>
+                </tr>
+                <%}%>
+            </table>
+        </div>
+        <div class="span4">
+            <h3>授权管理</h3>
+            用户名: <input type="text"><a class="btn" href="">授权</a>
+            <h3>在线用户</h3>
+            <table class="table">
+                <tr>
+                    <td>uid</td>
+                    <td>username</td>
+                </tr>
+                <% for(user in onlineUserList){%>
+                <tr>
+                    <td>${user.uid}</td>
+                    <td>${user.username}</td>
+                </tr>
+                <%}%>
+            </table>
+        </div>
+    </div>
+</div>
+ <%}; include("_layout.html",{body:body}){}%>

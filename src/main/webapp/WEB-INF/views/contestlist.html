@@ -1,0 +1,52 @@
+<% var body={%>
+<div class="container">
+	<ul class="breadcrumb">
+		<li><a href="${contentPath}">首页</a> <span class="divider">/</span></li>
+		<li><a href="${contentPath}/contestlist/1/${pageSize}">比赛</a><span
+			class="divider">/</span></li>
+		<li class="active">比赛列表</li>
+	</ul>
+	<div class="row">
+		<div class="span12">
+			<div class="pagination">
+				<ul pg pg-range="[1,${total},${currentPage},${pageSize},6]"
+					pg-top="置顶" pg-pre="上一页" pg-next="下一页">
+					<li><a
+						href="${contentPath}/contestlist/#{pg-index}/#{pg-pagesize}">#{pg-index}</a>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="span12">
+			<% var tag=["text-success","text-error"]; var
+			statusMap=["running","ending"]; for(contest in contestList){%>
+			<table class="table table-striped table-bordered table-hover">
+				<tr>
+					<td colspan="1" class="span2"><strong>比赛标题</strong></td>
+					<td colspan="3"><a
+						href="${contentPath}/contest/${contest.cid}">${contest.title}</a></td>
+				</tr>
+				<tr>
+					<td class="span2"><strong>开始时间</strong></td>
+					<td>${contest.startTime,"yyyy-MM-dd hh:mm:ss"}</td>
+					<td class="span2"><strong>结束时间</strong></td>
+					<td>${contest.endTime,"yyyy-MM-dd hh:mm:ss"}</td>
+				</tr>
+				<tr>
+					<td><strong>比赛状态</strong></td>
+					<td><strong class="">ending</strong></td>
+					<td><strong>比赛地点</strong></td>
+					<td>${contest.address}</td>
+				</tr>
+				<tr>
+					<td colspan="1"><strong>比赛说明</strong></td>
+					<td colspan="3">${so.subSummary(contest.description)}</td>
+				</tr>
+			</table>
+			<br> <%}%>
+		</div>
+	</div>
+</div>
+<%}; include("commons/_layout.html",{body:body}){}%>
+

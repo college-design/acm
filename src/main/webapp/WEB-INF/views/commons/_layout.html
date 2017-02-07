@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" href="${imagesPath}/favicon.ico" /></link>
+<title>${title!}</title>
+<!-- head -->
+${head!}
+<!-- css -->
+<% include("_css.html",{}){} %>
+<!-- css_diy -->
+${css!}
+</head>
+<body class="ng-app:hh" ng-app="hh" id="ng-app">
+	<!-- nav -->
+	<% include("_nav.html",{}){} %>
+	<!-- body -->
+	${body!}
+	<!-- footer -->
+	<% include("_footer.html",{}){} %>
+</body>
+<!-- js -->
+<%include("_js.html",{}){}%>
+<!-- js_diy -->
+${js!}
+</html>

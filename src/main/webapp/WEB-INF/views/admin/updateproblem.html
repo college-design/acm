@@ -1,0 +1,67 @@
+<% var body={%>
+<div class="container">
+	<div class="row">
+		<div align="center">
+			<h4 class="muted">更新题目</h4>
+		</div>
+	</div>
+	<div class="row">
+		<div class="span1">
+		</div>
+		<div class="span11">
+			<form class="form-inline" method="get"
+				action="#">
+		<strong>Problem Id：${problem.pid}</strong><br><br>
+		<span class="text-info">问题题目:</span>
+		<input	type="text" name="title"  size="20" class="input-medium" value="${problem.title!}" style="width:200px;"/><br><br>
+		<span class="text-info">时间限制:</span> 
+		<input type="text" name="timelimit"  size="16" class="input-medium" value="1000MS" style="width:200px;"/><br><br>
+		<span class="text-info">内存限制:</span> 
+		<input type="text" name="memorylimit"  size="16" class="input-medium" value="65536KB" style="width:200px;"/><br><br>
+		<span class="text-info">题目描述:</span><br>
+		<textarea name="code" rows="15" cols="200" style="width:600px;" >${problem.description!}</textarea><br>
+		<span class="text-info">输入:</span><br>
+		<textarea name="code" rows="15" cols="400"  style="width:600px;" >${problem.input!}</textarea><br>
+		<span class="text-info">输出:</span><br>
+		<textarea name="code" rows="15" cols="200" style="width:600px;" >${problem.output!}</textarea><br>
+		<span class="text-info">样例输入:</span><br>
+		<textarea name="code" rows="15" cols="200" style="width:600px;" >${problem.sampleInput!}</textarea><br>
+		<span class="text-info">样例输出:</span><br>
+		<textarea name="code" rows="15" cols="200" style="width:600px;"  >${problem.sampleOutput!}</textarea><br>
+		<span class="text-info">提示:</span><br>
+		<textarea name="code" rows="15" cols="200" style="width:600px;" >${problem.hint!}</textarea><br>
+		<span class="text-info">来源:</span><br>
+		<input	type="text" name="source" size="16" class="input-medium" value="${problem.source!}" /><br>
+		<div class="control-group">
+				<label class="control-label text-info">比赛:</label>
+					<div class="controls">
+						<select id="select" size="1" name="contest" style="width:500px;">
+							<% for(contest in contestList){%>
+							
+							<option >${contest.title}</option>
+							<%}%>
+						</select>
+					</div>
+				</div>
+				<div class="control-group">
+				<label class="control-label text-info">分类:</label>
+					<div class="controls">
+						<select id="select" size="1" name="classifier" style="width: 500px;">
+							<% for(classifier in classifierList){%>
+							<option >${classifier.title}</option>
+							<%}%>
+						</select>
+					</div>
+				</div>
+		
+		<div class="control-group" align="center">
+				<div class="controls">
+					<button class="btn btn-primary">提交</button>
+				</div>
+			</div>		
+		</form>
+		</div>
+	</div>
+
+</div>
+<%}; include("_layout.html",{body:body}){}%>

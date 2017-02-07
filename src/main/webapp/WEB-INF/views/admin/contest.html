@@ -1,0 +1,53 @@
+<% var body={%>
+
+<div class="container">
+	<div class="row">
+		<div align="center">
+			<h4 class="muted">添加比赛</h4>
+		</div>
+	</div>
+
+	<div class="row">
+
+		<div class="span12">
+			<form class="form-inline" method="get" action="#">
+				<strong>Contest Id：new contest</strong><br><br>
+				<span class="text-info">比赛题目:</span>
+		<input	type="text" name="title" value="" size="20" class="input-medium" placeholder="hello world" style="width:200px;"/><br><br>
+		<span class="text-info">比赛描述:</span><br>
+		<textarea name="code" rows="15" cols="200" style="width:600px;"></textarea><br>
+		<span class="text-info">开始时间:</span><br>
+		<span class="text-info">年份:</span>
+		<input	type="text" name="startyear"  size="20" class="input-medium" placeholder="year" style="width:100px;"/>
+		<span class="text-info">月份:</span>
+		<input	type="text" name="startmonth"  size="20" class="input-medium" placeholder="month" style="width:100px;"/>
+		<span class="text-info">天数:</span>
+		<input	type="text" name="startday"  size="20" class="input-medium" placeholder="day" style="width:100px;"/>
+		<span class="text-info">时钟:</span>
+		<input	type="text" name="starthour"  size="20" class="input-medium" placeholder="month" style="width:100px;"/>
+		<span class="text-info">分钟:</span>
+		<input	type="text" name="startmintue"  size="20" class="input-medium" placeholder="mintue" style="width:100px;"/>
+		<br><br>
+		<span class="text-info">结束时间:</span><br>
+		<span class="text-info">年份:</span>
+		<input	type="text" name="endyear"  size="20" class="input-medium" placeholder="year" style="width:100px;"/>
+		<span class="text-info">月份:</span>
+		<input	type="text" name="endmonth"  size="20" class="input-medium" placeholder="month" style="width:100px;"/>
+		<span class="text-info">天数:</span>
+		<input	type="text" name="endday"  size="20" class="input-medium" placeholder="day" style="width:100px;"/>
+		<span class="text-info">时钟:</span>
+		<input	type="text" name="endhour"  size="20" class="input-medium" placeholder="month" style="width:100px;"/>
+		<span class="text-info">分钟:</span>
+		<input	type="text" name="endmintue"  size="20" class="input-medium" placeholder="mintue" style="width:100px;"/>
+			<br><br>
+			<div class="control-group" align="center">
+				<div class="controls">
+					<button class="btn btn-primary">提交</button>
+				</div>
+			</div>	
+			</form>
+		</div>
+	</div>
+</div>
+
+<%}; include("_layout.html",{body:body}){}%>

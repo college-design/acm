@@ -1,0 +1,83 @@
+<% var body={%>
+
+<div class="container">
+	<div class="row">
+		<div class="span12">
+			<ul class="breadcrumb">
+				<li><a href="${contentPath}">首页</a> <span class="divider">/</span></li>
+				<li><a
+					href="${contentPath}/user/userinfo/${user.uid}">用户</a>
+					<span class="divider">/</span></li>
+				<li class="active">用户注册</li>
+			</ul>
+		</div>
+	</div>
+	<div class="row">
+		<div class="span12">
+			<div class="tabbable">
+				<!-- Only required for left/right tabs -->
+				<ul class="nav nav-tabs">
+					<li class="active"><a href="${contentPath}/user/regist">注册账号</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="span3"></div>
+		<div class="span9">
+			<form class="form-horizontal" method="post" action="/user/userAdd">
+				<div class="control-group">
+					<label class="control-label">用户名</label>
+					<div class="controls">
+						<input type="text" placeholder="username" name="username">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">密码</label>
+					<div class="controls">
+						<input type="password" placeholder="password" name="password">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">确认密码</label>
+					<div class="controls">
+						<input type="password" placeholder="" name="">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">邮箱</label>
+					<div class="controls">
+						<input type="text" placeholder="" name="email">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">QQ</label>
+					<div class="controls">
+						<input type="text" placeholder="" name="qq">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">昵称</label>
+					<div class="controls">
+						<input type="text" placeholder="" name="nick">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">学校</label>
+					<div class="controls">
+						<input type="text" placeholder="" name="school">
+					</div>
+				</div>
+				<div class="control-group">
+					<div class="controls">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<button type="submit" class="btn btn-primary input-mini">提&nbsp;&nbsp;交</button>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<button type="reset" class="btn btn-primary input-mini">重&nbsp;&nbsp;置</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<%}; include("commons/_layout.html",{body:body}){}%>
