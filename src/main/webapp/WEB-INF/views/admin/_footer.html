@@ -1,8 +1,18 @@
 <div class="footer">
 	<div class="container">
-		<p style="float: left;">&copy Copyright 2016 - 2017.</p>
-		<p style="float: right;">
-			Any problem, Please <a href=mailto:1453860636@qq.com>Contact lxg</a>
-		</p>
+		<div class="row">
+			<ul>
+				<% for(link in links){%>
+				<li style="list-style: none;float: left;margin-right: 5px;padding: 2px 3px;color: red"><a href="${link.url}">${link.name}</a></li>
+				<%}%>
+			</ul>
+
+		</div>
+		<div>
+			<p style="float: left;">&copy Copyright 2016 - 2017.</p>
+			<p style="float: right;">
+				Any problem, Please <a href=mailto:1453860636@qq.com>Contact lxg</a>
+			</p>
+		</div>
 	</div>
 </div>
