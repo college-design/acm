@@ -16,9 +16,10 @@
 			<span class="pull-right" id="signInId"> <%if(so.isLogined()){
 				%> <a class="brand"
 				href="${contentPath}/user/userinfo/${session.user.uid}"><span>欢迎你，</span>${session.user.username}</a>
-				<a class="brand" href="${contentPath}/user/logout">登出</a> <%}else{%>
-				<a class="brand" href="${contentPath}/user/login">登录</a> <a
-				class="brand" href="${contentPath}/user/regist">注册</a> <%}%>
+				<a class="brand" href="${contentPath}/user/logout">退出</a> <%}else{%>
+				<a class="brand" href="${contentPath}/user/login">登录</a>
+				<a class="brand" href="${contentPath}/admin">后台管理</a>
+				<a class="brand" href="${contentPath}/user/regist">注册</a> <%}%>
 			</span>
 		</div>
 	</div>

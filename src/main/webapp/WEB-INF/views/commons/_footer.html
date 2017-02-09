@@ -2,8 +2,11 @@
 	<div class="container">
 		<div class="row">
 			<ul>
+				<li style="list-style: none;float: left">友情链接:</li>
 				<% for(link in links){%>
-				<li style="list-style: none;float: left;margin-right: 5px;padding: 2px 3px;color: red"><a href="${link.url}">${link.name}</a></li>
+				<li style="list-style: none;float: left;margin-right: 5px;padding: 2px 3px;">
+					<a href="${link.url}" style="color: red" target="_blank">${link.name}</a>
+				</li>
 				<%}%>
 			</ul>
 
