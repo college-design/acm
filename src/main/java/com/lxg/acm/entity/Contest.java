@@ -16,8 +16,17 @@ public class Contest {
 	char defunct;  // 是否结束
 	String description; // 描述
 	String address;  // 比赛地址
+    int status; // 状态
 
-	public Long getCid() {
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public Long getCid() {
 		return cid;
 	}
 

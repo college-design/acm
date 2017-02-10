@@ -53,13 +53,12 @@ public class PracticeController {
 		if (user != null) {
 			for (int i = 0; i < problemList.size(); i++) {
 				Problem problem = problemList.get(i);
-				Integer result = statusMapper.queryResult(user.getUid(),
-						problem.getPid());
-				if (result == null) {
+				Integer result = statusMapper.queryResult(user.getUid(),problem.getPid());
+				if (result == null) { // 用户未答此题
 					result = 0;
-				} else if (result == 0) {
+				} else if (result == 0) { // 答题通过
 					result = 1;
-				} else {
+				} else { // 答题未通过
 					result = 2;
 				}
 				problem.setStatus(result);

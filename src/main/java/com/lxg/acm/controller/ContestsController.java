@@ -30,6 +30,13 @@ public class ContestsController {
 		Long offset = (page - 1) * pageSize;
 		List<Contest> contestList = contestMapper.queryForList(null, offset,
 				pageSize);
+		for(Contest list:contestList){
+			if(list.getDefunct()=='N'){
+				list.setStatus(1);
+			}else{
+				list.setStatus(0);
+			}
+		}
 		model.addAttribute("contestList", contestList);
 		model.addAttribute("total", contestMapper.count() / pageSize + 1);
 		model.addAttribute("currentPage", page);

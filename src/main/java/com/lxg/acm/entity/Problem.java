@@ -6,23 +6,23 @@ package com.lxg.acm.entity;
  *
  */
 public class Problem {
-	Long pid;
-	String title;
-	String description;
-	String input;
-	String output;
-	String sampleInput;
-	String sampleOutput;
-	String hint;
-	String source;
-	String sampleCode;
-	char defunct;
-	int accepted;
-	int submit;
-	double ratio;
-	int error;
-	int difficulty;
-	int status;
+	Long pid; // 题号
+	String title; // 题目标题
+	String description; // 题目描述
+	String input; // 题目输入描述
+	String output; // 题目输出描述
+	String sampleInput; // 输入实例
+	String sampleOutput; // 输出实例
+	String hint; // 题目源码 介绍
+	String source; // 题目来源
+	String sampleCode; // 实例代码
+	char defunct; // N
+	int accepted; // 题目通过数
+	int submit; // 题目提交总数
+	double ratio; // 题目通过率
+	int error; // -----------------------
+	int difficulty; // -----------------
+	int status; // 用户答题状态  null,
 
 	public int getStatus() {
 		return status;
