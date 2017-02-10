@@ -9,13 +9,13 @@ import java.util.Date;
  */
 public class Contest {
 
-	Long cid;
-	String title;
-	Date startTime;
-	Date endTime;
-	char defunct;
-	String description;
-	String address;
+	Long cid; // 比赛id
+	String title; // 比赛名称
+	Date startTime; // 比赛开始时间
+	Date endTime;   // 比赛结束时间
+	char defunct;  // 是否结束
+	String description; // 描述
+	String address;  // 比赛地址
 
 	public Long getCid() {
 		return cid;

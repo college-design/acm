@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html  lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ACM后台管理系统</title>
+    <!-- easyui css 引入-->
+    <link rel="stylesheet" type="text/css" href="${contentPath}/resources/jquery-easyui-1.3.3/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="${contentPath}/resources/jquery-easyui-1.3.3/themes/icon.css">
+    <!-- easy-ui js 引入 -->
+    <script type="text/javascript" src="${contentPath}/resources/jquery-easyui-1.3.3/jquery.min.js"></script>
+    <script type="text/javascript" src="${contentPath}/resources/jquery-easyui-1.3.3/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="${contentPath}/resources/jquery-easyui-1.3.3/locale/easyui-lang-zh_CN.js"></script>
+</head>
+<body class="easyui-layout">
+<!-- 顶部 -->
+<div region="north" style="height: 80px;background-color: #E0ECFF">
+    <div align="center"  style="padding-top: 5px">
+        <font size="15">
+            <strong>ACM在线评测后台管理系统</strong>
+        </font>
+    </div>
+</div>
+
+<!-- 中部显示内容 -->
+<div region="center">
+    <div class="easyui-tabs" data-options="fit:true,border:false" id="tabs">
+        <div data-options="title:'首页',iconCls:'icon-home'">
+            <div style="margin: 200px"><font  align="center" color="red" size="10">欢迎使用ACM在线评测后台管理系统</font></div>
+        </div>
+    </div>
+</div>
+
+<!-- 左边导航 -->
+<div region="west" style="width: 200px" title="***导航菜单***" split="true">
+    <div class="easyui-accordion" data-options="fit:true,border:false">
+        <div data-options="title:'个人信息',selected:true" style="padding:10px">
+            <a href="javascript:openTab('个人信息','editUser.jsp','icon-writeblog')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-writeblog'" style="width:150px">个人信息</a>
+            <a href="javascript:openPasswordDialog()" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-writeblog'" style="width:150px">修改密码</a>
+            <a href="javascript:logout()" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-writeblog'" style="width:150px">退出</a>
+        </div>
+        <div data-options="title:'用户管理'" style="padding:10px">
+            <a href="javascript:openTab('查看用户','userlist.jsp','icon-home')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-home'" style="width:150px">查看用户</a>
+            <a href="javascript:openTab('角色管理','blogTypeManage.jsp','icon-writeblog')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-writeblog'" style="width:150px">角色管理</a>
+            <a href="javascript:openTab('用户答题信息','blogTypeManage.jsp','icon-writeblog')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-writeblog'" style="width:150px">用户答题信息</a>
+        </div>
+        <div data-options="title:'题目管理'" style="padding:10px">
+            <a href="javascript:openTab('查看题目列表','problemlist.jsp','icon-writeblog')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-writeblog'" style="width: 150px">查看题目列表</a>
+            <a href="javascript:openTab('题目分类','contestlist.jsp','icon-writeblog')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-writeblog'" style="width: 150px">题目分类</a>
+        </div>
+        <div data-options="title:'比赛管理'" style="padding:10px">
+            <a href="javascript:openTab('查看比赛列表','contestlist.jsp','icon-home')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-home'" style="width:150px">查看比赛</a>
+            <a href="javascript:openTab('比赛题目','linkManage.jsp','icon-writeblog')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-writeblog'" style="width:150px">比赛题目</a>
+        </div>
+        <div data-options="title:'提交状态'" style="padding:10px">
+            <a href="javascript:openTab('查看提交状态','linkManage.jsp','icon-writeblog')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-writeblog'" style="width:150px">查看提交状态</a>
+        </div>
+        <div data-options="title:'友情链接'" style="padding:10px">
+            <a href="javascript:openTab('友情链接','linklist.jsp','icon-link')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-link'" style="width:150px">友情链接</a>
+        </div>
+    </div>
+</div>
+
+<!-- 底部 -->
+<div region="south" style="height: 25px;padding: 5px" align="center">
+    Copyright © 2016-2017 ACM在线评测系统后台管理
+</div>
+<script type="text/javascript">
+    var url;
+    // 新打开一个tab
+    function openTab(text,url,iconCls){
+        if($("#tabs").tabs("exists",text)){
+            $("#tabs").tabs("select",text);
+        }else{
+            var content="<iframe frameborder=0 scrolling='auto' style='width:100%;height:100%' src='${contentPath}/admin/"+url+"'></iframe>";
+            $("#tabs").tabs("add",{
+                title:text,
+                iconCls:iconCls,
+                closable:true,
+                content:content
+            });
+        }
+    }
+</script>
+</body>
+</html>

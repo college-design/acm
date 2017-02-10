@@ -1,26 +1,25 @@
 package com.lxg.acm.controller;
 
 import java.util.List;
+import java.util.Map;
 
+import com.alibaba.fastjson.JSONObject;
+import com.lxg.acm.entity.*;
+import com.lxg.acm.mapper.*;
+import com.lxg.acm.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.lxg.acm.entity.Classifier;
-import com.lxg.acm.entity.Contest;
-import com.lxg.acm.entity.Problem;
-import com.lxg.acm.entity.User;
-import com.lxg.acm.mapper.ClassifierMapper;
-import com.lxg.acm.mapper.ContestMapper;
-import com.lxg.acm.mapper.ProblemMapper;
-import com.lxg.acm.mapper.StatusMapper;
-import com.lxg.acm.mapper.UserMapper;
 import com.lxg.acm.support.CurrentUser;
 import com.lxg.acm.support.OnlineUserSupport;
 import com.lxg.acm.util.StringUtil;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletResponse;
 
 @Controller
 @RequestMapping("/admin")
@@ -28,18 +27,16 @@ public class AdminController {
 
 	@Autowired
 	UserMapper userMapper;
-	
 	@Autowired
 	private ProblemMapper problemMapper;
-	
 	@Autowired
 	private ClassifierMapper classifierMapper;
-	
 	@Autowired
 	private StatusMapper statusMapper;
-	
 	@Autowired
 	ContestMapper contestMapper;
+    @Autowired
+    LinkMapper linkMapper;
 
 	@RequestMapping("")
 	public String index() {
@@ -57,6 +54,51 @@ public class AdminController {
 		model.addAttribute("currentPage", page);
 		model.addAttribute("pageSize", pageSize);
 		return "admin/problemlist";
+	}
+
+	// easy-ui 问题列表
+	@RequestMapping("/problemlist.action")
+	public void queryProblemList1(@RequestParam(value="page",required=false)Long page,HttpServletResponse response,
+									@RequestParam(value="rows",required=false)Long pageSize) throws Exception{
+		Long offset = (page - 1) * pageSize;
+		List<Problem> problemList = problemMapper.queryForList(null, offset,
+				pageSize);
+		JSONObject result=new JSONObject();
+		result.put("rows", problemList);
+		result.put("total", problemMapper.count());
+		ResponseUtil.write(response, result);
+	}
+
+	// easy-ui 友情链接列表
+    @RequestMapping("/linklist.action")
+    public void queryLinkList1(@RequestParam(value="page",required=false)Long page,HttpServletResponse response,
+                               @RequestParam(value="rows",required=false)Long pageSize) throws Exception{
+        Long offset = (page - 1) * pageSize;
+        List<Link> linkList = linkMapper.queryForList(offset,pageSize);
+        JSONObject result=new JSONObject();
+        result.put("rows", linkList);
+        result.put("total", linkMapper.count());
+        ResponseUtil.write(response, result);
+    }
+    // 删除友情链接
+	@RequestMapping("/deletelink.action")
+	public void deleteLink(String ids,HttpServletResponse response) throws Exception{
+		String []idstr=ids.split(",");
+		for(int i=0;i<idstr.length;i++){
+			linkMapper.delete(Integer.parseInt(idstr[i]));
+		}
+		JSONObject result=new JSONObject();
+		result.put("success", true);
+		ResponseUtil.write(response, result);
+	}
+	// 添加链接
+	@RequestMapping("/addlink.action")
+	public void addLink(Link link,HttpServletResponse response) throws Exception{
+		JSONObject result=new JSONObject();
+		Long r = linkMapper.add(link.getName(),link.getUrl(),link.getType());
+		if(r!=0)
+			result.put("success", true);
+		ResponseUtil.write(response, result);
 	}
 
 	@RequestMapping("/add/problem")
@@ -113,6 +155,18 @@ public class AdminController {
 		model.addAttribute("pageSize", pageSize);
 		return "admin/contestlist";
 	}
+
+	// easy-ui 比赛列表
+    @RequestMapping("/contestlist.action")
+	public void queryContestList1(@RequestParam(value="page",required=false)Long page,HttpServletResponse response,
+								  @RequestParam(value="rows",required=false)Long pageSize) throws Exception{
+        Long offset = (page - 1) * pageSize;
+        List<Contest> contestList = contestMapper.queryForList(null,offset,pageSize);
+        JSONObject result=new JSONObject();
+        result.put("rows", contestList);
+        result.put("total", contestMapper.count()); // 查询总数
+        ResponseUtil.write(response, result);
+    }
 
 	@RequestMapping("/add/contest")
 	public String addContest() {
@@ -191,4 +245,16 @@ public class AdminController {
 		model.addAttribute("onlineUserList", OnlineUserSupport.getUsers());
 		return "admin/usermanager";
 	}
+
+	// easy-ui 用户列表
+    @RequestMapping("/userlist.action")
+	public void userList1(@RequestParam(value="page",required=false)Long page,HttpServletResponse response,
+						  @RequestParam(value="rows",required=false)Long pageSize) throws Exception{
+        Long offset = (page - 1) * pageSize;
+        List<User> userList = userMapper.queryForList(offset,pageSize);
+        JSONObject result=new JSONObject();
+        result.put("rows", userList);
+        result.put("total", userMapper.count()); // 查询总数
+        ResponseUtil.write(response, result);
+    }
 }

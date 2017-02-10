@@ -1,17 +1,59 @@
 package com.lxg.acm.mapper;
 
 import com.lxg.acm.entity.Link;
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
+ * LinkMapper
  * Created by 刘雪岗 on 2017/2/9.
  */
 @Repository
 public interface LinkMapper {
 
+    /**
+     * 查询所有链接
+     * @return
+     */
     @Select("select * from link")
     public List<Link> selectAll();
+
+    /**
+     * 分页查询链接
+     * @param offset
+     * @param pageSize
+     * @return
+     */
+    @Select("select * from link where 1=1 limit #{offset},#{pageSize}")
+    public List<Link> queryForList(@Param("offset") Long offset,@Param("pageSize") Long pageSize);
+
+    /**
+     * 查询链接总数
+     * @return
+     */
+    @Select("select count(1) from link")
+    public Long count();
+
+    /**
+     * 删除单个链接
+     * @param id
+     * @return
+     */
+    @Delete("delete from link where id =#{id}")
+    public Long delete(@Param("id")Integer id);
+
+    /**
+     * 添加链接
+     * @param name
+     * @param url
+     * @param type
+     * @return
+     */
+    @Insert("insert into link (name,url,type) values (#{name},#{url},#{type})")
+    public Long add(@Param("name") String name,@Param("url") String url,@Param("type") String type);
 }
