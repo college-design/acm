@@ -2,10 +2,7 @@ package com.lxg.acm.mapper;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import com.lxg.acm.entity.Classifier;
@@ -27,8 +24,12 @@ public interface ClassifierMapper {
 	public List<Problem> queryProblemList(Long cid);
 
 	// 插入分类信息
-	@Insert("insert into classifier(cid,title,createTime,modifyTime) values(#{cid},#{title},#{creatTime},#{modifyTime})")
-	public void save(Classifier classifier);
+	@Insert("insert into classifier(cid,title,createTime,modifyTime) values(#{cid},#{title},now(),now())")
+	public Long save(Classifier classifier);
+
+	// 更新分类信息
+	@Update("update classifier set title=#{title},modifyTime=now() where cid=#{cid}")
+	public Long update(@Param("title") String title,@Param("cid") Long cid);
 
 	// 按分类id查询分类
 	@Select("select * from classifier where cid=#{cid}")

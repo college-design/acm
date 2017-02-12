@@ -69,6 +69,44 @@ public class AdminController {
 		ResponseUtil.write(response, result);
 	}
 
+	// easy-ui 分类列表
+	@RequestMapping("/classifier.action")
+	public void queryClassifier1(@RequestParam(value="page",required=false)Long page,HttpServletResponse response,
+								 @RequestParam(value="rows",required=false)Long pageSize) throws Exception{
+		Long offset = (page - 1) * pageSize;
+		List<Classifier> classifierlist = classifierMapper.queryForList(null,offset,
+				pageSize);
+		JSONObject result=new JSONObject();
+		result.put("rows", classifierlist);
+		result.put("total", classifierMapper.count());
+		ResponseUtil.write(response, result);
+	}
+	// easy-ui 添加分类
+	@RequestMapping("/addclassifier.action")
+	public void addClassifier(Classifier classifier,HttpServletResponse response,Integer cid) throws Exception{
+		Long r;
+		if(cid != null){ // 更新
+			r = classifierMapper.update(classifier.getTitle(),classifier.getCid());
+		}else {
+			r = classifierMapper.save(classifier);
+		}
+		JSONObject result=new JSONObject();
+		if(r!=0)
+			result.put("success", true);
+		ResponseUtil.write(response, result);
+	}
+	// easy-ui 删除分类
+	@RequestMapping("/deleteclassifier.action")
+	public void deleteClassifier(String ids,HttpServletResponse response) throws Exception{
+		String []idstr=ids.split(",");
+		for(int i=0;i<idstr.length;i++){
+			classifierMapper.delete(Long.parseLong(idstr[i]));
+		}
+		JSONObject result=new JSONObject();
+		result.put("success", true);
+		ResponseUtil.write(response, result);
+	}
+
 	// easy-ui 友情链接列表
     @RequestMapping("/linklist.action")
     public void queryLinkList1(@RequestParam(value="page",required=false)Long page,HttpServletResponse response,
