@@ -93,9 +93,14 @@ public class AdminController {
 	}
 	// 添加链接
 	@RequestMapping("/addlink.action")
-	public void addLink(Link link,HttpServletResponse response) throws Exception{
+	public void addLink(Link link,HttpServletResponse response,Integer id) throws Exception{
+		Long r;
+		if(id != null){ // 更新
+			r = linkMapper.update(link.getName(),link.getUrl(),link.getType(),link.getId());
+		}else {
+			r = linkMapper.add(link.getName(),link.getUrl(),link.getType());
+		}
 		JSONObject result=new JSONObject();
-		Long r = linkMapper.add(link.getName(),link.getUrl(),link.getType());
 		if(r!=0)
 			result.put("success", true);
 		ResponseUtil.write(response, result);

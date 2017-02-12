@@ -12,7 +12,7 @@
 <script type="text/javascript" src="${contentPath}/resources/jquery-easyui-1.3.3/locale/easyui-lang-zh_CN.js"></script>
 </head>
 <body style="margin:1px">
-	<!-- 显示数据 -->
+	<!-- 初始化显示数据 -->
 	<table id="dg" class="easyui-datagrid"
 		data-options="fitColumns:true,pagination:true,rownumbers:true,
 		url:'${contentPath}/admin/linklist.action',fit:true,toolbar:'#tb'">
@@ -26,7 +26,7 @@
 		   	</tr>
 	    </thead>
 	</table>
-	<!-- 按钮添加 -->
+	<!-- 初始化按钮添加 -->
 	<div id="tb">
 		<div>
 			<a href="javascript:openLinkAddDialog()" class="easyui-linkbutton" iconCls="icon-add" plain="true">添加</a>
@@ -34,8 +34,7 @@
 			<a href="javascript:deleteLink()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
 		</div>
 	</div>
-
-	<!-- 添加弹出框 -->
+	<!-- 添加修改 弹出框 -->
 	<div id="dlg" class="easyui-dialog" style="width:500px;height:200px;padding:10px 20px"
 		 data-options="closed:true,buttons:'#dlg-buttons'">
 		<form id="fm" method="post">
@@ -55,29 +54,31 @@
 			</table>
 		</form>
 	</div>
-
-	<!-- 添加弹出框按钮 -->
+	<!-- 添加修改弹出框按钮 -->
 	<div id="dlg-buttons">
 		<a href="javascript:saveLink()" class="easyui-linkbutton" iconCls="icon-ok">保存</a>
 		<a href="javascript:closeLinkDialog()" class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
 	</div>
 
 	<script type="text/javascript">
-		// 修改
-		function openLinkModifyTab(){
-			var selectedRows=$("#dg").datagrid("getSelections");
-			if(selectedRows.length!=1){
-				$.messager.alert("系统提示","请选择一个要修改的链接！");
-				return;
-			}
-			var row=selectedRows[0];
-			window.parent.openTab('修改链接','editlink.jsp?id='+row.id+'&name='+row.name+'&url='+row.url+'&type='+row.type,'icon-edit');
-		}
 		// 格式化表格数据
 		function formatURL(val,row){
 			return "<a target='_blank' href='"+val+"'>"+val+"</a>"
 		}
+
 		var url;
+		// 修改
+		function openLinkModifyTab(){
+			var selectedRows=$("#dg").datagrid("getSelections");
+			if(selectedRows.length!=1){
+				$.messager.alert("系统提示","请选择一条要编辑的数据！");
+				return;
+			}
+			var row=selectedRows[0];
+			$("#dlg").dialog("open").dialog("setTitle","编辑友情链接信息");
+			$("#fm").form("load",row);
+			url="${pageContext.request.contextPath}/admin/addlink.action?id="+row.id;
+		}
 		// 删除链接
 		function deleteLink(){
 			var selectedRows=$("#dg").datagrid("getSelections"); // 获取选中元素
@@ -103,12 +104,12 @@
 				}
 			});
 		}
-
 		// 添加
 		function openLinkAddDialog(){
 			$("#dlg").dialog("open").dialog("setTitle","添加友情链接");
 			url="${contentPath}/admin/addlink.action";
 		}
+		// 保存
 		function saveLink(){
 			$("#fm").form("submit",{
 				url:url,
@@ -129,12 +130,12 @@
 				}
 			});
 		}
-		function resetValue(){
+		function resetValue(){ // 重置
 			$("#name").val("");
 			$("#url").val("");
 			$("#type").val("");
 		}
-		function closeLinkDialog(){
+		function closeLinkDialog(){ // 关闭dialog
 			$("#dlg").dialog("close");
 			resetValue();
 		}

@@ -1,10 +1,7 @@
 package com.lxg.acm.mapper;
 
 import com.lxg.acm.entity.Link;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -56,4 +53,15 @@ public interface LinkMapper {
      */
     @Insert("insert into link (name,url,type) values (#{name},#{url},#{type})")
     public Long add(@Param("name") String name,@Param("url") String url,@Param("type") String type);
+
+    /**
+     * 更新链接
+     * @param name
+     * @param url
+     * @param type
+     * @param id
+     * @return
+     */
+    @Update("update link set name=#{name},url=#{url},type=#{type} where id=#{id}")
+    public Long update(@Param("name") String name,@Param("url") String url,@Param("type") String type,@Param("id") Integer id);
 }
