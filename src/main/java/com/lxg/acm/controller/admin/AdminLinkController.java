@@ -18,7 +18,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/admin")
-public class AdminListController {
+public class AdminLinkController {
 
     @Autowired
     LinkMapper linkMapper;
