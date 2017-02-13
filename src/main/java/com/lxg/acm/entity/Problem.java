@@ -13,7 +13,7 @@ public class Problem {
 	String output; // 题目输出描述
 	String sampleInput; // 输入实例
 	String sampleOutput; // 输出实例
-	String hint; // 题目源码 介绍
+	String hint; // 提示信息
 	String source; // 题目来源
 	String sampleCode; // 实例代码
 	char defunct; // N
@@ -22,7 +22,7 @@ public class Problem {
 	double ratio; // 题目通过率
 	int error; // -----------------------
 	int difficulty; // -----------------
-	int status; // 用户答题状态  null,
+	int status; // 状态  null,
 
 	public int getStatus() {
 		return status;

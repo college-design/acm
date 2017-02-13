@@ -1,6 +1,7 @@
 package com.lxg.acm.controller.admin;
 
 import com.alibaba.fastjson.JSONObject;
+import com.lxg.acm.entity.Link;
 import com.lxg.acm.entity.Problem;
 import com.lxg.acm.mapper.ProblemMapper;
 import com.lxg.acm.util.ResponseUtil;
@@ -34,6 +35,33 @@ public class AdminProblemController {
         JSONObject result=new JSONObject();
         result.put("rows", problemList);
         result.put("total", problemMapper.count());
+        ResponseUtil.write(response, result);
+    }
+
+    // 添加修改
+    @RequestMapping("/addProblem.action")
+    public void addProblem(Problem problem, HttpServletResponse response, Integer id) throws Exception{
+        Long r=null;
+        if(id != null){ // 更新
+            r = problemMapper.updateAdminProblem(problem);
+        }else {
+            r = problemMapper.save(problem);
+        }
+        JSONObject result=new JSONObject();
+        if(r!=0)
+            result.put("success", true);
+        ResponseUtil.write(response, result);
+    }
+
+    // 删除题目
+    @RequestMapping("/deleteProblem.action")
+    public void deleteProblem(String ids,HttpServletResponse response) throws Exception{
+        String []idstr=ids.split(",");
+        for(int i=0;i<idstr.length;i++){
+            problemMapper.delete(Long.parseLong(idstr[i]));
+        }
+        JSONObject result=new JSONObject();
+        result.put("success", true);
         ResponseUtil.write(response, result);
     }
 }
