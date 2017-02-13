@@ -23,7 +23,7 @@ public class AdminLinkController {
     @Autowired
     LinkMapper linkMapper;
 
-    // easy-ui 友情链接列表
+    // 友情链接列表
     @RequestMapping("/linklist.action")
     public void queryLinkList1(@RequestParam(value="page",required=false)Long page, HttpServletResponse response,
                                @RequestParam(value="rows",required=false)Long pageSize) throws Exception{
@@ -34,6 +34,7 @@ public class AdminLinkController {
         result.put("total", linkMapper.count());
         ResponseUtil.write(response, result);
     }
+
     // 删除友情链接
     @RequestMapping("/deletelink.action")
     public void deleteLink(String ids,HttpServletResponse response) throws Exception{
@@ -45,6 +46,7 @@ public class AdminLinkController {
         result.put("success", true);
         ResponseUtil.write(response, result);
     }
+
     // 添加链接
     @RequestMapping("/addlink.action")
     public void addLink(Link link,HttpServletResponse response,Integer id) throws Exception{

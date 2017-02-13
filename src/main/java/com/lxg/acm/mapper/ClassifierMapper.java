@@ -24,7 +24,7 @@ public interface ClassifierMapper {
 	public List<Problem> queryProblemList(Long cid);
 
 	// 插入分类信息
-	@Insert("insert into classifier(cid,title,createTime,modifyTime) values(#{cid},#{title},now(),now())")
+	@Insert("insert into classifier(cid,title,createTime,modifyTime) values(#{cid},#{title},now(),#{modifyTime})")
 	public Long save(Classifier classifier);
 
 	// 更新分类信息

@@ -21,8 +21,8 @@
 		   		<th field="cb" checkbox="true" align="center"></th>
 		   		<th field="cid" width="50" align="center">比赛id</th>
 		   		<th field="title" width="200" align="center">比赛名称</th>
-				<th field="startTime" width="200" align="center">比赛开始时间</th>
-				<th field="endTime" width="200" align="center">比赛结束时间</th>
+				<th field="startTime" width="200" align="center" formatter="formatterdate">比赛开始时间</th>
+				<th field="endTime" width="200" align="center" formatter="formatterdate">比赛结束时间</th>
 		   	</tr>
 	    </thead>
 	</table>
@@ -34,5 +34,16 @@
 			<a href="javascript:deleteBlog()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
 		</div>
 	</div>
+
+<script type="text/javascript">
+	// easyui datagrid dateFormatter
+	function formatterdate(val, row) {
+		if (val != null) {
+			var date = new Date(val);
+			return date.getFullYear() + '-' + (date.getMonth() + 1) + '-'
+					+ date.getDate();
+		}
+	}
+</script>
 </body>
 </html>

@@ -21,8 +21,8 @@
 		   		<th field="cb" checkbox="true" align="center"></th>
 		   		<th field="cid" width="50" align="center" disabled="none">分类标识</th>
 		   		<th field="title" width="200" align="center">分类名称</th>
-				<th field="createTime" width="200" align="center">分类创建时间</th>
-				<th field="modifyTime" width="200" align="center">分类修改时间</th>
+				<th field="createTime" width="200" align="center" formatter="formatterdate">分类创建时间</th>
+				<th field="modifyTime" width="200" align="center" formatter="formatterdate">分类修改时间</th>
 		   	</tr>
 	    </thead>
 	</table>
@@ -53,6 +53,16 @@
 	</div>
 
 	<script type="text/javascript">
+
+		// easyui datagrid dateFormatter
+		function formatterdate(val, row) {
+			if (val != null) {
+				var date = new Date(val);
+				return date.getFullYear() + '-' + (date.getMonth() + 1) + '-'
+						+ date.getDate();
+			}
+		}
+
 		var url;
 		// 修改
 		function openClassifierModifyTab(){
@@ -64,7 +74,7 @@
 			var row=selectedRows[0];
 			$("#dlg").dialog("open").dialog("setTitle","编辑题目分类信息");
 			$("#fm").form("load",row);
-			url="${contentPath}/admin/addclassifier.action?id="+row.cid;
+			url="${contentPath}/admin/addclassifier.action?cid="+row.cid;
 		}
 		// 删除链接
 		function deleteClassifier(){
