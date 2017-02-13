@@ -24,7 +24,7 @@ public class User implements Serializable {
 	String school; // 学校
 	String majorClass; // 班级
 	String stuid; // 学号
-	String type;  // 类型
+	String type;  // 用户角色类型
 
 	public Long getUid() {
 		return uid;
