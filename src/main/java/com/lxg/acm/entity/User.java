@@ -15,16 +15,16 @@ public class User implements Serializable {
 	String password; // 用户密码
 	String email;    // 用户邮箱
 	String qq;		 // 用户QQ
-	int submit;
-	int accepted;
-	int solved;
-	boolean defunct;
-	Date regTime;
-	String nick;
-	String school;
-	String majorClass;
-	String stuid;
-	String type;
+	int submit;       //提交个数
+	int accepted;     // 通过个数
+	int solved;       // 解决题数
+	boolean defunct; // N
+	Date regTime;  // 注册时间
+	String nick;   // 昵称
+	String school; // 学校
+	String majorClass; // 班级
+	String stuid; // 学号
+	String type;  // 类型
 
 	public Long getUid() {
 		return uid;

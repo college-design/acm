@@ -1,6 +1,7 @@
 package com.lxg.acm.controller.admin;
 
 import com.alibaba.fastjson.JSONObject;
+import com.lxg.acm.entity.Link;
 import com.lxg.acm.entity.User;
 import com.lxg.acm.mapper.UserMapper;
 import com.lxg.acm.util.ResponseUtil;
@@ -36,6 +37,35 @@ public class AdminUserController {
         ResponseUtil.write(response, result);
     }
 
+    // 添加修改用户信息
+    // 添加链接
+    @RequestMapping("/addUserInfo.action")
+    public void addUserInfo(User user, HttpServletResponse response, Integer uid) throws Exception{
+        Long r;
+        if(uid != null){ // 更新
+            r = userMapper.update(user);
+        }else {
+            r = userMapper.save(user);
+        }
+        JSONObject result=new JSONObject();
+        if(r!=0)
+            result.put("success", true);
+        ResponseUtil.write(response, result);
+    }
+
+    // 删除用户信息
+    @RequestMapping("/deleteuserInfo.action")
+    public void deleteuserInfo(String ids,HttpServletResponse response) throws Exception{
+        String []idstr=ids.split(",");
+        for(int i=0;i<idstr.length;i++){
+            userMapper.delete(Long.parseLong(idstr[i]));
+        }
+        JSONObject result=new JSONObject();
+        result.put("success", true);
+        ResponseUtil.write(response, result);
+    }
+
+    //-----------
     @RequestMapping("/saveInfo.action")
     public void saveInfo(User user, HttpServletRequest request, HttpServletResponse response) throws Exception{
         Long resultTotal = userMapper.update(user);
