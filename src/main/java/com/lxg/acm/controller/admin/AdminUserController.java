@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
@@ -32,6 +33,18 @@ public class AdminUserController {
         JSONObject result=new JSONObject();
         result.put("rows", userList);
         result.put("total", userMapper.count()); // 查询总数
+        ResponseUtil.write(response, result);
+    }
+
+    @RequestMapping("/saveInfo.action")
+    public void saveInfo(User user, HttpServletRequest request, HttpServletResponse response) throws Exception{
+        Long resultTotal = userMapper.update(user);
+        StringBuffer result=new StringBuffer();
+        if(resultTotal>0){
+            result.append("<script language='javascript'>alert('修改成功！');</script>");
+        }else{
+            result.append("<script language='javascript'>alert('修改失败！');</script>");
+        }
         ResponseUtil.write(response, result);
     }
 }

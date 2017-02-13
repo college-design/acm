@@ -66,7 +66,7 @@ public interface UserMapper {
 	public void delete(Long uid);
 
 	@Update("update user set username=#{username},password=#{password},email=#{email},nick=#{nick},school=#{school} where uid=#{uid}")
-	public void update(User user);
+	public Long update(User user);
 
 	@Select("select count(1) from user")
 	public Long count();
