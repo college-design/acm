@@ -2,7 +2,8 @@
 SQLyog v10.2 
 MySQL - 5.5.45 : Database - db_acm
 *********************************************************************
-*/
+*/
+
 
 /*!40101 SET NAMES utf8 */;
 
@@ -71,7 +72,7 @@ CREATE TABLE `classifier` (
   `createTime` datetime DEFAULT NULL COMMENT '分类创建时间',
   `modifyTime` datetime DEFAULT NULL COMMENT '分类修改时间',
   PRIMARY KEY (`cid`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `classifier` */
 
@@ -114,7 +115,7 @@ CREATE TABLE `contest` (
   `description` text COLLATE utf8_unicode_ci COMMENT '比赛描述',
   `private` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`cid`)
-) ENGINE=InnoDB AUTO_INCREMENT=1016 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `contest` */
 
@@ -129,7 +130,7 @@ CREATE TABLE `contest_problem` (
   `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '标题',
   `num` int(11) DEFAULT NULL,
   PRIMARY KEY (`cpid`)
-) ENGINE=InnoDB AUTO_INCREMENT=209 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `contest_problem` */
 
@@ -176,7 +177,7 @@ CREATE TABLE `problem` (
   `submitUser` bigint(20) DEFAULT '0',
   `solved` int(11) DEFAULT '0',
   PRIMARY KEY (`pid`)
-) ENGINE=InnoDB AUTO_INCREMENT=1093 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `problem` */
 
@@ -196,7 +197,7 @@ CREATE TABLE `problemstatus` (
   `s_language` bigint(20) DEFAULT NULL COMMENT '语言',
   `s_submittime` datetime DEFAULT NULL COMMENT '提交时间',
   PRIMARY KEY (`s_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4096 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `problemstatus` */
 
@@ -210,7 +211,7 @@ CREATE TABLE `role` (
   `uid` bigint(20) DEFAULT NULL COMMENT '用户标识',
   `username` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '用户名称',
   PRIMARY KEY (`rid`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `role` */
 
@@ -229,7 +230,7 @@ CREATE TABLE `status` (
   `language` int(11) DEFAULT NULL COMMENT '运行语言',
   `submittime` datetime DEFAULT NULL COMMENT '提交时间',
   PRIMARY KEY (`sid`)
-) ENGINE=InnoDB AUTO_INCREMENT=5197 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `status` */
 
@@ -251,7 +252,7 @@ CREATE TABLE `user` (
   `nick` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '昵称',
   `school` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '学校',
   PRIMARY KEY (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=2668 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `user` */
 
