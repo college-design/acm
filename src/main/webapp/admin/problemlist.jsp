@@ -31,7 +31,7 @@
 	<!-- 按钮添加 -->
 	<div id="tb">
 		<div>
-			<a href="javascript:openProblemAddTab()" class="easyui-linkbutton" iconCls="icon-edit" plain="true">添加</a>
+			<a href="javascript:openProblemAddTab()" class="easyui-linkbutton" iconCls="icon-add" plain="true">添加</a>
 			<a href="javascript:openProblemModifyTab()" class="easyui-linkbutton" iconCls="icon-edit" plain="true">修改</a>
 			<a href="javascript:deleteProblem()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
 		</div>
