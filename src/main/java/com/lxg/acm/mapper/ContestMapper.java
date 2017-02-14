@@ -4,11 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.ResultType;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import com.lxg.acm.entity.Contest;
@@ -18,8 +14,15 @@ import com.lxg.acm.entity.Problem;
 @Repository
 public interface ContestMapper {
 
-	// 保存比赛信息 ------------------------------未完成
-//	public void save(Contest contest);
+	// 添加比赛
+	@Insert("insert into contest (title,startTime,endTime,defunct,description) values " +
+			"(#{title},#{startTime},#{endTime},#{defunct},#{description})")
+	public Long save(Contest contest);
+
+	// 更新比赛
+	@Update("update contest set title=#{title},startTime=#{startTime},endTime=#{endTime}," +
+			"defunct=#{defunct},description=#{description} where cid =#{cid}")
+	public Long update(Contest contest);
 
 	// 按cid查询比赛信息
 	@Select("select * from contest where cid=#{cid}")

@@ -2,6 +2,7 @@ package com.lxg.acm.controller.admin;
 
 import com.alibaba.fastjson.JSONObject;
 import com.lxg.acm.entity.Contest;
+import com.lxg.acm.entity.Link;
 import com.lxg.acm.mapper.ContestMapper;
 import com.lxg.acm.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,4 +37,30 @@ public class AdminContestController {
         ResponseUtil.write(response, result);
     }
 
+    // 添加于修改
+    @RequestMapping("/addConteset.action")
+    public void addContest(Contest contest, HttpServletResponse response, Integer cid) throws Exception{
+        Long r;
+        if(cid != null){ // 更新
+            r = contestMapper.update(contest);
+        }else {
+            r = contestMapper.save(contest);
+        }
+        JSONObject result=new JSONObject();
+        if(r!=0)
+            result.put("success", true);
+        ResponseUtil.write(response, result);
+    }
+
+    // 删除比赛
+    @RequestMapping("/deleteContest.action")
+    public void deleteContest(String ids,HttpServletResponse response) throws Exception{
+        String []idstr=ids.split(",");
+        for(int i=0;i<idstr.length;i++){
+            contestMapper.delete(Long.parseLong(idstr[i]));
+        }
+        JSONObject result=new JSONObject();
+        result.put("success", true);
+        ResponseUtil.write(response, result);
+    }
 }
