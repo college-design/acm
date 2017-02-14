@@ -20,7 +20,7 @@
 		   	<tr>
 		   		<th field="cb" checkbox="true" align="center"></th>
 		   		<th field="pid" width="50" align="center">Problem Id</th>
-		   		<th field="title" width="200" align="center">题目</th>
+		   		<th field="title" width="200" align="center" formatter="problemInfo">题目</th>
 				<th field="source" width="200" align="center">来源</th>
 				<th field="accepted" width="200" align="center">通过数</th>
 				<th field="submit" width="200" align="center">提交数</th>
@@ -97,6 +97,10 @@
 	</div>
 
 	<script type="text/javascript">
+		// 问题信息
+		function problemInfo(val,row){
+			return "<a target='_blank' href='${contentPath}/problem/"+row.pid+"'>"+val+"</a>"
+		}
 		var url;
 		// 修改
 		function openProblemModifyTab(){
