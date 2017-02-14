@@ -75,25 +75,17 @@
 					</td>
 				</tr>
 				<tr>
-					<td>提示：</td>
-					<td><input type="text" id="hint" name="hint" class="easyui-validatebox" required="true" /></td>
+					<td>提示信息：</td>
+					<td><input type="text" id="hint" name="hint" class="easyui-validatebox"/></td>
 					<td>来源：</td>
-					<td><input type="text" id="source" name="source" class="easyui-validatebox" required="true"/></td>
+					<td><input type="text" id="source" name="source" class="easyui-validatebox"/></td>
 				</tr>
 				<tr>
 					<td>实例代码：</td>
 					<td>
-						<textarea rows="5" cols="40" form="fm"  id="sampleCode" name="sampleCode" class="easyui-validatebox" required="true">
+						<textarea rows="5" cols="40" form="fm"  id="sampleCode" name="sampleCode" class="easyui-validatebox">
 						</textarea>
 					</td>
-					<td>通过数：</td>
-					<td><input type="text" id="accepted" name="accepted" class="easyui-validatebox" required="true" /></td>
-				</tr>
-				<tr>
-					<td>提交总数：</td>
-					<td><input type="text" id="submit" name="submit" class="easyui-validatebox" required="true"/></td>
-					<td>通过率：</td>
-					<td><input type="text" id="ratio" name="ratio" class="easyui-validatebox" required="true" /></td>
 				</tr>
 			</table>
 		</form>
@@ -179,9 +171,6 @@
 			$("#hint").val("");
 			$("#source").val("");
 			$("#sampleCode").val("");
-			$("#accepted").val("");
-			$("#submit").val("");
-			$("#ratio").val("");
 		}
 		function closeProblemDialog(){ // 关闭dialog
 			$("#dlg").dialog("close");

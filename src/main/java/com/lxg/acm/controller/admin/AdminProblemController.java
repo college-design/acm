@@ -40,9 +40,9 @@ public class AdminProblemController {
 
     // 添加修改
     @RequestMapping("/addProblem.action")
-    public void addProblem(Problem problem, HttpServletResponse response, Integer id) throws Exception{
+    public void addProblem(Problem problem, HttpServletResponse response, Integer pid) throws Exception{
         Long r=null;
-        if(id != null){ // 更新
+        if(pid != null){ // 更新
             r = problemMapper.updateAdminProblem(problem);
         }else {
             r = problemMapper.save(problem);

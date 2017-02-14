@@ -14,7 +14,7 @@ public interface ProblemMapper {
 	 * 添加问题----------------------------
 	 * @param e
 	 */
-	@Insert("insert into problem (title,description,input,output,sampleInput,sampleOutput,hint,source,sampleCode,defunct,accepted,submit,ratio) values (#{title},#{description},#{input},#{output},#{sampleInput},#{sampleOutput},#{hint},#{source},#{sampleCode},#{defunct},#{accepted},#{submit},#{ratio})")
+	@Insert("insert into problem (title,description,input,output,sampleInput,sampleOutput,hint,source,sampleCode) values (#{title},#{description},#{input},#{output},#{sampleInput},#{sampleOutput},#{hint},#{source},#{sampleCode})")
 	public Long save(Problem problem);
 
 	/**
@@ -62,7 +62,7 @@ public interface ProblemMapper {
 	 * @param problem
 	 * @return
 	 */
-	@Update("update problem set title=#{title},description=#{description},input=#{input},output=#{output},sampleInput={sampleInput},sampleOutput=#{sampleOutput}," +
-			"hint=#{hint},source=#{source},sampleCode=#{sampleCode},defunct=#{defunct},accepted=#{accepted},submit=#{submit},ratio={ratio} where pid=#{ratio}")
+	@Update("update problem set title=#{title},description=#{description},input=#{input},output=#{output},sampleInput=#{sampleInput},sampleOutput=#{sampleOutput}," +
+			"hint=#{hint},source=#{source},sampleCode=#{sampleCode} where pid=#{pid}")
 	public Long updateAdminProblem(Problem problem);
 }
