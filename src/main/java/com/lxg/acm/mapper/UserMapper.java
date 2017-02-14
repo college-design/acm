@@ -140,7 +140,7 @@ public interface UserMapper {
 
 	//==========用户解决题目总数(不相同)
 	@Select("SELECT COUNT(DISTINCT pid) AS solved FROM STATUS WHERE uid=#{uid} AND result=0")
-	public Integer getUserSolved(Long uid);
+	public Long getUserSolved(Long uid);
 	//===========用户通过次数
 	@Select("SELECT COUNT(1) FROM STATUS WHERE uid=#{uid} AND result=0")
 	public Long getUserAccepted(Long uid);

@@ -80,11 +80,11 @@ public class JudgeSupport extends Thread {
 			problem.setSubmit(problem.getSubmit()+1);//问题总提交+1
 			user.setAccepted(user.getAccepted()+1);//用户通过+1
 			user.setSubmit(user.getSubmit()+1);//用户总提交+1
-			user.setSolved(userMapper.getUserSolved(user.getUid()));//用户解决题数
+			user.setSolved(Integer.parseInt(userMapper.getUserSolved(user.getUid())+""));//用户解决题数
 			problem.setRatio((problem.getAccepted()+0.0)/problem.getSubmit());//问题通过率
 		}else{ // 未通过
 			user.setSubmit(user.getSubmit()+1);//用户总提交+1
-			user.setSolved(userMapper.getUserSolved(user.getUid()));//用户解决题数
+			user.setSolved(Integer.parseInt(userMapper.getUserSolved(user.getUid())+""));//用户解决题数
 			problem.setSubmit(problem.getSubmit()+1);//问题总提交
 			problem.setRatio((problem.getAccepted()+0.0)/problem.getSubmit());//问题通过率
 		}
