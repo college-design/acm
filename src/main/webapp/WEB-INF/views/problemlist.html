@@ -34,7 +34,7 @@
 							&nbsp;&nbsp;<a href="${contentPath}/problem/${problem.pid}">${problem.title}</a>
 						</td>
 						<td>${problem.accepted}/${problem.submit}</td>
-						<td>${problem.ratio,"##.##"}%</td>
+						<td>${problem.ratio*100,"##.##"}%</td>
 					</tr>
 				</tbody>
 				<%}%>

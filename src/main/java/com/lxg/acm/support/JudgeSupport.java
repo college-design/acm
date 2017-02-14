@@ -9,6 +9,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import com.lxg.acm.entity.User;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -72,16 +73,21 @@ public class JudgeSupport extends Thread {
 		// 题目AC/ALL
 		Long pid = status.getPid();
 		Problem problem= problemMapper.query(pid);
+		User user = userMapper.query(status.getUid());
 		// 判断题目是否通过
 		if(0==core.getResult()){ // 通过
-			problem.setAccepted(problem.getAccepted()+1);
-			problem.setSubmit(problem.getSubmit()+1);
-			problem.setRatio((problem.getAccepted()+0.0)/problem.getSubmit());
+			problem.setAccepted(problem.getAccepted()+1);//问题通过+1
+			problem.setSubmit(problem.getSubmit()+1);//问题总提交+1
+			user.setAccepted(user.getAccepted()+1);//用户通过+1
+			user.setSubmit(user.getSubmit()+1);//用户总提交+1
+			user.setSolved(userMapper.getUserSolved(user.getUid()));//用户解决题数
+			problem.setRatio((problem.getAccepted()+0.0)/problem.getSubmit());//问题通过率
 		}else{ // 未通过
-			problem.setSubmit(problem.getSubmit()+1);
-			problem.setRatio((problem.getAccepted()+0.0)/problem.getSubmit());
+			user.setSubmit(user.getSubmit()+1);//用户总提交+1
+			user.setSolved(userMapper.getUserSolved(user.getUid()));//用户解决题数
+			problem.setSubmit(problem.getSubmit()+1);//问题总提交
+			problem.setRatio((problem.getAccepted()+0.0)/problem.getSubmit());//问题通过率
 		}
-		
 		status.setMemory(core.getMemory());
 		status.setResult(core.getResult());
 		status.setTime(core.getTimeUsed());
@@ -90,6 +96,7 @@ public class JudgeSupport extends Thread {
 		LOG.info("error:" + core.getErrorInfo());
 		statusMapper.update(status);   // 更新代码状态
 		problemMapper.update(problem); // 更新题目提交率
+		userMapper.update(user);//更新用户解决题数，总提交数
 		deleteFloder(folder);
 	}
 

@@ -28,14 +28,11 @@ import com.lxg.acm.util.StringUtil;
  */
 @Controller
 public class PracticeController {
-
 	@Autowired
 	private ProblemMapper problemMapper;
-
 	@Autowired
 	private StatusMapper statusMapper;
 	
-
 	/**
 	 * 练习列表
 	 * @param user
@@ -71,6 +68,7 @@ public class PracticeController {
 		return "problemlist";
 	}
 
+	//问题查看
 	@RequestMapping("/problem/{pid}")
 	public String find(@PathVariable Long pid, Model model) {
 		Problem problem = problemMapper.query(pid);
@@ -104,11 +102,10 @@ public class PracticeController {
 		status.setPid(pid);
 		status.setLanguage(language);
 		status.setResult(JudgeResultType.WAITING);
-		statusMapper.save(status);
-//		System.out.println(status.getSid());
-		statusMapper.insertCode(status.getSid(), code);
+		statusMapper.save(status);//保存状态
+		statusMapper.insertCode(status.getSid(), code);//保存提交代码
 		JudgeSupport judge = new JudgeSupport(status, code);
-		return "redirect:/statuslist/1/50";
+		return "redirect:/statuslist/1/10";
 	}
 
 }

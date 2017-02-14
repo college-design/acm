@@ -60,15 +60,15 @@ public class UserController {
 	 */
 	@RequestMapping("/userinfo/{uid}")
 	public String find(@PathVariable Long uid, Model model) {
-		
+		// 用户解决的题目pid列表
 		List<Integer> problemSolvedList=userMapper.queryByUidSolved(uid);
-		
+		// 用户未解决的题目pid列表
 		List<Integer> problemNotSolvedList=userMapper.queryByUidNoSolved(uid);
 
 		model.addAttribute("problemSolvedList", problemSolvedList);
 		model.addAttribute("problemNotSolvedList", problemNotSolvedList);
 
-		User user = userMapper.query(uid);
+		User user = userMapper.query(uid); // 查询当前用户
 		if (user == null) {
 			throw new UserException("用户不存在");
 		}

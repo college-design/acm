@@ -107,7 +107,7 @@ public interface UserMapper {
 	 * @param user
 	 * @return
 	 */
-	@Update("update user set username=#{username},password=#{password},email=#{email},nick=#{nick},school=#{school} where uid=#{uid}")
+	@Update("update user set username=#{username},password=#{password},email=#{email},nick=#{nick},school=#{school},solved=#{solved},accepted=#{accepted},submit=#{submit} where uid=#{uid}")
 	public Long update(User user);
 
 	/**
@@ -138,4 +138,10 @@ public interface UserMapper {
 //	public List<Problem> queryFindProblemList(Object params,
 //			@Param("offset") Long page, @Param("pageSize") Long pageSize);
 
+	//==========用户解决题目总数(不相同)
+	@Select("SELECT COUNT(DISTINCT pid) AS solved FROM STATUS WHERE uid=#{uid} AND result=0")
+	public Integer getUserSolved(Long uid);
+	//===========用户通过次数
+	@Select("SELECT COUNT(1) FROM STATUS WHERE uid=#{uid} AND result=0")
+	public Long getUserAccepted(Long uid);
 }
