@@ -38,9 +38,9 @@ public class AdminRoleController {
 
     // 添加用户权限管理信息
     @RequestMapping("/addUserRole.action")
-    public void addUserRole(Role role,HttpServletResponse response,Integer id) throws Exception{
+    public void addUserRole(Role role,HttpServletResponse response,Integer rid) throws Exception{
         Long r;
-        if(id != null){ // 更新
+        if(rid != null){ // 更新
             r = roleMapper.update(role);
         }else {
             r = roleMapper.save(role);

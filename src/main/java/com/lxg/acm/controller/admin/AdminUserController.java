@@ -38,7 +38,6 @@ public class AdminUserController {
     }
 
     // 添加修改用户信息
-    // 添加链接
     @RequestMapping("/addUserInfo.action")
     public void addUserInfo(User user, HttpServletResponse response, Integer uid) throws Exception{
         Long r;
