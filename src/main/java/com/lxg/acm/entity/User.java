@@ -19,7 +19,8 @@ public class User implements Serializable {
 	int accepted;     // 通过个数
 	int solved;       // 解决题数
 	boolean defunct; // N
-	Date regTime;  // 注册时间
+	Date regTime;  // ======
+	Date createTime; // 注册时间
 	String nick;   // 昵称
 	String school; // 学校
 	String majorClass; // 班级

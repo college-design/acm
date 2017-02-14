@@ -27,7 +27,7 @@ public interface UserMapper {
 	 * 用户添加
 	 * @param user
 	 */
-	@Insert("insert into user(username,password,email,nick,school) values(#{username},#{password},#{email},#{nick},#{school})")
+	@Insert("insert into user(username,password,email,nick,school,createTime) values(#{username},#{password},#{email},#{nick},#{school},now())")
 	public Long save(User user);
 
 	/**
