@@ -36,7 +36,7 @@
 		</div>
 	</div>
 	<!-- 添加修改 弹出框 -->
-	<div id="dlg" class="easyui-dialog" style="width:500px;height:200px;padding:10px 20px"
+	<div id="dlg" class="easyui-dialog" style="width:500px;height:400px;padding:10px 20px"
 		 data-options="closed:true,buttons:'#dlg-buttons'">
 		<form id="fm" method="post">
 			<table cellspacing="8px">
@@ -131,9 +131,10 @@
 			});
 		}
 		function resetValue(){ // 重置
-			$("#name").val("");
-			$("#url").val("");
-			$("#type").val("");
+			$("#username").val("");
+			$("#nick").val("");
+			$("#email").val("");
+			$("#school").val("");
 		}
 		function closeUserInfoDialog(){ // 关闭dialog
 			$("#dlg").dialog("close");
