@@ -35,7 +35,7 @@
 		</div>
 	</div>
 	<!-- 添加修改 弹出框 -->
-	<div id="dlg" class="easyui-dialog" style="width:500px;height:200px;padding:10px 20px"
+	<div id="dlg" class="easyui-dialog" style="width:300px;height:200px;padding:10px 20px"
 		 data-options="closed:true,buttons:'#dlg-buttons'">
 		<form id="fm" method="post">
 			<table cellspacing="8px">

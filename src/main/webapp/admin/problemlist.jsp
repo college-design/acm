@@ -170,9 +170,18 @@
 			});
 		}
 		function resetValue(){ // 重置
-			$("#name").val("");
-			$("#url").val("");
-			$("#type").val("");
+			$("#title").val("");
+			$("#description").val("");
+			$("#input").val("");
+			$("#output").val("");
+			$("#sampleInput").val("");
+			$("#sampleOutput").val("");
+			$("#hint").val("");
+			$("#source").val("");
+			$("#sampleCode").val("");
+			$("#accepted").val("");
+			$("#submit").val("");
+			$("#ratio").val("");
 		}
 		function closeProblemDialog(){ // 关闭dialog
 			$("#dlg").dialog("close");
