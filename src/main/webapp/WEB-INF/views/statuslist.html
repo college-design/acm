@@ -48,7 +48,13 @@
 						<td class="span3"><span status-res="${status.result}"></span></td>
 						<td>${status.time}</td>
 						<td>${status.memory}</td>
-						<td><a href="${contentPath}/status/code/${status.sid}">${languages[status.language]}</a></td>
+						<td>
+							<% if(so.isLogined()){ %>
+							<a class="text-info" href="${contentPath}/status/code/${status.sid}">${languages[status.language]}</a>
+							<%}else{%>
+							<a class="text-warning">${languages[status.language]}</a>
+							<% } %>
+						</td>
 						<td>${status.submittime,"yyyy-MM-dd hh:mm:ss"}</td>
 					</tr>
 					<%}%>
