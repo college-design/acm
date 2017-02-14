@@ -14,7 +14,7 @@ public class User implements Serializable {
 	String username; // 用户名
 	String password; // 用户密码
 	String email;    // 用户邮箱
-	String qq;		 // 用户QQ
+//	String qq;		 // 用户QQ===================
 	int submit;       //提交个数
 	int accepted;     // 通过个数
 	int solved;       // 解决题数
@@ -115,13 +115,13 @@ public class User implements Serializable {
 		this.accepted = accepted;
 	}
 
-	public String getQq() {
-		return qq;
-	}
-
-	public void setQq(String qq) {
-		this.qq = qq;
-	}
+//	public String getQq() {
+//		return qq;
+//	}
+//
+//	public void setQq(String qq) {
+//		this.qq = qq;
+//	}
 
 	public String getMajorClass() {
 		return majorClass;

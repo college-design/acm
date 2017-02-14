@@ -15,7 +15,7 @@ public class Contest {
 	Date endTime;   // 比赛结束时间
 	char defunct;  // 是否结束
 	String description; // 描述
-	String address;  // 比赛地址
+//	String address;  // 比赛地址=========================
     int status; // 状态
 
     public int getStatus() {
@@ -74,12 +74,12 @@ public class Contest {
 		this.description = description;
 	}
 
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
+//	public String getAddress() {
+//		return address;
+//	}
+//
+//	public void setAddress(String address) {
+//		this.address = address;
+//	}
 
 }
