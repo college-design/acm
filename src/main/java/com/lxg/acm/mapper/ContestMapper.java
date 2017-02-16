@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.lxg.acm.entity.ContestProblem;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
@@ -95,4 +96,22 @@ public interface ContestMapper {
 
 	@Delete("delete from contest where cid=#{cid}")
 	public void delete(Long cid);
+
+	//===================比赛问题关联
+	@Select("select * from contest_problem where 1=1  limit #{offset},#{pageSize}")
+	public List<ContestProblem> queryForContestProblemList(Object params,
+											 @Param("offset") Long page, @Param("pageSize") Long pageSize);
+	@Select("select count(1) from contest_problem")
+	public Long contestProblemcount();
+
+	@Update("update contest_problem set cid=#{cid},pid=#{pid},title=#{title}," +
+			"num=#{num} where cpid =#{cpid}")
+	public Long updateContestProblem(ContestProblem contestProblem);
+
+	@Insert("insert into contest_problem (cid,pid,title,num) values " +
+			"(#{cid},#{pid},#{title},#{num})")
+	public Long saveContestProblem(ContestProblem contestProblem);
+
+	@Delete("delete from contest_problem where cpid=#{cpid}")
+	public void deleteContestProblem(Long cpid);
 }

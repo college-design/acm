@@ -2,6 +2,7 @@ package com.lxg.acm.controller.admin;
 
 import com.alibaba.fastjson.JSONObject;
 import com.lxg.acm.entity.Contest;
+import com.lxg.acm.entity.ContestProblem;
 import com.lxg.acm.entity.Link;
 import com.lxg.acm.mapper.ContestMapper;
 import com.lxg.acm.util.ResponseUtil;
@@ -58,6 +59,44 @@ public class AdminContestController {
         String []idstr=ids.split(",");
         for(int i=0;i<idstr.length;i++){
             contestMapper.delete(Long.parseLong(idstr[i]));
+        }
+        JSONObject result=new JSONObject();
+        result.put("success", true);
+        ResponseUtil.write(response, result);
+    }
+
+    //==========================================比赛问题关联
+
+    @RequestMapping("/contestProblem.action")
+    public void queryContestProblem(@RequestParam(value="page",required=false)Long page, HttpServletResponse response,
+                                  @RequestParam(value="rows",required=false)Long pageSize) throws Exception{
+        Long offset = (page - 1) * pageSize;
+        List<ContestProblem> contestProblem = contestMapper.queryForContestProblemList(null,offset,pageSize);
+        JSONObject result=new JSONObject();
+        result.put("rows", contestProblem);
+        result.put("total", contestMapper.contestProblemcount()); // 查询总数
+        ResponseUtil.write(response, result);
+    }
+
+    @RequestMapping("/addContesetProblem.action")
+    public void addContest(ContestProblem contestProblem, HttpServletResponse response, Integer cpid) throws Exception{
+        Long r;
+        if(cpid != null){ // 更新
+            r = contestMapper.updateContestProblem(contestProblem);
+        }else {
+            r = contestMapper.saveContestProblem(contestProblem);
+        }
+        JSONObject result=new JSONObject();
+        if(r!=0)
+            result.put("success", true);
+        ResponseUtil.write(response, result);
+    }
+
+    @RequestMapping("/deleteContestProblem.action")
+    public void deleteContestProblem(String ids,HttpServletResponse response) throws Exception{
+        String []idstr=ids.split(",");
+        for(int i=0;i<idstr.length;i++){
+            contestMapper.deleteContestProblem(Long.parseLong(idstr[i]));
         }
         JSONObject result=new JSONObject();
         result.put("success", true);
