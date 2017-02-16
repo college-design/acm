@@ -11,14 +11,14 @@ import com.lxg.acm.entity.Problem;
 public interface ProblemMapper {
 
 	/**
-	 * 添加问题----------------------------
+	 * 添加问题
 	 * @param e
 	 */
 	@Insert("insert into problem (title,description,input,output,sampleInput,sampleOutput,hint,source,sampleCode) values (#{title},#{description},#{input},#{output},#{sampleInput},#{sampleOutput},#{hint},#{source},#{sampleCode})")
 	public Long save(Problem problem);
 
 	/**
-	 * 根据pid查询题目
+	 * pid查询题目
 	 * @param pid
 	 * @return
 	 */
@@ -26,14 +26,14 @@ public interface ProblemMapper {
 	public Problem query(Long pid);
 
 	/**
-	 * 更新问题的提交率
+	 * 修改问题的提交率
 	 * @param problem
 	 */
 	@Update("update problem set accepted=#{accepted},submit=#{submit},ratio=#{ratio} where pid=#{pid}")
 	public void update(Problem problem);
 
 	/**
-	 * 分页查询问题列表
+	 * 分页问题列表
 	 * @param params
 	 * @param offset
 	 * @param pageSize
@@ -44,7 +44,7 @@ public interface ProblemMapper {
 			@Param("offset") Long offset, @Param("pageSize") Long pageSize);
 
 	/**
-	 * 查询问题列表总数
+	 * 列表总数
 	 * @return
 	 */
 	@Select("select count(1) from problem")
