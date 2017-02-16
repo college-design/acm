@@ -21,12 +21,12 @@
 					<td class="${tag[contest.status]}">${contest.endTime,"yyyy-MM-dd hh:mm:ss"}</td>
 				</tr>
 				<tr>
-					<td><strong>比赛状态</strong></td>
-					<td><strong class="${tag[contest.status]}">${statusMap[contest.status]}</strong></td>
+					<td colspan="1"><strong>比赛状态</strong></td>
+					<td colspan="3"><strong class="${tag[contest.status]}">${statusMap[contest.status]}</strong></td>
 				</tr>
 				<tr>
 					<td colspan="1"><strong>比赛说明</strong></td>
-					<td colspan="3">${so.subSummary(contest.description)}</td>
+					<td colspan="1">${so.subSummary(contest.description)}</td>
 				</tr>
 			</table>
 			<br> <%}%>
