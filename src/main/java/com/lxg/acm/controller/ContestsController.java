@@ -56,26 +56,26 @@ public class ContestsController {
 	}
 	@RequestMapping("/conteststatistics/{cid}")
 	public String findstatistics(@PathVariable long cid, Model model) {
-		Contest contest = contestMapper.query(cid);
-		List<Problem> problemList = contestMapper.queryProblemList(cid);
+		Contest contest = contestMapper.query(cid);//查询比赛信息
+		List<Problem> problemList = contestMapper.queryProblemList(cid);//该场比赛题目按num排序
 		Long pidcountList[][]=new Long[20][20];
 		Long pidcount;
 		Long sum[]=new Long[20];
 		for(int i=0;i<problemList.size();i++)
 		{	
-			pidcountList[i][0]=contestMapper.countResult1(problemList.get(i).getPid());
-			pidcountList[i][1]=contestMapper.countResult2(problemList.get(i).getPid());
-			pidcountList[i][2]=contestMapper.countResult3(problemList.get(i).getPid());
-			pidcountList[i][3]=contestMapper.countResult4(problemList.get(i).getPid());
-			pidcountList[i][4]=contestMapper.countResult5(problemList.get(i).getPid());
-			pidcountList[i][5]=contestMapper.countResult6(problemList.get(i).getPid());
-			pidcountList[i][6]=contestMapper.countResult7(problemList.get(i).getPid());
-			pidcountList[i][7]=contestMapper.countResult8(problemList.get(i).getPid());
-			pidcountList[i][8]=contestMapper.countResult9(problemList.get(i).getPid());
-			pidcountList[i][9]=contestMapper.countResult10(problemList.get(i).getPid());
-			pidcountList[i][10]=contestMapper.countResult11(problemList.get(i).getPid());
+			pidcountList[i][0]=contestMapper.countResult1(problemList.get(i).getPid());//通过此题目的总数
+			pidcountList[i][1]=contestMapper.countResult2(problemList.get(i).getPid());//result=1
+			pidcountList[i][2]=contestMapper.countResult3(problemList.get(i).getPid());//result=2
+			pidcountList[i][3]=contestMapper.countResult4(problemList.get(i).getPid());//result=3
+			pidcountList[i][4]=contestMapper.countResult5(problemList.get(i).getPid());//result=4
+			pidcountList[i][5]=contestMapper.countResult6(problemList.get(i).getPid());//result=5
+			pidcountList[i][6]=contestMapper.countResult7(problemList.get(i).getPid());//result=6
+			pidcountList[i][7]=contestMapper.countResult8(problemList.get(i).getPid());//language=0
+			pidcountList[i][8]=contestMapper.countResult9(problemList.get(i).getPid());//language=1
+			pidcountList[i][9]=contestMapper.countResult10(problemList.get(i).getPid());//language=2
+			pidcountList[i][10]=contestMapper.countResult11(problemList.get(i).getPid());//language=3
 			sum[i]=pidcountList[i][0]+pidcountList[i][1]+pidcountList[i][2]+pidcountList[i][3]+
-					+pidcountList[i][4]+pidcountList[i][5]+pidcountList[i][6];
+					+pidcountList[i][4]+pidcountList[i][5]+pidcountList[i][6];//总共提交数
 		}
 		model.addAttribute("cid", contest.getCid());
 		model.addAttribute("contest", contest);
@@ -84,6 +84,8 @@ public class ContestsController {
 		model.addAttribute("sum",sum);
 		return "conteststatistics";
 	}
+
+	//============比赛排名
 	@RequestMapping("/contest/{cid}/rank")
 	public String rank(@PathVariable long cid, Model model) {
 		Long pNum = contestMapper.queryProblemNum(cid);

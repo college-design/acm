@@ -2,9 +2,9 @@
 <div class="navbar navbar-default navbar-fixed-top">
 	<div class="navbar-inner">
 		<div class="container">
-			<a class="brand" href="#">ACM</a>
+			<a class="brand" style="text-decoration: none">ACM</a>
 			<ul class="nav">
-				<li class="active"><a href="${contentPath}/">首页</a></li>
+				<li><a href="${contentPath}/">首页</a></li>
 				<li><a href="${contentPath}/problemlist/1/${PROBLEM_PAGE_SIZE}">练习</a></li>
 				<li><a
 					href="${contentPath}/classifier/1/${CLASSIFIER_PAGE_SIZE}">分类</a></li>
@@ -13,13 +13,18 @@
 					href="${contentPath}/contestlist/1/${CONTEST_PAGE_SIZE}">比赛</a></li>
 				<li><a href="${contentPath}/ranklist/1/${RANK_PAGE_SIZE}">排名</a></li>
 			</ul>
-			<span class="pull-right" id="signInId"> <%if(so.isLogined()){
-				%> <a class="brand"
-				href="${contentPath}/user/userinfo/${session.user.uid}"><span>欢迎你，</span>${session.user.username}</a>
-				<a class="brand" href="${contentPath}/user/logout">退出</a> <%}else{%>
+			<span class="pull-right" id="signInId">
+				<%if(so.isLogined()){%>
+				<a class="brand" href="${contentPath}/user/userinfo/${session.user.uid}">
+					<span>欢迎你，</span>${session.user.username}
+				</a>
+				<a class="brand" href="${contentPath}/user/logout">退出</a>
+				<%}else{%>
 				<a class="brand" href="${contentPath}/user/login">登录</a>
-				<a class="brand" href="${contentPath}/admin">后台管理</a>
-				<a class="brand" href="${contentPath}/user/regist">注册</a> <%}%>
+				<a class="brand" href="${contentPath}/user/regist">注册</a>
+				<%}%>
+				<a class="brand" href="${contentPath}/admin">旧后台管理</a>
+				<a class="brand" href="${contentPath}/test/admin">新后台管理</a>
 			</span>
 		</div>
 	</div>

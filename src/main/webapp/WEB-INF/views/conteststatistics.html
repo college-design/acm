@@ -18,28 +18,31 @@
 						<td><strong>RE</strong></td>
 						<td><strong>OLE</strong></td>
 						<td><strong>CE</strong></td>
-						<td><strong>Others</strong></td>
+						<!--<td><strong>Others</strong></td>-->
 						<td><strong>Total</strong></td>
 						<td><strong>G++</strong></td>
 						<td><strong>GCC</strong></td>
 						<td><strong>Pascal</strong></td>
 						<td><strong>java</strong></td>
-						<td><strong>C#</strong></td>
-						<td><strong>Python</strong></td>
-						<td><strong>PHP</strong></td>
+						<!--<td><strong>C#</strong></td>-->
+						<!--<td><strong>Python</strong></td>-->
+						<!--<td><strong>PHP</strong></td>-->
 						
 					</tr>
 					</thead>
 					<% 
-				var status=["A","B","C","D","E","F","G","H","I","J"];
-				var tot=0;
-				var result=0;
-				for(problem in problemList) {%>
+						var status=["A","B","C","D","E","F","G","H","I","J"];
+						var tot=0;
+						var result=0;
+						for(problem in problemList) {
+					%>
 					<tbody>
 							<tr>
-								<td><a href="${contentPath}/problem/${problem.pid}">problem 
-
-&nbsp;${status[tot++]}&nbsp;${problem.pid}</a></td>
+								<td>
+									<a href="${contentPath}/problem/${problem.pid}">
+										problem&nbsp;${status[tot++]}&nbsp;${problem.pid}
+									</a>
+								</td>
 								<td>${pidcountList[result][0]}</td>
 								<td>${pidcountList[result][1]}</td>
 								<td>${pidcountList[result][2]}</td>
@@ -47,21 +50,20 @@
 								<td>${pidcountList[result][4]}</td>
 								<td>${pidcountList[result][5]}</td>
 								<td>${pidcountList[result][6]}</td>
-								<td></td>
-								<td><a href="${contentPath}/statuslist/1/50?pid=
-
-${problem.pid}">${sum[result]}</a></td>
+								<!--<td></td>-->
+								<td>
+									<a href="${contentPath}/statuslist/1/50?pid=${problem.pid}">${sum[result]}</a>
+								</td>
 								<td>${pidcountList[result][7]}</td>
 								<td>${pidcountList[result][8]}</td>
 								<td>${pidcountList[result][9]}</td>
 								<td>${pidcountList[result++][10]}</td>
-								<td></td>
-								<td></td>
-								<td></td>
-								
+								<!--<td></td>-->
+								<!--<td></td>-->
+								<!--<td></td>-->
 							</tr>
 					</tbody>
-				<%}%>
+					<%}%>
 				</table>
 			</div>
 		</div>
