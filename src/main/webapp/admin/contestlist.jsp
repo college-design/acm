@@ -145,15 +145,23 @@
 				</tr>
 				<tr>
 					<td>比赛描述：</td>
-					<td><input type="text" id="description" name="description" class="easyui-validatebox" required="true" /></td>
+					<td>
+						<textarea rows="15" cols="20" id="description" name="description" class="easyui-validatebox" required="true"></textarea>
+						<%--<input type="text" id="description" name="description" class="easyui-validatebox" required="true" />--%>
+					</td>
 				</tr>
 			</table>
 		</form>
 	</div>
 	<!-- 添加修改弹出框按钮 -->
 	<div id="dlg-buttons">
-		<a href="javascript:saveContest()" class="easyui-linkbutton" iconCls="icon-ok">保存</a>
-		<a href="javascript:closeContestDialog()" class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
+		<div>
+			<a href="javascript:saveContest()" class="easyui-linkbutton" iconCls="icon-ok">保存</a>
+			<a href="javascript:closeContestDialog()" class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
+		</div>
+		<!-- 搜索 -->
+		<div>
+		</div>
 	</div>
 </body>
 </html>
