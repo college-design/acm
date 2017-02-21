@@ -125,6 +125,13 @@
 			<a href="javascript:openContestModifyTab()" class="easyui-linkbutton" iconCls="icon-edit" plain="true">修改</a>
 			<a href="javascript:deleteContest()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
 		</div>
+		<div>
+			<!-- 搜索 -->
+			<div>
+				标题：&nbsp;&nbsp;<input type="text" id="s_title" name="s_title" size="20" onkeydown="if(event.keyCode==13) search()">
+				<a href="javascript:search()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
+			</div>
+		</div>
 	</div>
 
 	<!-- 添加修改 弹出框 -->
@@ -160,15 +167,8 @@
 	</div>
 	<!-- 添加修改弹出框按钮 -->
 	<div id="dlg-buttons">
-		<div>
-			<a href="javascript:saveContest()" class="easyui-linkbutton" iconCls="icon-ok">保存</a>
-			<a href="javascript:closeContestDialog()" class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
-		</div>
-		<!-- 搜索 -->
-		<div>
-			标题：&nbsp;&nbsp;<input type="text" id="s_title" name="s_title" size="20" onkeydown="if(event.keyCode==13) search()">
-			<a href="javascript:search()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
-		</div>
+		<a href="javascript:saveContest()" class="easyui-linkbutton" iconCls="icon-ok">保存</a>
+		<a href="javascript:closeContestDialog()" class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
 	</div>
 </body>
 </html>
