@@ -29,7 +29,7 @@ public class AdminContestController {
     // 比赛列表
     @RequestMapping("/contestlist.action")
     public void queryContestList1(@RequestParam(value="page",required=false)Long page, HttpServletResponse response,
-                                  @RequestParam(value="rows",required=false)Long pageSize) throws Exception{
+                                  @RequestParam(value="rows",required=false)Long pageSize,@RequestParam(value="title",required=false)String title) throws Exception{
         Long offset = (page - 1) * pageSize;
         List<Contest> contestList = contestMapper.queryForList(null,offset,pageSize);
         JSONObject result=new JSONObject();

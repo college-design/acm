@@ -12,10 +12,16 @@
 		<param-value>classpath:spring/root-context.xml</param-value>
 	</context-param>
 
-	<!-- spring监听注册 -->
+	<!--
+		spring监听注册
+		监听web容器启动和关闭的事件
+	-->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+	<!--
+		HTTP请求监听器
+	-->
 	<listener>
 		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
 	</listener>
@@ -33,6 +39,7 @@
 		<param-name>shiroConfigLocations</param-name>
 		<param-value>classpath:shiro.ini</param-value>
 	</context-param>
+
 	<filter>
 		<filter-name>shiroFilter</filter-name>
 		<filter-class>org.apache.shiro.web.servlet.ShiroFilter</filter-class>

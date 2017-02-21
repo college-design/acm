@@ -19,6 +19,11 @@
 					+ date.getDate();
 		}
 	}
+	function search(){
+		$("#dg").datagrid('load',{
+			"title":$("#s_title").val()
+		});
+	}
 
 	var url;
 	// 修改
@@ -161,6 +166,8 @@
 		</div>
 		<!-- 搜索 -->
 		<div>
+			标题：&nbsp;&nbsp;<input type="text" id="s_title" name="s_title" size="20" onkeydown="if(event.keyCode==13) search()">
+			<a href="javascript:search()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
 		</div>
 	</div>
 </body>
