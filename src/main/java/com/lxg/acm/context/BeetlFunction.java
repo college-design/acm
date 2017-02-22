@@ -6,7 +6,7 @@ import org.apache.shiro.subject.Subject;
 public class BeetlFunction {
 
 	/**
-	 * 当前用户主题
+	 * 获取当前用户
 	 * @return
 	 */
 	private static Subject getSubject() {
@@ -22,7 +22,7 @@ public class BeetlFunction {
 	}
 
 	/**
-	 * 是否为普通用户
+	 * 是否为游客
 	 * @return
 	 */
 	public boolean isGuest() {
@@ -38,7 +38,7 @@ public class BeetlFunction {
 	}
 
 	/**
-	 * 是否为管理员
+	 * 是否为Admin
 	 * @return
 	 */
 	public boolean isAdmin() {
@@ -46,21 +46,24 @@ public class BeetlFunction {
 	}
 
 	/**
-	 * 是否为管理员
+	 * 是否为Root
 	 * @return
 	 */
 	public boolean isRoot() {
 		return isUser() && getSubject().hasRole("root");
 	}
 
+	// 将'<' 换为'&lt;'
 	public String subSummary(String text) {
-		return text.substring(0, Math.min(200, text.length())).replaceAll("<", "&lt");
+		return text.substring(0, Math.min(200, text.length())).replaceAll("<", "&lt;");
 	}
-	
+
+	// 传入下标值返回X_time
 	public String getRankTime(int n){
 		return (char)(65+n)+"_time";
 	}
-	
+
+	// 传入下标值返回X_WrongSubmits
 	public String getRankWrong(int n){
 		return (char)(65+n)+"_WrongSubmits";
 	}
