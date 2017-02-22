@@ -1,16 +1,13 @@
 package com.lxg.acm.context;
 
-import java.io.IOException;
-import java.lang.reflect.Field;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
@@ -22,6 +19,8 @@ import org.dom4j.io.SAXReader;
  *
  */
 public class OJConfig {
+
+	private static final Log logger = LogFactory.getLog(OJConfig.class);// 日志
 
 	public String dataFile;  // 文件目录
 	public String tempFile;  // 缓存目录
@@ -41,18 +40,20 @@ public class OJConfig {
 	}
 
 	private void init() {
-
 	}
 
 	/**
 	 * 加载资源
 	 */
 	public void loadResource() {
+		logger.info("==========OJConfig->loadResource配置加载start==========");
 		SAXReader saxReader = new SAXReader(); // Dom4j 读取文档实例
 		try {
 			URL url = getClass().getClassLoader().getResource(configXml); // 加载configxml路径
+			logger.info(">>>>loadResource->configXml=["+url+"]");
 			Document document = saxReader.read(url); // 获取xml文档对象
 			Element root = document.getRootElement();
+			logger.info(">>>>loadResource->root=["+root+"]");
 			if (root.getName().equalsIgnoreCase("config")) { // 根节点
 				Element defaultElem = root.element("default");
 				if (defaultElem != null) {
@@ -86,13 +87,16 @@ public class OJConfig {
 						languages.add(lang.type);
 						langs.put(index++, lang);
 					}
+					logger.info(">>>>loadResource->languages=["+languages+"]");
+					logger.info(">>>>loadResource->langs=["+langs+"]");
 				}
 			}
 		} catch (DocumentException e) {
+			logger.error(">>>>loadResource->e=["+e+"]");
 		}
+		logger.info("==========OJConfig->loadResource配置加载end==========");
 	}
 
-	// 设置xml配置路径信息
 	public void setConfigXml(String configXml) {
 		this.configXml = configXml;
 	}
