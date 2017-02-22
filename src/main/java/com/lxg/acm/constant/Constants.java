@@ -7,6 +7,7 @@ package com.lxg.acm.constant;
  */
 public class Constants {
 
+	// 用户常量
 	public static final String CURRENT_USER = "user";
 
 }
