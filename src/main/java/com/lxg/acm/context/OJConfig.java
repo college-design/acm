@@ -102,10 +102,10 @@ public class OJConfig {
 		public String type; // 编译类型
 		public String ext;  // 源文件扩展名
 		public String exe;  // 可执行扩展名
-		public int timelimit;
-		public int memorylimit;
-		public String comshell;
-		public String runshell;
+		public int timelimit; // 运行时间限制
+		public int memorylimit; // 内存时间限制
+		public String comshell; // 编译命令
+		public String runshell; // 运行命令
 
 		public String getType() {
 			return type;
@@ -143,7 +143,7 @@ public class OJConfig {
 
 	public static void main(String[] args) {
 		OJConfig config = new OJConfig();
-		config.setConfigXml("src\\main\\webapp\\WEB-INF\\properties\\judgecore.xml");
+		config.setConfigXml("properties/judgecore.xml");
 		config.init();
 	}
 }
