@@ -1,5 +1,4 @@
 <% var body={%>
-
 <div class="container">
 	<div class="row">
 		<div class="span12">
@@ -18,7 +17,7 @@
 				<ul class="nav nav-tabs">
 					<li class="active"><a
 						href="${contentPath}/user/userinfo/${user.uid}">个人信息</a></li> 
-						<%if(so.isLogined()){%>
+					<%if(so.isLogined()){%>
 					<li><a href="${contentPath}/user/update/${session.user.uid}">修改账号</a></li>
 					<%}%>
 				</ul>
@@ -40,7 +39,7 @@
 				<div class="control-group">
 					<label class="control-label">旧密码</label>
 					<div class="controls">
-						<input type="password" placeholder="">
+						<input type="password" placeholder="请输入旧密码">
 					</div>
 				</div>
 				<div class="control-group">
@@ -52,7 +51,7 @@
 				<div class="control-group">
 					<label class="control-label">确认密码</label>
 					<div class="controls">
-						<input type="password" placeholder="">
+						<input type="password1" placeholder="请再次输入新密码">
 					</div>
 				</div>
 				<div class="control-group">

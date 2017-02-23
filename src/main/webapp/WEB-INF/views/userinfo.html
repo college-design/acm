@@ -1,5 +1,4 @@
 <% var body={%>
-
 <div class="container">
 	<div class="row">
 		<div class="span12">
@@ -63,14 +62,16 @@
 				<div class="text-success">已提交成功的题</div>
 				<hr class="hr">
 				<% for(var pid in problemSolvedList){%> <a
-					href="${contentPath}/problem/${pid}">${pid}</a>&nbsp;&nbsp; <%}%>
+					href="${contentPath}/problem/${pid}">${pid}</a>&nbsp;&nbsp;
+				<%}%>
 			</div>
 			<hr class="btn-info">
 			<div class="well">
 				<div class="text-success">未提交成功的题</div>
 				<hr class="hr">
 				<% for(var pid in problemNotSolvedList){%> <a
-					href="${contentPath}/problem/${pid}">${pid}</a>&nbsp;&nbsp; <%}%>
+					href="${contentPath}/problem/${pid}">${pid}</a>&nbsp;&nbsp;
+				<%}%>
 			</div>
 		</div>
 	</div>

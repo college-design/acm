@@ -1,31 +1,4 @@
-<% var js={%>
-<script type="text/javascript"
-	src="${contentPath}/resources/prettify/prettify-min.js"></script>
-<script type="text/javascript"
-	src="${contentPath}/resources/ZeroClipboard/ZeroClipboard.min.js"></script>
-<script type="text/javascript">
-	prettyPrint();
-	ZeroClipboard.config({
-		moviePath : "${contentPath}/resources/ZeroClipboard/ZeroClipboard.swf"
-	});
-	var clip = new ZeroClipboard($("pre"));
-	clip.on('dataRequested', function(client, args) {
-		var code=$(this).clone();
-		code.find("li").each(function() {
-			$(this).append("\r\n");
-		});
-		client.setText(code.text());
-	});
-	clip.on('complete', function(client, args) {
-		alert("复制成功");
-	});
-</script>
-<%}; var css={%>
-<link rel="stylesheet" type="text/css"
-	href="${contentPath}/resources/prettify/prettify-min.css">
-<style>
-</style>
-<%}; var body={%>
+<%var body={%>
 <div class="container">
 	<div class="row">
 		<div class="span12">
@@ -48,11 +21,11 @@
 		</div>
 		<div class="span12">
 			<h4 class="text-info">源码如下</h4>
-			<p class="muted">
+			<!--<p class="muted">
 				点击代码区域，可<span class="label label-success">复制</span>代码
-			</p>
+			</p>-->
 			<pre class="prettyprint linenums">${code}</pre>
 		</div>
 	</div>
 </div>
-<%}; include("commons/_layout.html",{js:js,css:css,body:body}){}%>
+<%}; include("commons/_layout.html",{body:body}){}%>

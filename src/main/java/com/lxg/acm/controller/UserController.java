@@ -5,6 +5,8 @@ import java.util.Random;
 import java.util.Set;
 import java.util.TreeSet;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +28,8 @@ import com.lxg.acm.mapper.UserMapper;
 @Controller
 @RequestMapping("/user")
 public class UserController {
+
+	private static final Log logger = LogFactory.getLog(UserController.class);// 日志
 	
 	@Autowired
 	private UserMapper userMapper;
@@ -37,7 +41,8 @@ public class UserController {
 	 */
 	@RequestMapping("/userAdd")
 	public String addUser(User user){
-		userMapper.save(user);
+		logger.info("========UserController->addUser添加用户user={"+user+"}========");
+		Long result = userMapper.save(user);
 		return "redirect:/problemlist/1/50";
 	}
 	

@@ -15,7 +15,8 @@
 						href="${contentPath}/rank/${s_uid}/${currentPage-1}/${pageSize}">上一页</a></li> <%
 					for(var page=1;page<=5;page++){%>
 					<li class="${page==currentPage?'active':''}"><a
-						href="${contentPath}/rank/${s_uid}/${page}/${pageSize}">${page}</a></li> <%}%>
+						href="${contentPath}/rank/${s_uid}/${page}/${pageSize}">${page}</a></li>
+					<%}%>
 					<li class="${currentPage==pageSize?'disabled':''}"><a
 						href="${contentPath}/rank/${s_uid}/${currentPage+1}/${pageSize}">下一页</a></li>
 				</ul>

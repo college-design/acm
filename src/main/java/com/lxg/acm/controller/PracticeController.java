@@ -102,6 +102,7 @@ public class PracticeController {
 		status.setPid(pid);
 		status.setLanguage(language);
 		status.setResult(JudgeResultType.WAITING);
+		status.setCode(code);
 		statusMapper.save(status);//保存状态
 		statusMapper.insertCode(status.getSid(), code);//保存提交代码
 		JudgeSupport judge = new JudgeSupport(status, code);

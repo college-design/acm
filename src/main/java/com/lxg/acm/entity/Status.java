@@ -18,6 +18,15 @@ public class Status {
 	int memory;
 	int language;
 	Date submittime;
+	private String code;
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
 
 	public Long getSid() {
 		return sid;

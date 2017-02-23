@@ -12,7 +12,7 @@ public interface StatusMapper {
 
 	//保存提交代码状态
 	@SelectKey(keyProperty = "sid", before = false, resultType = Long.class, statement = { "SELECT @@IDENTITY" })
-	@Insert("insert into status (uid,username,pid,result,time,memory,language,submittime) values (#{uid},#{username},#{pid},#{result},#{time},#{memory},#{language},now())")
+	@Insert("insert into status (uid,username,pid,result,time,memory,language,submittime,code) values (#{uid},#{username},#{pid},#{result},#{time},#{memory},#{language},now(),#{code})")
 	public Long save(Status status);
 
 	//添加代码表sid状态id=====code代码

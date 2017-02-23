@@ -1,5 +1,4 @@
 <% var body={%>
-
 <div class="container">
 	<div class="row">
 		<div class="span12">
@@ -23,7 +22,10 @@
 						<td><strong class="text-info">通过率</strong></td>
 					</tr>
 				</thead>
-				<% var color=["","success","warning"]; var tag=[""," <b class='text-success'>&radic;</b>", " <b class='text-info'>&minus;</b>"]; for(problem in problemList){%>
+				<%
+				var color=["","success","warning"]; var tag=[""," <b class='text-success'>&radic;</b>", " <b class='text-info'>&minus;</b>"];
+				for(problem in problemList)
+				{%>
 				<tbody>
 					<tr class="${color[problem.status]}">
 						<td class="span1">${tag[problem.status]}</td>
