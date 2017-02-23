@@ -6,6 +6,10 @@ package com.lxg.acm.util;
 public class Test {
     public static void main(String args[]) {
         Test test = new Test();
+        HttpUtil http = new HttpUtil();
+        System.out.println(http.doGet("http://www.baidu.com"));
+        System.out.println(http.doPost("http://www.baidu.com","a"));
+
         String content="faafa<dafasdf<afdadsfasdgasdf<<<<<fasdfw";
         String folder = "A";
         String runshell = "g++ -o ${path}${name} ${path}${name}.${ext}";
