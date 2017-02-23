@@ -26,7 +26,9 @@ import com.lxg.acm.util.SpringUtil;
 
 
 public class JudgeSupport extends Thread {
-	private static final Log LOG = LogFactory.getLog(JudgeSupport.class);
+
+	private static final Log logger = LogFactory.getLog(JudgeSupport.class);
+
 	private static final ExecutorService executor = Executors
 			.newCachedThreadPool();
 	StatusMapper statusMapper = SpringUtil.getBean(StatusMapper.class);
@@ -51,9 +53,13 @@ public class JudgeSupport extends Thread {
 	}
 
 	public void run() {
+		logger.info("==========JudgeSupport->start==========");
 		Language language = OJConfig.instance.langs.get(status.getLanguage());
+		logger.info(">>>>JudgeSupport->language=["+language+"]>>>>");
 		String folderName = randomFileName();
+		logger.info(">>>>JudgeSupport->folderName=["+folderName+"]>>>>");
 		File folder = new File(OJConfig.instance.tempFile, folderName);
+		logger.info(">>>>JudgeSupport->folder=["+folder+"]>>>>");
 		File mainFile = new File(folder, "Main." + language.ext);
 		try {
 			FileUtils.write(mainFile, code);
@@ -69,7 +75,7 @@ public class JudgeSupport extends Thread {
 		core.setMEMORYLIMIT(language.getMemorylimit());
 		core.setTIMELIMIT(language.getTimelimit());
 		core.run();
-
+		logger.info(">>>>JudgeSupport->core=["+core+"]>>>>");
 		// 题目AC/ALL
 		Long pid = status.getPid();
 		Problem problem= problemMapper.query(pid);
@@ -91,13 +97,14 @@ public class JudgeSupport extends Thread {
 		status.setMemory(core.getMemory());
 		status.setResult(core.getResult());
 		status.setTime(core.getTimeUsed());
-		LOG.info("result:" + status.getResult() + "  memory:"
+		logger.info("result:" + status.getResult() + "  memory:"
 				+ status.getMemory() + "  time:" + status.getTime());
-		LOG.info("error:" + core.getErrorInfo());
+		logger.info("error:" + core.getErrorInfo());
 		statusMapper.update(status);   // 更新代码状态
 		problemMapper.update(problem); // 更新题目提交率
 		userMapper.update(user);//更新用户解决题数，总提交数
 		deleteFloder(folder);
+		logger.info("==========JudgeSupport->end==========");
 	}
 
 	private static final ScheduledExecutorService schedule = Executors
