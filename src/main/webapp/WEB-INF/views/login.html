@@ -30,10 +30,13 @@
 		<div class="span3"></div>
 		<div class="span9">
 			<form class="form-horizontal" method="post" action="${contentPath}/user/login">
-				<br>
-				<!-- 登录错误提示 -->
-				${shiroLoginFailure!}
-				<br>
+				<div class="row">
+					<div class="span4"></div>
+					<div class="span4">
+						<!-- 登录错误提示 -->
+						<font color="red">${shiroLoginFailure!}</font>
+					</div>
+				</div>
 				<div class="control-group">
 					<label class="control-label">用户名</label>
 					<div class="controls">
