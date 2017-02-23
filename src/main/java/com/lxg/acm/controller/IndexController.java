@@ -39,4 +39,10 @@ public class IndexController {
 //		model.addAttribute("links",links);
 		return "index";
 	}
+
+	// 关于我们
+	@RequestMapping("/about")
+	public String about(){
+		return "about";
+	}
 }
