@@ -23,6 +23,10 @@ import com.lxg.acm.entity.User;
 @CacheNamespace(size = 100)
 public interface UserMapper {
 
+	// 登录
+	@Select("select * from user where username=#{username} and password=#{password}")
+	public User login(@Param(value = "username") String username, @Param(value = "password") String password);
+
 	/**
 	 * 用户添加
 	 * @param user

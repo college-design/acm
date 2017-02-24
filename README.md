@@ -40,6 +40,6 @@
 
 > - email:[lxghoney@163.com](lxghoney@163.com)
 
-> - 个人网站[liuxuegang](http://liuxuegang.xyz)
+> - 个人网站:[http://liuxuegang.xyz](http://liuxuegang.xyz)
 
-> - github[https://github.com/xuegangliu](https://github.com/xuegangliu)
+> - github:[https://github.com/xuegangliu](https://github.com/xuegangliu)
