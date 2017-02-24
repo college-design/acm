@@ -17,10 +17,9 @@
 					<span>欢迎你，</span>${session.user.username}
 				</a>
 				<a class="brand" href="${contentPath}/user/logout">退出</a>
-					<% if(so.isRoot()) {%>
-						<a class="brand" href="${contentPath}/test/admin">后台管理</a>
-					<%}%>
-				<%}else{%>
+				<% if(so.isRoot()) {%>
+				<a class="brand" href="${contentPath}/test/admin">后台管理</a>
+				<%}}else{%>
 				<a class="brand" href="${contentPath}/user/login">登录</a>
 				<a class="brand" href="${contentPath}/user/regist">注册</a>
 				<%}%>
@@ -29,16 +28,15 @@
 		</div>
 	</div>
 </div>
-<div class="container">
+<!--<div class="container">
 	<div class="row">
 		<div class="span12 ">
 			<small class="pull-right muted">在线人数${userOnlineNum!100}&nbsp;&nbsp;&nbsp;总访问次数${accessNum!100001}</small>
 		</div>
 	</div>
-</div>
+</div>-->
 
 <div id="myModal" class="modal hide well fade" tabindex="-1"
 	role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<% include("_login.html",{}){} %></div>
-
-<div class="clearfix"></div>
+	<% include("_login.html",{}){} %>
+</div>

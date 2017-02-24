@@ -60,4 +60,5 @@ app.controller('ProblemCtrl', function($scope, $http) {
 		var res = $(this);
 		res.addClass(lineColor[res.attr("status-res")]);
 	});
+
 })();
