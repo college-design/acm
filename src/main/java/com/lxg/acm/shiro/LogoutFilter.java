@@ -20,9 +20,8 @@ public class LogoutFilter extends
 
 	protected boolean preHandle(ServletRequest request, ServletResponse response)
 			throws Exception {
-		logger.info("==========退出->LogoutFilter->start==========");
+		logger.info("==========用户退出==========");
 		OnlineUserSupport.remove(ServerContext.getCurrentUser()); // 从在线用户中移除
-		logger.info("==========退出->LogoutFilter->end==========");
 		return super.preHandle(request, response);
 	}
 

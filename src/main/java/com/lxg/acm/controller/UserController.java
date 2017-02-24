@@ -5,6 +5,7 @@ import java.util.Random;
 import java.util.Set;
 import java.util.TreeSet;
 
+import com.lxg.acm.util.StringUtil;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.lxg.acm.entity.User;
 import com.lxg.acm.exception.UserException;
 import com.lxg.acm.mapper.UserMapper;
-
 
 /**
  * 用户管理
@@ -41,6 +41,7 @@ public class UserController {
 	 */
 	@RequestMapping("/userAdd")
 	public String addUser(User user){
+//		user.setPassword(StringUtil.md5(user.getPassword(),"acm"));
 		logger.info("========UserController->addUser添加用户user={"+user+"}========");
 		Long result = userMapper.save(user);
 		return "redirect:/problemlist/1/50";
@@ -54,6 +55,7 @@ public class UserController {
 	 */
 	@RequestMapping("/userlist/{page}/{offset}")
 	public String findList(@PathVariable Long page, @PathVariable Long offset) {
+		logger.info("========UserController->用户分页列表信息========未完成");
 		return "userlist";
 	}
 	
@@ -78,6 +80,7 @@ public class UserController {
 			throw new UserException("用户不存在");
 		}
 		model.addAttribute("user", user);
+		logger.info("========UserController->登录用户信息={"+user.toString()+"}========");
 		return "userinfo";
 	}
 
@@ -88,7 +91,7 @@ public class UserController {
 	 */
 	@RequestMapping("/regist")
 	public String regist(User user) {
-
+		logger.info("========UserController->用户注册={"+user.toString()+"}========");
 		return "regist";
 	}
 
@@ -100,6 +103,7 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/update/{uid}", method = RequestMethod.GET)
 	public String updatePage(@PathVariable Long uid, Model model) {
+		logger.info("========UserController->用户修改页面========");
 		User user = userMapper.query(uid);
 		model.addAttribute("user", user);
 		return "update";
@@ -112,6 +116,7 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String update(User user) {
+		logger.info("========UserController->用户修改={"+user.toString()+"}========");
 		userMapper.update(user);
 		return "redirect:/problemlist/1/50";
 	}
@@ -119,12 +124,14 @@ public class UserController {
 	// 跳转登陆页面
 	@RequestMapping(value = "/login")
 	public String login(User user) {
+		logger.info("========UserController->用户登录={"+user.toString()+"}========");
 		return "login";
 	}
 
 	// 退出
 	@RequestMapping(value = "/logout")
 	public String logout() {
+		logger.info("========UserController->用户退出========");
 		return "index";
 	}
 
@@ -132,7 +139,8 @@ public class UserController {
 	@RequestMapping("/remove")
 	@ResponseBody
 	public String remove(Long user) {
-
+//		userMapper.delete(user);
+		logger.info("========UserController->删除用户={"+user.toString()+"}========未完成");
 		return "";
 	}
 

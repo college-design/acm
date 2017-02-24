@@ -1,5 +1,6 @@
 package com.lxg.acm.shiro;
 
+import com.lxg.acm.util.StringUtil;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.shiro.authc.AuthenticationException;
@@ -31,30 +32,28 @@ public class UserRealm extends AuthorizingRealm {
 
 	protected AuthenticationInfo doGetAuthenticationInfo(
 			AuthenticationToken atoken) throws AuthenticationException {
-		logger.info("==========shiro用户获取->AuthenticationInfo->start==========");
+		logger.info("==========shiro用户获取==========");
 		UsernamePasswordToken token = (UsernamePasswordToken) atoken;
 		String username = token.getUsername();
 		User user = userMapper.queryByUsername(username);
 		if (user == null) {
 			throw new UnknownAccountException();
 		}
-		logger.info(">>>>shiro用户权限获取->user=["+user+"]");
+		logger.info("==========shiro用户获取={"+user.toString()+"}===========");
 		SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(
-				user.getUsername(),user.getPassword(), getName());
-		logger.info(">>>>shiro用户权限获取->info=["+info+"]");
-		logger.info("==========shiro用户获取->AuthenticationInfo->end==========");
+				user.getUsername(), user.getPassword(), getName());
+		logger.info("==========shiro用户获取info={"+info+"}==========");
 		return info;
 	}
 	
-	// 获取用户权限
+	// 为当前登录的用户授予角色和权限
 	protected AuthorizationInfo doGetAuthorizationInfo(
 			PrincipalCollection principals) {
-		logger.info("==========shiro用户权限获取->AuthorizationInfo->start==========");
+		logger.info("==========shiro获取用户权限==========");
 		String username = (String) principals.getPrimaryPrincipal();
-		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+        SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 		info.setRoles(userMapper.findRoles(username));
-		logger.info(">>>>shiro用户权限获取->info=["+info+"]");
-		logger.info("==========shiro用户权限获取->AuthorizationInfo->end==========");
+		logger.info("==========shiro获取用户={"+username+"}权限={"+userMapper.findRoles(username)+"}==========");
 		return info;
 	}
 

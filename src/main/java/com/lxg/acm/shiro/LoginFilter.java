@@ -33,27 +33,27 @@ public class LoginFilter extends FormAuthenticationFilter {
 	protected boolean onLoginSuccess(AuthenticationToken token,
 			Subject subject, ServletRequest request, ServletResponse response)
 			throws Exception {
-		logger.info("==========登录过滤LoginFilter->登录成功->start==========");
+		logger.info("==========用户是否登录成功==========");
 		User user = userMapper.queryByUsername((String) subject.getPrincipal());
 		subject.getSession().setAttribute("user", user);
-		logger.info(">>>>登录用户user=["+user+"]");
+		logger.info("==========用户={"+user.toString()+"}登录成功==========");
 		// OnlineUser
 		OnlineUserSupport.add(user);
-		logger.info("==========登录过滤LoginFilter->登录成功->end==========");
 		return super.onLoginSuccess(token, subject, request, response);
 	}
 
 	// 错误过滤
 	protected void setFailureAttribute(ServletRequest request,
 			AuthenticationException ae) {
-		logger.info("==========登录过滤LoginFilter->登录错误->start==========");
 		if (ae instanceof UnknownAccountException) {
 			request.setAttribute(getFailureKeyAttribute(), "账户不存在");
+			logger.error("==========账户不存在==========");
 		} else if (ae instanceof IncorrectCredentialsException) {
 			request.setAttribute(getFailureKeyAttribute(), "密码不正确");
+			logger.error("==========密码不正确==========");
 		} else {
+			logger.error("==========其它错误==========");
 		}
-		logger.info("==========登录过滤LoginFilter->登录错误->end==========");
 	}
 
 }
