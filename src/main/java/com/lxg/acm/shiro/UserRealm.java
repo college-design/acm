@@ -17,7 +17,6 @@ import org.apache.shiro.subject.PrincipalCollection;
 import com.lxg.acm.entity.User;
 import com.lxg.acm.mapper.UserMapper;
 import com.lxg.acm.util.SpringUtil;
-import sun.security.provider.MD5;
 
 
 /**
@@ -41,7 +40,7 @@ public class UserRealm extends AuthorizingRealm {
 		}
 		logger.info("==========shiro用户获取={"+user.toString()+"}===========");
 		SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(
-				username,token.getPassword(), getName());
+				username,user.getPassword(), getName());
 		logger.info("==========shiro用户获取info={"+info+"}==========");
 		return info;
 	}

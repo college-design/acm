@@ -41,7 +41,7 @@ public class UserController {
 	 */
 	@RequestMapping("/userAdd")
 	public String addUser(User user){
-		user.setPassword(StringUtil.md5(user.getPassword(),"acm"));
+//		user.setPassword(StringUtil.md5(user.getPassword(),"acm"));
 		logger.info("========UserController->addUser添加用户user={"+user+"}========");
 		Long result = userMapper.save(user);
 		return "redirect:/problemlist/1/50";
