@@ -25,9 +25,9 @@
 	</bean>
 
 	<!-- jdbcTemplate -->
-	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+<!--	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
 		<property name="dataSource" ref="dataSource"></property>
-	</bean>
+	</bean>-->
 
 	<!-- dataSource事物 -->
 	<bean id="transactionManager"

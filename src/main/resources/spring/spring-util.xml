@@ -12,25 +12,9 @@
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">
 			<list>
-				<value>classpath:properties/*.properties</value>
+				<value>classpath*:properties/*.properties</value>
 			</list>
 		</property>
 	</bean>
-
-	<!-- 缓存 -->
-<!-- 	<bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager"> -->
-<!-- 		<property name="caches" ref="ehCacheManager"></property> -->
-<!-- 	</bean> -->
-
-<!-- 	<cache:annotation-driven cache-manager="cacheManager" /> -->
-
-<!-- 	<bean id="cacheManagerFactory" -->
-<!-- 		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean"> -->
-<!-- 		<property name="configLocation" value="WEB-INF/ehcache/ehcache.xml" /> -->
-<!-- 	</bean> -->
-
-<!-- 	<bean id="ehCacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager"> -->
-<!-- 		<property name="cacheManager" ref="cacheManagerFactory" /> -->
-<!-- 	</bean> -->
 
 </beans>
