@@ -13,6 +13,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 
@@ -41,7 +42,9 @@ public class InitDB {
     LinkMapper linkMapper;
 
     @Test
+//    @Transactional
     public void userInitTest(){
+        logger.info("初始化数据开始");
         // 添加测试用户
         User user = new User();
         for(int i=0;i<=20;i++){
@@ -56,7 +59,6 @@ public class InitDB {
         // 添加测试分类
         Classifier classifier = new Classifier();
         for(int i=0;i<=15;i++){
-            classifier.setCid((long)i);
             classifier.setTitle("分类"+i);
             classifierMapper.save(classifier);
         }
@@ -71,6 +73,7 @@ public class InitDB {
             contest.setDescription("这是比赛"+i+"的描述");
             contestMapper.save(contest);
         }
+        logger.info("初始化数据结束");
     }
 
     @Test
