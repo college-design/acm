@@ -10,6 +10,12 @@ import com.lxg.acm.entity.Status;
 @Repository
 public interface StatusMapper {
 
+	@Delete("delete from status")
+	void clearStatus();
+
+	@Delete("delete from attend")
+	void clearAttend();
+
 	//保存提交代码状态
 	@SelectKey(keyProperty = "sid", before = false, resultType = Long.class, statement = { "SELECT @@IDENTITY" })
 	@Insert("insert into status (uid,username,pid,result,time,memory,language,submittime,code) values (#{uid},#{username},#{pid},#{result},#{time},#{memory},#{language},now(),#{code})")

@@ -10,6 +10,12 @@ import com.lxg.acm.entity.Problem;
 @Repository
 public interface ProblemMapper {
 
+	@Delete("delete from problem")
+	void clearProblem();
+
+	@Delete("delete from problemstatus")
+	void clearProblemStatus();
+
 	/**
 	 * 添加问题
 	 * @param e

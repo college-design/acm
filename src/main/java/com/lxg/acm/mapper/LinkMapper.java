@@ -13,6 +13,9 @@ import java.util.List;
 @Repository
 public interface LinkMapper {
 
+    @Delete("delete from link")
+    void clearLink();
+
     /**
      * 查询所有链接
      * @return

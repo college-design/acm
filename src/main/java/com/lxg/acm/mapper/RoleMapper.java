@@ -14,6 +14,9 @@ import java.util.List;
 @Repository
 public interface RoleMapper {
 
+    @Delete("delete from role")
+    void clearRole();
+
     /**
      * 查询角色列表
      * @param offset

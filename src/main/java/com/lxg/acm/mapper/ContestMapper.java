@@ -15,6 +15,12 @@ import com.lxg.acm.entity.Problem;
 @Repository
 public interface ContestMapper {
 
+	@Delete("delete from contest")
+	void clearContest();
+
+	@Delete("delete from contest_problem")
+	void clearContestProblem();
+
 	// 添加比赛
 	@Insert("insert into contest (title,startTime,endTime,defunct,description) values " +
 			"(#{title},#{startTime},#{endTime},#{defunct},#{description})")

@@ -12,6 +12,12 @@ import com.lxg.acm.entity.Problem;
 @Repository
 public interface ClassifierMapper {
 
+	@Delete("delete from classifier")
+	void clearClassifier();
+
+	@Delete("delete from classifier_problem")
+	void clearClassifierProblem();
+
 	// 分类id排序
 	@Select("select * from classifier order by cid")
 	public List<Classifier> queryall();
@@ -25,7 +31,7 @@ public interface ClassifierMapper {
 	public List<Problem> queryProblemList(Long cid);
 
 	// 添加分类
-	@Insert("insert into classifier(cid,title,createTime,modifyTime) values(#{cid},#{title},now(),#{modifyTime})")
+	@Insert("insert into classifier(cid,title,createTime,modifyTime) values(#{cid},#{title},now(),now())")
 	public Long save(Classifier classifier);
 
 	// 修改分类
