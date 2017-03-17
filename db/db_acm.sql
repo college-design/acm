@@ -1,9 +1,9 @@
 /*
+empty table no data
 SQLyog v10.2 
 MySQL - 5.5.45 : Database - db_acm
 *********************************************************************
-*/
-
+*/
 
 /*!40101 SET NAMES utf8 */;
 
@@ -23,39 +23,39 @@ DROP TABLE IF EXISTS `attend`;
 
 CREATE TABLE `attend` (
   `uid` char(20) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '用户标识',
-  `cid` int(11) NOT NULL DEFAULT '0',
-  `accepts` int(11) DEFAULT '0' COMMENT '通过数',
-  `penalty` int(11) DEFAULT '0',
-  `A_time` int(11) DEFAULT '0',
-  `A_WrongSubmits` int(11) DEFAULT '0',
-  `B_time` int(11) DEFAULT '0',
-  `B_WrongSubmits` int(11) DEFAULT '0',
-  `C_time` int(11) DEFAULT '0',
-  `C_WrongSubmits` int(11) DEFAULT '0',
-  `D_time` int(11) DEFAULT '0',
-  `D_WrongSubmits` int(11) DEFAULT '0',
-  `E_time` int(11) DEFAULT '0',
-  `E_WrongSubmits` int(11) DEFAULT '0',
-  `F_time` int(11) DEFAULT '0',
-  `F_WrongSubmits` int(11) DEFAULT '0',
-  `G_time` int(11) DEFAULT '0',
-  `G_WrongSubmits` int(11) DEFAULT '0',
-  `H_time` int(11) DEFAULT '0',
-  `H_WrongSubmits` int(11) DEFAULT '0',
-  `I_time` int(11) DEFAULT '0',
-  `I_WrongSubmits` int(11) DEFAULT '0',
-  `J_time` int(11) DEFAULT '0',
-  `J_WrongSubmits` int(11) DEFAULT '0',
-  `K_time` int(11) DEFAULT '0',
-  `K_WrongSubmits` int(11) DEFAULT '0',
-  `L_time` int(11) DEFAULT '0',
-  `L_WrongSubmits` int(11) DEFAULT '0',
-  `M_time` int(11) DEFAULT '0',
-  `M_WrongSubmits` int(11) DEFAULT '0',
-  `N_time` int(11) DEFAULT '0',
-  `N_WrongSubmits` int(11) DEFAULT '0',
-  `O_time` int(11) DEFAULT '0',
-  `O_WrongSubmits` int(11) DEFAULT '0',
+  `cid` int(11) NOT NULL DEFAULT '0' COMMENT '比赛标识',
+  `accepts` int(11) DEFAULT '0' COMMENT '通过总数',
+  `penalty` int(11) DEFAULT '0' COMMENT '提交错误加时',
+  `A_time` int(11) DEFAULT '0' COMMENT 'A语言时间',
+  `A_WrongSubmits` int(11) DEFAULT '0' COMMENT 'A提交错误次数',
+  `B_time` int(11) DEFAULT '0' COMMENT 'B语言时间',
+  `B_WrongSubmits` int(11) DEFAULT '0' COMMENT 'B提交错误次数',
+  `C_time` int(11) DEFAULT '0' COMMENT 'C语言时间',
+  `C_WrongSubmits` int(11) DEFAULT '0' COMMENT 'C提交错误次数',
+  `D_time` int(11) DEFAULT '0' COMMENT 'D语言时间',
+  `D_WrongSubmits` int(11) DEFAULT '0' COMMENT 'D提交错误次数',
+  `E_time` int(11) DEFAULT '0' COMMENT 'E语言时间',
+  `E_WrongSubmits` int(11) DEFAULT '0' COMMENT 'E提交错误次数',
+  `F_time` int(11) DEFAULT '0' COMMENT 'F语言时间',
+  `F_WrongSubmits` int(11) DEFAULT '0' COMMENT 'F提交错误次数',
+  `G_time` int(11) DEFAULT '0' COMMENT 'G语言时间',
+  `G_WrongSubmits` int(11) DEFAULT '0' COMMENT 'G提交错误次数',
+  `H_time` int(11) DEFAULT '0' COMMENT 'H语言时间',
+  `H_WrongSubmits` int(11) DEFAULT '0' COMMENT 'H提交错误次数',
+  `I_time` int(11) DEFAULT '0' COMMENT 'I语言时间',
+  `I_WrongSubmits` int(11) DEFAULT '0' COMMENT 'I提交错误次数',
+  `J_time` int(11) DEFAULT '0' COMMENT 'J语言时间',
+  `J_WrongSubmits` int(11) DEFAULT '0' COMMENT 'J提交错误次数',
+  `K_time` int(11) DEFAULT '0' COMMENT 'K语言时间',
+  `K_WrongSubmits` int(11) DEFAULT '0' COMMENT 'K提交错误次数',
+  `L_time` int(11) DEFAULT '0' COMMENT 'L语言时间',
+  `L_WrongSubmits` int(11) DEFAULT '0' COMMENT 'L提交错误次数',
+  `M_time` int(11) DEFAULT '0' COMMENT 'M语言时间',
+  `M_WrongSubmits` int(11) DEFAULT '0' COMMENT 'M提交错误次数',
+  `N_time` int(11) DEFAULT '0' COMMENT 'N语言时间',
+  `N_WrongSubmits` int(11) DEFAULT '0' COMMENT 'N提交错误次数',
+  `O_time` int(11) DEFAULT '0' COMMENT 'O语言时间',
+  `O_WrongSubmits` int(11) DEFAULT '0' COMMENT 'O提交错误次数',
   `nick` char(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '用户名',
   PRIMARY KEY (`uid`,`cid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -81,7 +81,7 @@ CREATE TABLE `classifier` (
 DROP TABLE IF EXISTS `classifier_problem`;
 
 CREATE TABLE `classifier_problem` (
-  `cpid` bigint(20) NOT NULL COMMENT '分类与问题关联标识',
+  `cpid` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '分类与问题关联标识',
   `pid` bigint(20) DEFAULT NULL COMMENT '问题标识',
   `cid` bigint(20) DEFAULT NULL COMMENT '分类标识',
   PRIMARY KEY (`cpid`),
@@ -113,7 +113,6 @@ CREATE TABLE `contest` (
   `endTime` datetime DEFAULT NULL COMMENT '结束时间',
   `defunct` char(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'N',
   `description` text COLLATE utf8_unicode_ci COMMENT '比赛描述',
-  `private` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`cid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -146,8 +145,6 @@ CREATE TABLE `link` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `link` */
-
-insert  into `link`(`id`,`name`,`url`,`type`) values (1,'浙大acm','http://www.zju.edu.cn/','ACM'),(2,'杭电acm','http://acm.hdu.edu.cn/','ACM'),(3,'北大oj','http://poj.org/','oj'),(4,'南阳理工学院ACM','http://acm.nyist.net/JudgeOnline/problemset.php','oj'),(5,'九度Online Judge','http://ac.jobdu.com/index.php','oj'),(6,'神技大学的oj','http://acm.uestc.edu.cn/#/','oj'),(7,'leetcode','https://leetcode.com/','--'),(10,'vvvvvv','http://a.com','vvvvvv'),(11,'vvvvvv','http://liuxuegang.xyz','vzvz'),(12,'bbbbbbb','http://liuxuegang.xyz','b'),(13,'bbxbxb','http://liuxuegang.xyz','xbxb');
 
 /*Table structure for table `problem` */
 

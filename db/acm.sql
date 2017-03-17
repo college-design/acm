@@ -1,4 +1,5 @@
 /*
+data
 SQLyog v10.2 
 MySQL - 5.5.45 : Database - db_acm
 *********************************************************************
@@ -23,39 +24,39 @@ DROP TABLE IF EXISTS `attend`;
 
 CREATE TABLE `attend` (
   `uid` char(20) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '用户标识',
-  `cid` int(11) NOT NULL DEFAULT '0',
-  `accepts` int(11) DEFAULT '0' COMMENT '通过数',
-  `penalty` int(11) DEFAULT '0',
-  `A_time` int(11) DEFAULT '0',
-  `A_WrongSubmits` int(11) DEFAULT '0',
-  `B_time` int(11) DEFAULT '0',
-  `B_WrongSubmits` int(11) DEFAULT '0',
-  `C_time` int(11) DEFAULT '0',
-  `C_WrongSubmits` int(11) DEFAULT '0',
-  `D_time` int(11) DEFAULT '0',
-  `D_WrongSubmits` int(11) DEFAULT '0',
-  `E_time` int(11) DEFAULT '0',
-  `E_WrongSubmits` int(11) DEFAULT '0',
-  `F_time` int(11) DEFAULT '0',
-  `F_WrongSubmits` int(11) DEFAULT '0',
-  `G_time` int(11) DEFAULT '0',
-  `G_WrongSubmits` int(11) DEFAULT '0',
-  `H_time` int(11) DEFAULT '0',
-  `H_WrongSubmits` int(11) DEFAULT '0',
-  `I_time` int(11) DEFAULT '0',
-  `I_WrongSubmits` int(11) DEFAULT '0',
-  `J_time` int(11) DEFAULT '0',
-  `J_WrongSubmits` int(11) DEFAULT '0',
-  `K_time` int(11) DEFAULT '0',
-  `K_WrongSubmits` int(11) DEFAULT '0',
-  `L_time` int(11) DEFAULT '0',
-  `L_WrongSubmits` int(11) DEFAULT '0',
-  `M_time` int(11) DEFAULT '0',
-  `M_WrongSubmits` int(11) DEFAULT '0',
-  `N_time` int(11) DEFAULT '0',
-  `N_WrongSubmits` int(11) DEFAULT '0',
-  `O_time` int(11) DEFAULT '0',
-  `O_WrongSubmits` int(11) DEFAULT '0',
+  `cid` int(11) NOT NULL DEFAULT '0' COMMENT '比赛标识',
+  `accepts` int(11) DEFAULT '0' COMMENT '通过总数',
+  `penalty` int(11) DEFAULT '0' COMMENT '提交错误加时',
+  `A_time` int(11) DEFAULT '0' COMMENT 'A语言时间',
+  `A_WrongSubmits` int(11) DEFAULT '0' COMMENT 'A提交错误次数',
+  `B_time` int(11) DEFAULT '0' COMMENT 'B语言时间',
+  `B_WrongSubmits` int(11) DEFAULT '0' COMMENT 'B提交错误次数',
+  `C_time` int(11) DEFAULT '0' COMMENT 'C语言时间',
+  `C_WrongSubmits` int(11) DEFAULT '0' COMMENT 'C提交错误次数',
+  `D_time` int(11) DEFAULT '0' COMMENT 'D语言时间',
+  `D_WrongSubmits` int(11) DEFAULT '0' COMMENT 'D提交错误次数',
+  `E_time` int(11) DEFAULT '0' COMMENT 'E语言时间',
+  `E_WrongSubmits` int(11) DEFAULT '0' COMMENT 'E提交错误次数',
+  `F_time` int(11) DEFAULT '0' COMMENT 'F语言时间',
+  `F_WrongSubmits` int(11) DEFAULT '0' COMMENT 'F提交错误次数',
+  `G_time` int(11) DEFAULT '0' COMMENT 'G语言时间',
+  `G_WrongSubmits` int(11) DEFAULT '0' COMMENT 'G提交错误次数',
+  `H_time` int(11) DEFAULT '0' COMMENT 'H语言时间',
+  `H_WrongSubmits` int(11) DEFAULT '0' COMMENT 'H提交错误次数',
+  `I_time` int(11) DEFAULT '0' COMMENT 'I语言时间',
+  `I_WrongSubmits` int(11) DEFAULT '0' COMMENT 'I提交错误次数',
+  `J_time` int(11) DEFAULT '0' COMMENT 'J语言时间',
+  `J_WrongSubmits` int(11) DEFAULT '0' COMMENT 'J提交错误次数',
+  `K_time` int(11) DEFAULT '0' COMMENT 'K语言时间',
+  `K_WrongSubmits` int(11) DEFAULT '0' COMMENT 'K提交错误次数',
+  `L_time` int(11) DEFAULT '0' COMMENT 'L语言时间',
+  `L_WrongSubmits` int(11) DEFAULT '0' COMMENT 'L提交错误次数',
+  `M_time` int(11) DEFAULT '0' COMMENT 'M语言时间',
+  `M_WrongSubmits` int(11) DEFAULT '0' COMMENT 'M提交错误次数',
+  `N_time` int(11) DEFAULT '0' COMMENT 'N语言时间',
+  `N_WrongSubmits` int(11) DEFAULT '0' COMMENT 'N提交错误次数',
+  `O_time` int(11) DEFAULT '0' COMMENT 'O语言时间',
+  `O_WrongSubmits` int(11) DEFAULT '0' COMMENT 'O提交错误次数',
   `nick` char(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '用户名',
   PRIMARY KEY (`uid`,`cid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -72,9 +73,11 @@ CREATE TABLE `classifier` (
   `createTime` datetime DEFAULT NULL COMMENT '分类创建时间',
   `modifyTime` datetime DEFAULT NULL COMMENT '分类修改时间',
   PRIMARY KEY (`cid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `classifier` */
+
+insert  into `classifier`(`cid`,`title`,`createTime`,`modifyTime`) values (1,'A+Bproblem','2017-02-14 21:53:45',NULL);
 
 /*Table structure for table `classifier_problem` */
 
@@ -113,11 +116,12 @@ CREATE TABLE `contest` (
   `endTime` datetime DEFAULT NULL COMMENT '结束时间',
   `defunct` char(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'N',
   `description` text COLLATE utf8_unicode_ci COMMENT '比赛描述',
-  `private` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`cid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `contest` */
+
+insert  into `contest`(`cid`,`title`,`startTime`,`endTime`,`defunct`,`description`) values (1,'练习A','2017-01-02 00:00:00','2017-02-05 00:00:00','Y','平常练习A');
 
 /*Table structure for table `contest_problem` */
 
@@ -147,6 +151,8 @@ CREATE TABLE `link` (
 
 /*Data for the table `link` */
 
+insert  into `link`(`id`,`name`,`url`,`type`) values (1,'浙江大学ACM','http://www.zju.edu.cn/','学校ACM'),(2,'杭州科技大学ACM','http://acm.hdu.edu.cn/','学校ACM'),(3,'北京大学ACM','http://poj.org/','大学ACM'),(4,'南阳理工学院ACM','http://acm.nyist.net/JudgeOnline/problemset.php','oj'),(5,'九度Online Judge','http://ac.jobdu.com/index.php','oj'),(6,'神技大学的oj','http://acm.uestc.edu.cn/#/','oj');
+
 /*Table structure for table `problem` */
 
 DROP TABLE IF EXISTS `problem`;
@@ -175,9 +181,11 @@ CREATE TABLE `problem` (
   `submitUser` bigint(20) DEFAULT '0',
   `solved` int(11) DEFAULT '0',
   PRIMARY KEY (`pid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1002 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `problem` */
+
+insert  into `problem`(`pid`,`title`,`description`,`input`,`output`,`sampleInput`,`sampleOutput`,`hint`,`source`,`sampleCode`,`createTime`,`timeLimit`,`memoryLimit`,`defunct`,`contestId`,`accepted`,`submit`,`ratio`,`error`,`difficulty`,`submitUser`,`solved`) values (1001,'A+B Problem','Calculate a+b		 				','Two integer a,b (0<=a,b<=10)						','Output a+b						','1 2						','3						','Q: Where are the input and the output?  A: Your program shall always <font color=red>read input from stdin (Standard Input) and write output to stdout (Standard Output)</font>. For example, you can use \'scanf\' in C or \'cin\' in C++ to read from stdin, and use \'printf\' in C or \'cout\' in C++ to write to stdout.  You <font color=red>shall not output any extra data</font> to standard output other than that required by the problem, otherwise you will get a \"Wrong Answer\".  User programs are not allowed to open and read from/write to files. You will get a \"Runtime Error\" or a \"Wrong Answer\" if you try to do so.   Here is a sample solution for problem 1000 using C++/G++: <pre> #include <iostream> using namespace std; int  main() {     int a,b;     cin >> a >> b;     cout << a+b << endl;     return 0; }</pre> It\'s important that the return type of main() must be int when you use G++/GCC,or you may get compile error.  Here is a sample solution for problem 1000 using C/GCC: <pre> #include <stdio.h>  int main() {     int a,b;     scanf(\"%d %d\",&a, &b);     printf(\"%d\\n\",a+b);     return 0; }</pre> Here is a sample solution for problem 1000 using PASCAL: <pre> program p1000(Input,Output);  var    a,b:Integer;  begin     Readln(a,b);     Writeln(a+b);  end.</pre> Here is a sample solution for problem 1000 using JAVA:  Now java compiler is jdk 1.5, next is program for 1000 <pre> import java.io.*; import java.util.*; public class Main {             public static void main(String args[]) throws Exception             {                     Scanner cin=new Scanner(System.in);                     int a=cin.nextInt(),b=cin.nextInt();                     System.out.println(a+b);             } }</pre> Old program for jdk 1.4 <pre> import java.io.*; import java.util.*;  public class Main {     public static void main (String args[]) throws Exception     {         BufferedReader stdin =              new BufferedReader(                 new InputStreamReader(System.in));          String line = stdin.readLine();         StringTokenizer st = new StringTokenizer(line);         int a = Integer.parseInt(st.nextToken());         int b = Integer.parseInt(st.nextToken());         System.out.println(a+b);     } }</pre>','POJ','#include <iostream>\r\nusing namespace std;\r\nint  main()\r\n{\r\n    int a,b;\r\n    cin >> a >> b;\r\n    cout << a+b << endl;\r\n    return 0;\r\n}						',NULL,0,0,'N',NULL,0,0,0,0,0,0,0);
 
 /*Table structure for table `problemstatus` */
 
@@ -209,9 +217,11 @@ CREATE TABLE `role` (
   `uid` bigint(20) DEFAULT NULL COMMENT '用户标识',
   `username` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '用户名称',
   PRIMARY KEY (`rid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `role` */
+
+insert  into `role`(`rid`,`type`,`uid`,`username`) values (1,'root',1,'管理员'),(2,'admin',2,'老师'),(3,'user',3,'学生');
 
 /*Table structure for table `status` */
 
@@ -250,9 +260,11 @@ CREATE TABLE `user` (
   `nick` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '昵称',
   `school` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '学校',
   PRIMARY KEY (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `user` */
+
+insert  into `user`(`uid`,`username`,`email`,`submit`,`accepted`,`solved`,`defunct`,`password`,`createtime`,`accesstime`,`nick`,`school`) values (1,'管理员','1453860636@qq.com',0,0,0,'N','123456','2017-02-14 22:01:48',NULL,'root','内蒙古师范大学'),(2,'老师','teacher@qq.com',0,0,0,'N','teacher','2017-02-14 22:01:48',NULL,'teacher','内蒙古师范大学'),(3,'学生','student@qq.com',0,0,0,'N','student','2017-02-14 22:03:28',NULL,'student','内蒙古师范大学');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
