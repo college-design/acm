@@ -5,7 +5,7 @@
   <artifactId>acm</artifactId>
   <packaging>war</packaging>
   <version>0.0.1-SNAPSHOT</version>
-  <name>acm Maven Webapp</name>
+  <name>acm 在线评测系统</name>
   <url>http://maven.apache.org</url>
 
 	<!-- 导入spring依赖包 -->

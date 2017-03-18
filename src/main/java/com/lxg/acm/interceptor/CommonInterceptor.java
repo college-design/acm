@@ -3,8 +3,10 @@ package com.lxg.acm.interceptor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.lxg.acm.mapper.UserMapper;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -20,6 +22,9 @@ public class CommonInterceptor implements HandlerInterceptor {
 
 	private final static Log LOG = LogFactory.getLog(CommonInterceptor.class);
 
+	@Autowired
+	private UserMapper userMapper;
+
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
 		LOG.info(request.getRequestURI() + "  " + request.getQueryString());
@@ -32,6 +37,7 @@ public class CommonInterceptor implements HandlerInterceptor {
 
 		//online user 在线用户数量
 		request.setAttribute("userOnlineNum",OnlineUserSupport.size());
+		request.setAttribute("accessNum", userMapper.count());
 		return true;
 	}
 
