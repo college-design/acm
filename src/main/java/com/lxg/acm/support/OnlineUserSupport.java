@@ -21,25 +21,25 @@ public class OnlineUserSupport {
 
 	// list添加用户
 	public static void add(User user) {
-		logger.info(">>>>OnlineUserSupport用户user=["+user+"]登录>>>>");
+		logger.info(">>>>用户user=["+user+"]登录>>>>");
 		users.add(user);
 	}
 
 	// list删除用户
 	public static void remove(User user) {
-		logger.info(">>>>OnlineUserSupport用户user=["+user+"]退出>>>>");
+		logger.info(">>>>用户user=["+user+"]退出>>>>");
 		users.remove(user);
 	}
 
 	// list大小
 	public static int size() {
-		logger.info(">>>>OnlineUserSupport用户登录总数=["+users.size()+"]>>>>");
+		logger.info(">>>>用户登录总数=["+users.size()+"]>>>>");
 		return users.size();
 	}
 
 	// 获取list对象
 	public static List<User> getUsers() {
-		logger.info(">>>>OnlineUserSupport所有用户=["+users+"]>>>>");
+//		logger.info(">>>>所有用户=["+users+"]>>>>");
 		return users;
 	}
 }

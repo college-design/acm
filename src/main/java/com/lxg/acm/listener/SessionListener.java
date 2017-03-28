@@ -3,6 +3,7 @@ package com.lxg.acm.listener;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
+import com.alibaba.fastjson.JSON;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.context.ApplicationContext;
@@ -22,13 +23,13 @@ public class SessionListener implements HttpSessionListener {
 	ApplicationContext ac;
 
 	public void sessionCreated(HttpSessionEvent event) {
-		logger.info("============用户session创建============");
+		logger.info("用户sessionc创建:{}");
 	}
 
 	// 用户退出或超时等
 	public void sessionDestroyed(HttpSessionEvent event) {
-		logger.info("============用户退出或登录超时退出============");
 		OnlineUserSupport.remove(ServerContext.getCurrentUser());
+		logger.info("用户sessionc删除:{}");
 	}
 
 }

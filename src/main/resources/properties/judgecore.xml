@@ -2,8 +2,10 @@
 <config>
 
 	<default>
-		<data>d:\acm\data</data>
-		<temp>d:\acm\temp</temp>
+		<!--<data>d:\acm\data</data>-->
+		<!--<temp>d:\acm\temp</temp>-->
+		<data>D:\acm\test\data</data>
+		<temp>D:\acm\test\temp</temp>
 		<!-- 3s -->
 		<timelimit>3000</timelimit>
 		<!-- 64M -->

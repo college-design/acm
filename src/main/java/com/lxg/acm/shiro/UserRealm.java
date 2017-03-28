@@ -18,7 +18,6 @@ import com.lxg.acm.entity.User;
 import com.lxg.acm.mapper.UserMapper;
 import com.lxg.acm.util.SpringUtil;
 
-
 /**
  * 用户权限
  * @author Administrator
@@ -31,27 +30,24 @@ public class UserRealm extends AuthorizingRealm {
 	UserMapper userMapper = SpringUtil.getBean(UserMapper.class);
 
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken atoken) throws AuthenticationException {
-		logger.info("==========shiro用户获取==========");
 		UsernamePasswordToken token = (UsernamePasswordToken) atoken;
 		String username = token.getUsername();
 		User user = userMapper.queryByUsername(username);
 		if (user == null) {
 			throw new UnknownAccountException();
 		}
-		logger.info("==========shiro用户获取={"+user.toString()+"}===========");
 		SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(
 				username,user.getPassword(), getName());
-		logger.info("==========shiro用户获取info={"+info+"}==========");
+		logger.info("用户信息："+info);
 		return info;
 	}
 	
 	// 为当前登录的用户授予角色和权限
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-		logger.info("==========shiro获取用户权限==========");
 		String username = (String) principals.getPrimaryPrincipal();
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 		info.setRoles(userMapper.findRoles(username));
-		logger.info("==========shiro获取用户={"+username+"}权限={"+userMapper.findRoles(username)+"}==========");
+		logger.info("获取用户="+username+"权限="+userMapper.findRoles(username));
 		return info;
 	}
 

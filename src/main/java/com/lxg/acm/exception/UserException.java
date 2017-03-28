@@ -1,5 +1,8 @@
 package com.lxg.acm.exception;
 
+/**
+ * 自定义异常
+ */
 public class UserException extends RuntimeException {
 
 	public UserException() {

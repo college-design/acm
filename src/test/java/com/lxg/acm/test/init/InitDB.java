@@ -100,4 +100,9 @@ public class InitDB {
         logger.info("清除数据库完成");
     }
 
+    @Test
+    public void  test(){
+        System.out.println("你好");
+    }
+
 }
