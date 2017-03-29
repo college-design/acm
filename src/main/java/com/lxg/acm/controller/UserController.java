@@ -1,11 +1,8 @@
 package com.lxg.acm.controller;
 
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
-import java.util.TreeSet;
-
-import com.lxg.acm.util.StringUtil;
+import com.lxg.acm.entity.User;
+import com.lxg.acm.exception.UserException;
+import com.lxg.acm.mapper.UserMapper;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.lxg.acm.entity.User;
-import com.lxg.acm.exception.UserException;
-import com.lxg.acm.mapper.UserMapper;
+import java.util.List;
 
 /**
  * 用户管理

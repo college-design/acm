@@ -1,12 +1,12 @@
 package com.lxg.acm.shiro;
 
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-
 import com.lxg.acm.context.ServerContext;
 import com.lxg.acm.support.OnlineUserSupport;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 
 /**
  * 退出
@@ -20,7 +20,6 @@ public class LogoutFilter extends
 
 	protected boolean preHandle(ServletRequest request, ServletResponse response)
 			throws Exception {
-		logger.info("用户退出:"+ServerContext.getCurrentUser());
 		OnlineUserSupport.remove(ServerContext.getCurrentUser()); // 从在线用户中移除
 		return super.preHandle(request, response);
 	}

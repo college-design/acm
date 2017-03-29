@@ -1,22 +1,15 @@
 package com.lxg.acm.shiro;
 
-import com.lxg.acm.util.StringUtil;
+import com.lxg.acm.entity.User;
+import com.lxg.acm.mapper.UserMapper;
+import com.lxg.acm.util.SpringUtil;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.AuthenticationInfo;
-import org.apache.shiro.authc.AuthenticationToken;
-import org.apache.shiro.authc.SimpleAuthenticationInfo;
-import org.apache.shiro.authc.UnknownAccountException;
-import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
-
-import com.lxg.acm.entity.User;
-import com.lxg.acm.mapper.UserMapper;
-import com.lxg.acm.util.SpringUtil;
 
 /**
  * 用户权限
@@ -38,7 +31,6 @@ public class UserRealm extends AuthorizingRealm {
 		}
 		SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(
 				username,user.getPassword(), getName());
-		logger.info("用户信息："+info);
 		return info;
 	}
 	
@@ -47,7 +39,6 @@ public class UserRealm extends AuthorizingRealm {
 		String username = (String) principals.getPrimaryPrincipal();
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 		info.setRoles(userMapper.findRoles(username));
-		logger.info("获取用户="+username+"权限="+userMapper.findRoles(username));
 		return info;
 	}
 
