@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.lxg.acm.context.OJConfig;
-import com.lxg.acm.core.JudgeResultType;
+import com.lxg.acm.constant.JudgeResultType;
 import com.lxg.acm.entity.Problem;
 import com.lxg.acm.entity.Status;
 import com.lxg.acm.entity.User;

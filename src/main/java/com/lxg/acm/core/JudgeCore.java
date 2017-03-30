@@ -1,45 +1,39 @@
 package com.lxg.acm.core;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FilenameFilter;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.lang.management.ManagementFactory;
-import java.lang.management.MemoryMXBean;
-import java.util.concurrent.Callable;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ScheduledFuture;
-import java.util.concurrent.TimeUnit;
-
+import com.lxg.acm.constant.JudgeResultType;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.*;
+import java.lang.management.ManagementFactory;
+import java.lang.management.MemoryMXBean;
+import java.util.concurrent.*;
 
 /**
- * 注：测试数据 输出不要超出500行。
- * 
- * @author xwzhou
+ *
+ * @author Administrator
  */
 
 public final class JudgeCore {
-	private static final Log LOG = LogFactory.getLog(JudgeCore.class);
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
+
 	String compileShell;  // 编译命令
 	String executeShell;  // 执行命令
-	String dataForNum;    // 题目
+	String dataForNum;    // 题号
 	int result;           // 结果
-	int timeUsed;         // 时间利用
-	int memory;           // 内存
+	int timeUsed;         // 编译时间
+	int memory;           // 运行大小
 	int COMPILETIMELIMIT = 1500;
 	int TIMELIMIT = 3 * 1000;
 	int MEMORYLIMIT = 64 * 1024;
 	String errorInfo;     // 错误信息
-	private static final ScheduledExecutorService schedule = Executors
-			.newScheduledThreadPool(10);
-	private static MemoryMXBean memoryBean = ManagementFactory
-			.getMemoryMXBean();
+
+	private static final ScheduledExecutorService schedule = Executors.newScheduledThreadPool(10);
+
+	private static MemoryMXBean memoryBean = ManagementFactory.getMemoryMXBean();
+
 	private static final String DATA_IN_FILE_EXT = ".in";  // 输入
 	private static final String DATA_OUT_FILE_EXT = ".out"; // 输出
 
@@ -48,13 +42,14 @@ public final class JudgeCore {
 			if (compile())
 				execute();
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("编译异常",e);
 			this.result = JudgeResultType.SE;
 		}
 	}
 
 	public boolean compile() throws Exception {
-		LOG.info(compileShell); // 打印编译命令
+		logger.info("编译开始={}",compileShell);
+
 		final Process process = Runtime.getRuntime().exec(compileShell);
 		ScheduledFuture<Integer> checkTimeFuture = schedule.schedule(
 				new Callable<Integer>() {
@@ -65,7 +60,7 @@ public final class JudgeCore {
 				}, COMPILETIMELIMIT, TimeUnit.MILLISECONDS);
 		int wait = process.waitFor();
 		int exit = process.exitValue();
-		LOG.info("compile: wait=" + wait + ";  exti=" + exit);
+		logger.info("编译等待时间wait={}，exit={}",wait,exit);
 		if (checkTimeFuture.isDone()) {
 			this.result = checkTimeFuture.get();
 			InputStream is = process.getErrorStream();
@@ -88,6 +83,7 @@ public final class JudgeCore {
 	}
 
 	public void execute() throws Exception {
+		logger.info("===========对比开始===========");
 		File dataFile = new File(dataForNum);
 		File[] dataOutFiles = getDataOutFiles(dataFile);
 		for (int i = 0; i < dataOutFiles.length; i++) {
@@ -142,8 +138,7 @@ public final class JudgeCore {
 
 					InputStream dis = new FileInputStream(dataOutFile);
 					InputStream pis = process.getInputStream();
-					this.result = match(IOUtils.toByteArray(dis),
-							IOUtils.toByteArray(pis));
+					this.result = match(IOUtils.toByteArray(dis),IOUtils.toByteArray(pis));
 					dis.close();
 					pis.close();
 					if (this.result == JudgeResultType.AC)
@@ -182,8 +177,7 @@ public final class JudgeCore {
 		while (i < stdOutput.length && j < output.length) {
 			byte src = stdOutput[i];
 			byte dest = output[j];
-			while (i < stdOutput.length
-					&& (src == ' ' || src == '\t' || src == '\r' || src == '\n')) {
+			while (i < stdOutput.length && (src == ' ' || src == '\t' || src == '\r' || src == '\n')) {
 				i++;
 				if (i < stdOutput.length)
 					src = stdOutput[i];
@@ -193,8 +187,7 @@ public final class JudgeCore {
 				pi++;
 				bi = false;
 			}
-			while (j < output.length
-					&& (dest == ' ' || dest == '\t' || dest == '\r' || dest == '\n')) {
+			while (j < output.length && (dest == ' ' || dest == '\t' || dest == '\r' || dest == '\n')) {
 				j++;
 				if (j < output.length)
 					dest = output[j];

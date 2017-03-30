@@ -3,13 +3,13 @@ package com.lxg.acm.shiro;
 import com.lxg.acm.entity.User;
 import com.lxg.acm.mapper.UserMapper;
 import com.lxg.acm.util.SpringUtil;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 用户权限
@@ -18,7 +18,7 @@ import org.apache.shiro.subject.PrincipalCollection;
  */
 public class UserRealm extends AuthorizingRealm {
 
-	private static final Log logger = LogFactory.getLog(UserRealm.class);// 日志
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	UserMapper userMapper = SpringUtil.getBean(UserMapper.class);
 

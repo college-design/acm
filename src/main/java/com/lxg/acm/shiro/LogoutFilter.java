@@ -2,8 +2,8 @@ package com.lxg.acm.shiro;
 
 import com.lxg.acm.context.ServerContext;
 import com.lxg.acm.support.OnlineUserSupport;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -16,11 +16,11 @@ import javax.servlet.ServletResponse;
 public class LogoutFilter extends
 		org.apache.shiro.web.filter.authc.LogoutFilter {
 
-	private static final Log logger = LogFactory.getLog(LogoutFilter.class);// 日志
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	protected boolean preHandle(ServletRequest request, ServletResponse response)
 			throws Exception {
-		OnlineUserSupport.remove(ServerContext.getCurrentUser()); // 从在线用户中移除
+		OnlineUserSupport.remove(ServerContext.getCurrentUser());
 		return super.preHandle(request, response);
 	}
 

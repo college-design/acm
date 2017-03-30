@@ -3,7 +3,6 @@ package com.lxg.acm.constant;
 /**
  * 常量
  * @author Administrator
- *
  */
 public class Constants {
 

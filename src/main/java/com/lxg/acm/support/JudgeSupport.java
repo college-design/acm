@@ -12,8 +12,8 @@ import com.lxg.acm.mapper.StatusMapper;
 import com.lxg.acm.mapper.UserMapper;
 import com.lxg.acm.util.SpringUtil;
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -26,10 +26,10 @@ import java.util.concurrent.TimeUnit;
 
 public class JudgeSupport extends Thread {
 
-	private static final Log logger = LogFactory.getLog(JudgeSupport.class);
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	private static final ExecutorService executor = Executors
-			.newCachedThreadPool();
+	private static final ExecutorService executor = Executors.newCachedThreadPool();
+
 	StatusMapper statusMapper = SpringUtil.getBean(StatusMapper.class);
 	ProblemMapper problemMapper = SpringUtil.getBean(ProblemMapper.class);
 	UserMapper userMapper = SpringUtil.getBean(UserMapper.class);
@@ -60,7 +60,7 @@ public class JudgeSupport extends Thread {
 		File folder = new File(OJConfig.instance.tempFile, folderName);
 		File mainFile = new File(folder, "Main." + language.ext);
 		try {
-			logger.info("将用户提交代码{}"+code+"添加到预编译文件中");
+			logger.info("将用户提交代码code={}添加到预编译文件中",code);
 			FileUtils.write(mainFile, code);
 		} catch (IOException e) {
 			logger.error("将用户提交代码添加到预编译文件，异常"+e);
@@ -75,7 +75,7 @@ public class JudgeSupport extends Thread {
 		core.setMEMORYLIMIT(language.getMemorylimit());
 		core.setTIMELIMIT(language.getTimelimit());
 		core.run();
-		logger.info("代码编译结果{"+JSON.toJSON(core)+"}");
+		logger.info("代码编译结果{}"+JSON.toJSON(core));
 		// 题目AC/ALL
 		Long pid = status.getPid();
 		Problem problem= problemMapper.query(pid);

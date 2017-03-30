@@ -1,11 +1,12 @@
 package com.lxg.acm.context;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.alibaba.fastjson.JSON;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -20,22 +21,23 @@ import java.util.Map;
  */
 public class OJConfig {
 
-	private static final Log logger = LogFactory.getLog(OJConfig.class);// 日志
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	public String dataFile;  // 文件目录
 	public String tempFile;  // 缓存目录
-	public int timeLimit;    // 最小延时
-	public int memoryLimit;  // 最小内存
+	public int timeLimit;    // 时间限制
+	public int memoryLimit;  // 内存限制
 	public String buildPath; // 构建路径
 	public Map<Integer, Language> langs = new LinkedHashMap<Integer, Language>(); // 编译语言
-	public List<String> languages = new ArrayList<String>(); // 编译原因类型
+	public List<String> languages = new ArrayList<String>(); // 编译语言类型
 	private String configXml = "properties/judgecore.xml";
 //	private String configXml = "../properties/judgecore.xml";// jedgecore文件路径
 //	private String configXml = "/src/main/webapp/WEB-INF/properties/judgecore.xml";
-	public static OJConfig instance = new OJConfig(); // 当前一个实例
 
-	private OJConfig() { // 默认构造
-		loadResource();  // 加载资源
+	public static OJConfig instance = new OJConfig();
+
+	private OJConfig() {
+		loadResource();
 		init();
 	}
 
@@ -47,24 +49,46 @@ public class OJConfig {
 	 */
 	public void loadResource() {
 		logger.info("加载编译配置文件start");
-		SAXReader saxReader = new SAXReader(); // Dom4j 读取文档实例
+		SAXReader saxReader = new SAXReader();
 		try {
 			URL url = getClass().getClassLoader().getResource(configXml); // 加载configxml路径
-			logger.info("configXml=["+url+"]");
-			Document document = saxReader.read(url); // 获取xml文档对象
+			logger.info("配置文件路径={}",url.getPath());
+			Document document = saxReader.read(url);
 			Element root = document.getRootElement();
-			if (root.getName().equalsIgnoreCase("config")) { // 根节点
+			if (root.getName().equalsIgnoreCase("config")) {
+
+//				<default>
+//					<data>d:\acm\data</data>
+//					<temp>d:\acm\temp</temp>
+//					<!-- 3s -->
+//					<timelimit>3000</timelimit>
+//					<!-- 64M -->
+//					<memorylimit>65535</memorylimit>
+//					<buildpath>
+//					</buildpath>
+//				</default>
 				Element defaultElem = root.element("default");
 				if (defaultElem != null) {
 					dataFile = defaultElem.elementText("data");
 					tempFile = defaultElem.elementText("temp");
-					timeLimit = Integer.parseInt(defaultElem
-							.elementText("timelimit"));
-					memoryLimit = Integer.parseInt(defaultElem
-							.elementText("memorylimit"));
+					timeLimit = Integer.parseInt(defaultElem.elementText("timelimit"));
+					memoryLimit = Integer.parseInt(defaultElem.elementText("memorylimit"));
 				//	buildPath = defaultElem.elementText("buildpath");
 				}
-				Element langsElem = root.element("languages"); // 编译语言信息
+
+//				<languages>
+//				<lang type="c++">
+//					<ext>cpp</ext>
+//					<exe>exe</exe>
+//					<path></path>
+//					<timelimit>3000</timelimit>
+//					<memorylimit>65535</memorylimit>
+//					<comshell>g++ -o ${path}${name} ${path}${name}.${ext}
+//					</comshell>
+//					<runshell>${path}${name}.${exe}</runshell>
+//				</lang>
+//				</languages>
+				Element langsElem = root.element("languages");
 				if (langsElem != null) {
 					int index = 0;
 					for (Object obj : langsElem.elements()) {
@@ -73,26 +97,20 @@ public class OJConfig {
 						lang.type = elem.attributeValue("type");
 						lang.ext = elem.elementText("ext");
 						lang.exe = elem.elementText("exe");
-						lang.timelimit = Integer.parseInt(elem
-								.elementText("timelimit"));
-						lang.memorylimit = Integer.parseInt(elem
-								.elementText("memorylimit"));
-						lang.comshell = elem.elementText("comshell")
-								.replaceAll("\\$\\{ext\\}", lang.ext)
-								.replaceAll("\\$\\{exe\\}", lang.exe);
-						lang.runshell = elem.elementText("runshell")
-								.replaceAll("\\$\\{ext\\}", lang.ext)
-								.replaceAll("\\$\\{exe\\}", lang.exe);
+						lang.timelimit = Integer.parseInt(elem.elementText("timelimit"));
+						lang.memorylimit = Integer.parseInt(elem.elementText("memorylimit"));
+						lang.comshell = elem.elementText("comshell").replaceAll("\\$\\{ext\\}", lang.ext).replaceAll("\\$\\{exe\\}", lang.exe);
+						lang.runshell = elem.elementText("runshell").replaceAll("\\$\\{ext\\}", lang.ext).replaceAll("\\$\\{exe\\}", lang.exe);
 						languages.add(lang.type);
 						langs.put(index++, lang);
 					}
-					logger.info("loadResource->languages=["+languages+"]");
-					logger.info("loadResource->langs=["+langs+"]");
 				}
 			}
 		} catch (DocumentException e) {
-			logger.error("loadResource->e=["+e+"]");
+			logger.error("加载编译配置文件信息，异常",e);
 		}
+		logger.info("languages={}", JSON.toJSON(languages));
+		logger.info("langs={}", JSON.toJSON(langs));
 		logger.info("加载编译配置文件end");
 	}
 
@@ -144,9 +162,9 @@ public class OJConfig {
 		}
 	}
 
-	public static void main(String[] args) {
-		OJConfig config = new OJConfig();
-		config.setConfigXml("properties/judgecore.xml");
-		config.init();
-	}
+//	public static void main(String[] args) {
+//		OJConfig config = new OJConfig();
+//		config.setConfigXml("properties/judgecore.xml");
+//		config.init();
+//	}
 }

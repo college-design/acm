@@ -1,10 +1,11 @@
 package com.lxg.acm.context;
 
+import com.alibaba.fastjson.JSON;
 import com.lxg.acm.entity.Link;
 import com.lxg.acm.mapper.LinkMapper;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.beetl.ext.spring.BeetlGroupUtilConfiguration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.HashMap;
@@ -13,19 +14,19 @@ import java.util.Map;
 
 /**
  * Beetl 模版配置加载
- * @author lxg
+ * @author Administrator
  *
  */
 public class BeetlConfigLoader extends BeetlGroupUtilConfiguration {
 
-	private static final Log logger = LogFactory.getLog(BeetlConfigLoader.class);// 日志
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	private LinkMapper linkMapper;
 
 	@Override
 	protected void initOther() {
-		logger.info("Beetl模板配置加载");
+		logger.info("前端模板配置信息加载start");
 		Map<String, Object> sharedVars = new HashMap<String, Object>();
 		sharedVars.put("languages", OJConfig.instance.languages);
 		// 分页大小
@@ -39,6 +40,8 @@ public class BeetlConfigLoader extends BeetlGroupUtilConfiguration {
 		sharedVars.put("links",links);
 		groupTemplate.setSharedVars(sharedVars);
 		groupTemplate.registerFunctionPackage("so", new BeetlFunction());
+		logger.info("配置文件信息={}", JSON.toJSON(sharedVars));
+		logger.info("前端模板配置信息加载end");
 	}
 
 }

@@ -2,8 +2,8 @@ package com.lxg.acm.listener;
 
 import com.lxg.acm.context.ServerContext;
 import com.lxg.acm.support.OnlineUserSupport;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 
 import javax.servlet.http.HttpSessionEvent;
@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSessionListener;
  */
 public class SessionListener implements HttpSessionListener {
 
-	private static final Log logger = LogFactory.getLog(SessionListener.class);
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	ApplicationContext ac;
 

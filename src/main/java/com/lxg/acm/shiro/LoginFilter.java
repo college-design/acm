@@ -1,17 +1,18 @@
 package com.lxg.acm.shiro;
 
+import com.alibaba.fastjson.JSON;
 import com.lxg.acm.entity.User;
 import com.lxg.acm.mapper.UserMapper;
 import com.lxg.acm.support.OnlineUserSupport;
 import com.lxg.acm.util.SpringUtil;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -23,7 +24,7 @@ import javax.servlet.ServletResponse;
  */
 public class LoginFilter extends FormAuthenticationFilter {
 
-	private static final Log logger = LogFactory.getLog(LoginFilter.class);// 日志
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	UserMapper userMapper = SpringUtil.getBean(UserMapper.class);
 
@@ -33,6 +34,7 @@ public class LoginFilter extends FormAuthenticationFilter {
 			throws Exception {
 		User user = userMapper.queryByUsername((String) subject.getPrincipal());
 		subject.getSession().setAttribute("user", user);
+		logger.info("用户user={}登陆成功", JSON.toJSON(user));
 		// OnlineUser
 		OnlineUserSupport.add(user);
 		return super.onLoginSuccess(token, subject, request, response);

@@ -2,8 +2,8 @@ package com.lxg.acm.interceptor;
 
 import com.lxg.acm.mapper.UserMapper;
 import com.lxg.acm.support.OnlineUserSupport;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -17,8 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  */
 public class CommonInterceptor implements HandlerInterceptor {
-
-	private final static Log LOG = LogFactory.getLog(CommonInterceptor.class);
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	private UserMapper userMapper;
@@ -26,7 +25,6 @@ public class CommonInterceptor implements HandlerInterceptor {
 	// 预处理回调方法，实现处理器的预处理，第三个参数为响应的处理器
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
-//		LOG.info(request.getRequestURI() + "  " + request.getQueryString());
 		String contentPath = request.getContextPath();
 		request.setAttribute("contentPath", contentPath);
 		request.setAttribute("adminPath", contentPath + "/admin");
