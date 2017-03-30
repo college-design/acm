@@ -1,4 +1,4 @@
-package com.lxg.acm.test.init;
+package com.lxg.acm.mapper;
 
 import com.lxg.acm.mapper.StatusMapper;
 import org.junit.Test;

@@ -1,9 +1,7 @@
-package com.lxg.acm.test.init;
+package com.lxg.acm.init;
 
-import com.lxg.acm.context.BeetlConfigLoader;
 import com.lxg.acm.entity.Classifier;
 import com.lxg.acm.entity.Contest;
-import com.lxg.acm.entity.Status;
 import com.lxg.acm.entity.User;
 import com.lxg.acm.mapper.*;
 import org.apache.commons.logging.Log;
@@ -13,7 +11,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 
