@@ -107,8 +107,19 @@ public interface UserMapper {
 	 * @param user
 	 * @return
 	 */
-	@Update("update user set username=#{username},password=#{password},email=#{email},nick=#{nick},school=#{school},solved=#{solved},accepted=#{accepted},submit=#{submit} where uid=#{uid}")
-	public Long update(User user);
+	@Update("<script>update user set " +
+			"<if test='username!=null'>username=#{username},</if>" +
+			"<if test='password!=null'>password=#{password},</if>" +
+			"<if test='email!=null'>email=#{email},</if>" +
+			"<if test='nick!=null'>nick=#{nick},</if>" +
+			"<if test='school!=null'>school=#{school},</if>" +
+			"<if test='solved!=null'>solved=#{solved},</if>" +
+			"<if test='accepted!=null'>accepted=#{accepted},</if>" +
+			"<if test='submit!=null'>submit=#{submit},</if> " +
+//			"<if test='accesstime!=null'>accesstime=#{accesstime},</if> " +
+			"<if test='defunct!=null'>submit=#{defunct}</if> " +
+			"where uid=#{uid}</script>")
+	Long update(User user);
 
 	/**
 	 * 查询用户总数

@@ -1,5 +1,6 @@
 package com.lxg.acm.mapper;
 
+import com.lxg.acm.entity.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,17 @@ public class UserMapperTest {
     public void isUserNameAddTest(){
         String username = "test101";
         Integer count = userMapper.isUserNameAdd(username);
+        System.out.println(count);
+    }
+
+    @Test
+    public void updateUserTest(){
+        User user = new User();
+        user.setUid(5l);
+        user.setUsername("aa11");
+        user.setPassword("c11c");
+        user.setSolved(35);
+        Long count = userMapper.update(user);
         System.out.println(count);
     }
 }
