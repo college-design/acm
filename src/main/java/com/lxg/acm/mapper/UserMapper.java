@@ -1,18 +1,11 @@
 package com.lxg.acm.mapper;
 
-import java.util.List;
-import java.util.Set;
-
-import org.apache.ibatis.annotations.CacheNamespace;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import com.lxg.acm.entity.User;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
-import com.lxg.acm.entity.User;
+import java.util.List;
+import java.util.Set;
 
 /**
  * 用户管理
@@ -151,4 +144,7 @@ public interface UserMapper {
 	//===========用户通过次数
 	@Select("SELECT COUNT(1) FROM STATUS WHERE uid=#{uid} AND result=0")
 	public Long getUserAccepted(Long uid);
+
+	@Select("select count(1) from user where username=#{username}")
+	Integer isUserNameAdd(String username);
 }
