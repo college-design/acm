@@ -3,6 +3,7 @@ package com.lxg.acm.controller;
 import com.lxg.acm.entity.User;
 import com.lxg.acm.exception.UserException;
 import com.lxg.acm.mapper.UserMapper;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -132,6 +133,26 @@ public class UserController {
 	@RequestMapping(value = "isUserNameAdd",method = RequestMethod.GET)
 	public int isUserNameAdd(@RequestParam String username){
 		return userMapper.isUserNameAdd(username);
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "isUserPasswordPass",method = RequestMethod.GET)
+	public int isUserPasswordPass(User user){
+		if(null != user && StringUtils.isNotEmpty(user.getUsername()) && StringUtils.isNotEmpty(user.getPassword())) {
+			return userMapper.isUserPasswordPass(user.getUsername(), user.getPassword());
+		}else{
+			return 0;
+		}
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "updateUserPassword",method = RequestMethod.GET)
+	public int updateUserPassword(User user){
+		if(null != user && StringUtils.isNotEmpty(user.getUsername()) && StringUtils.isNotEmpty(user.getPassword())) {
+			return userMapper.updateUserPassword(user.getUsername(), user.getPassword());
+		}else{
+			return 0;
+		}
 	}
 
 }

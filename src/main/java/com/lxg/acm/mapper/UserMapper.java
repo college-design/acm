@@ -147,4 +147,10 @@ public interface UserMapper {
 
 	@Select("select count(1) from user where username=#{username}")
 	Integer isUserNameAdd(String username);
+
+	@Update("update user set password=#password{} where username=#{username}")
+	Integer updateUserPassword(String password,String username);
+
+	@Select("select * from user where username=#{username} and password=#{password}")
+	Integer isUserPasswordPass(String username,String password);
 }
