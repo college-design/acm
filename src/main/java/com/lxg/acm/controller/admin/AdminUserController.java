@@ -1,7 +1,6 @@
 package com.lxg.acm.controller.admin;
 
 import com.alibaba.fastjson.JSONObject;
-import com.lxg.acm.entity.Link;
 import com.lxg.acm.entity.User;
 import com.lxg.acm.mapper.UserMapper;
 import com.lxg.acm.util.ResponseUtil;

@@ -1,15 +1,14 @@
 package com.lxg.acm.controller;
 
-import java.util.List;
-
+import com.lxg.acm.entity.User;
+import com.lxg.acm.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.lxg.acm.entity.User;
-import com.lxg.acm.mapper.UserMapper;
+import java.util.List;
 
 
 /**
@@ -30,7 +29,7 @@ public class RankController {
 		List<User> userList = userMapper.queryForList(offset, pageSize);
 		model.addAttribute("userList", userList);
 		model.addAttribute("pageSize", pageSize);
-		model.addAttribute("total", userMapper.count() / pageSize + 1);
+		model.addAttribute("total", (userMapper.count() % pageSize==0)? (userMapper.count() / pageSize): (userMapper.count() / pageSize+1));
 		model.addAttribute("currentPage", page);
 		return "ranklist";
 	}

@@ -1,25 +1,20 @@
 package com.lxg.acm.controller;
 
-import java.util.List;
-import java.util.Map;
-
-import com.alibaba.fastjson.JSONObject;
-import com.lxg.acm.entity.*;
+import com.lxg.acm.entity.Classifier;
+import com.lxg.acm.entity.Contest;
+import com.lxg.acm.entity.Problem;
+import com.lxg.acm.entity.User;
 import com.lxg.acm.mapper.*;
-import com.lxg.acm.util.ResponseUtil;
+import com.lxg.acm.support.CurrentUser;
+import com.lxg.acm.support.OnlineUserSupport;
+import com.lxg.acm.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.lxg.acm.support.CurrentUser;
-import com.lxg.acm.support.OnlineUserSupport;
-import com.lxg.acm.util.StringUtil;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 @Controller
 @RequestMapping("/admin")
@@ -50,7 +45,7 @@ public class AdminController {
 		List<Problem> problemList = problemMapper.queryForList(null, offset,
 				pageSize);
 		model.addAttribute("problemList", problemList);
-		model.addAttribute("total", problemMapper.count() / pageSize + 1);
+		model.addAttribute("total",  (problemMapper.count() %pageSize==0)?(problemMapper.count() / pageSize):(problemMapper.count() / pageSize+1));
 		model.addAttribute("currentPage", page);
 		model.addAttribute("pageSize", pageSize);
 		return "admin/problemlist";
@@ -106,7 +101,7 @@ public class AdminController {
 		List<Contest> contestList = contestMapper.queryForList(null, offset,
 				pageSize);
 		model.addAttribute("contestList", contestList);
-		model.addAttribute("total", contestMapper.count() / pageSize + 1);
+		model.addAttribute("total", (contestMapper.count()%pageSize==0)?(contestMapper.count() / pageSize):(contestMapper.count() / pageSize+1));
 		model.addAttribute("currentPage", page);
 		model.addAttribute("pageSize", pageSize);
 		return "admin/contestlist";
@@ -140,7 +135,7 @@ public class AdminController {
 		List<Classifier> classifierList = classifierMapper.queryForList(null,
 				offset, pageSize);
 		model.addAttribute("classifierList", classifierList);
-		model.addAttribute("total", classifierMapper.count() / pageSize + 1);
+		model.addAttribute("total", (classifierMapper.count() % pageSize==0)?(classifierMapper.count() / pageSize):(classifierMapper.count() / pageSize+1));
 		model.addAttribute("currentPage", page);
 		model.addAttribute("pageSize", pageSize);
 		return "admin/classifierlist";

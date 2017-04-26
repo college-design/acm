@@ -1,18 +1,17 @@
 package com.lxg.acm.controller;
 
-import java.util.List;
-
+import com.lxg.acm.entity.Status;
+import com.lxg.acm.entity.User;
+import com.lxg.acm.mapper.StatusMapper;
+import com.lxg.acm.mapper.UserMapper;
+import com.lxg.acm.support.CurrentUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.lxg.acm.entity.Status;
-import com.lxg.acm.entity.User;
-import com.lxg.acm.mapper.StatusMapper;
-import com.lxg.acm.mapper.UserMapper;
-import com.lxg.acm.support.CurrentUser;
+import java.util.List;
 
 
 /**
@@ -47,7 +46,7 @@ public class StatusController {
 		model.addAttribute("statusList", statusList);
 		model.addAttribute("username", username);
 		model.addAttribute("pid", pid);
-		model.addAttribute("total", statusMapper.count() / pageSize + 1);
+		model.addAttribute("total", (statusMapper.count() % pageSize==0)?(statusMapper.count() / pageSize):(statusMapper.count() / pageSize+ 1));
 		model.addAttribute("currentPage", page);
 		model.addAttribute("pageSize", pageSize);
 		return "statuslist";
