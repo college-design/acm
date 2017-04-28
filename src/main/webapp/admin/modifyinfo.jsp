@@ -12,18 +12,17 @@
 	<script type="text/javascript">
 		function submitData(){
 			var username=$("#username").val();
-			var password=$("#password").val();
 			var email=$("#email").val();
-			var qq=$("#qq").val();
+			var nick=$("#nick").val();
 
 			if(username==null || username==''){
 				alert("请输入用户名！");
-			}else if(password==null || password==''){
-				alert("请输入密码！");
+			}else if(nick==null || nick==''){
+				alert("请输入昵称！");
 			}else if(email==null || email==''){
 				alert("请输入邮箱！");
-			}else if(qq==null || qq==''){
-				alert("请输入QQ！");
+			}else if(school==null || school==''){
+				alert("请输入学校名称！");
 			} else{
 				$('#form1').submit();
 			}
@@ -32,27 +31,27 @@
 </head>
 <body style="margin: 10px">
 <div id="p" class="easyui-panel" title="修改个人信息" style="padding: 10px">
-	<form id="form1" action="${contentPath}/admin/saveInfo.action" method="post" enctype="multipart/form-data">
+	<form id="form1" action="${contentPath}/admin/updateUser.action" method="post">
 	 	<table cellspacing="20px">
 	   		<tr>
 	   			<td width="80px">用户名：</td>
 	   			<td>
-	   				<input type="hidden" id="uid" name="uid" value="${session.user.uid}"/>
-	   				<input type="text" id="username" name="username" style="width: 200px;" value="${session.user.username}" readonly="readonly"/>
+	   				<input type="hidden" id="uid" name="uid" value="${user.uid}"/>
+	   				<input type="text" id="username" name="username" style="width: 200px;" value="${user.username}" readonly="readonly"/>
 	   			</td>
 	   		</tr>
-			<tr>
-				<td>用户密码：</td>
-				<td><input type="password" id="password" name="password"  style="width: 200px;" value="${session.user.password}"/></td>
-			</tr>
 	   		<tr>
 	   			<td>邮箱：</td>
-	   			<td><input type="text" id="email" name="email"  style="width: 200px;" value="${session.user.email}"/></td>
+	   			<td><input type="text" id="email" name="email"  style="width: 200px;" value="${user.email}"/></td>
 	   		</tr>
 	   		<tr>
-	   			<td>qq：</td>
-	   			<td><input type="text" id="qq" name="qq" value="${session.user.qq}" style="width: 400px;"/></td>
+	   			<td>昵称：</td>
+	   			<td><input type="text" id="nick" name="nick" value="${user.nick}" style="width: 400px;"/></td>
 	   		</tr>
+	   		<tr>
+                <td>学校：</td>
+                <td><input type="text" id="school" name="school" value="${user.school}" style="width: 400px;"/></td>
+            </tr>
 	   		<tr>
 	   			<td></td>
 	   			<td>
