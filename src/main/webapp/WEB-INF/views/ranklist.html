@@ -28,7 +28,11 @@
 						<td>${user.solved}</td>
 						<td>${user.accepted}</td>
 						<td>${user.submit}</td>
-						<td>${100.0*user.solved/(user.submit+0.0000001),"##.##"}%</td>
+						<%if(user.submit!=0){%>
+						<td>${100*user.solved/user.submit,"##.##"}%</td>
+						<%}else{%>
+						<td>0%</td>
+						<%}%>
 					</tr>
 				</tbody>
 				<%}%>

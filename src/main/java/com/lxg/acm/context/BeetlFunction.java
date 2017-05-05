@@ -29,6 +29,10 @@ public class BeetlFunction {
 		return getSubject() == null || getSubject().getPrincipal() == null;
 	}
 
+	public String getUser(){
+		return (String)getSubject().getPrincipal();
+	}
+
 	/**
 	 * 是否为用户
 	 * @return

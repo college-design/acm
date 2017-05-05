@@ -121,7 +121,7 @@ public interface UserMapper {
 			"<if test='accepted!=null'>accepted=#{accepted},</if>" +
 			"<if test='submit!=null'>submit=#{submit},</if> " +
 //			"<if test='accesstime!=null'>accesstime=#{accesstime},</if> " +
-			"<if test='defunct!=null'>submit=#{defunct}</if> " +
+			"<if test='defunct!=null'>defunct=#{defunct}</if> " +
 			"where uid=#{uid}</script>")
 	Long update(User user);
 
