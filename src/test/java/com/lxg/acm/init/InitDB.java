@@ -44,7 +44,7 @@ public class InitDB {
         logger.info("初始化数据开始");
         // 添加测试用户
         User user = new User();
-        for(int i=0;i<=20;i++){
+        for(int i=1;i<=15;i++){
             user.setUsername("test"+i);
             user.setPassword("test"+i);
             user.setEmail("test"+i+"@qq.com");
@@ -55,14 +55,14 @@ public class InitDB {
 
         // 添加测试分类
         Classifier classifier = new Classifier();
-        for(int i=0;i<=15;i++){
+        for(int i=1;i<=5;i++){
             classifier.setTitle("分类"+i);
             classifierMapper.save(classifier);
         }
 
         // 添加比赛 title,startTime,endTime,defunct,description
         Contest contest = new Contest();
-        for(int i=0;i<=15;i++){
+        for(int i=1;i<=5;i++){
             contest.setTitle("比赛"+i);
             contest.setStartTime(new Date());
             contest.setEndTime(new Date());
