@@ -71,11 +71,11 @@ CREATE TABLE `classifier` (
   `createTime` datetime DEFAULT NULL COMMENT '分类创建时间',
   `modifyTime` datetime DEFAULT NULL COMMENT '分类修改时间',
   PRIMARY KEY (`cid`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `classifier` */
 
-insert  into `classifier`(`cid`,`title`,`createTime`,`modifyTime`) values (1,'分类0','2017-03-17 21:58:34','2017-03-17 21:58:34'),(2,'分类1','2017-03-17 21:58:34','2017-03-17 21:58:34'),(3,'分类2','2017-03-17 21:58:34','2017-03-17 21:58:34'),(4,'分类3','2017-03-17 21:58:34','2017-03-17 21:58:34'),(5,'分类4','2017-03-17 21:58:34','2017-03-17 21:58:34'),(6,'分类5','2017-03-17 21:58:34','2017-03-17 21:58:34'),(7,'分类6','2017-03-17 21:58:34','2017-03-17 21:58:34'),(8,'分类7','2017-03-17 21:58:34','2017-03-17 21:58:34'),(9,'分类8','2017-03-17 21:58:34','2017-03-17 21:58:34'),(10,'分类9','2017-03-17 21:58:34','2017-03-17 21:58:34'),(11,'分类10','2017-03-17 21:58:34','2017-03-17 21:58:34'),(12,'分类11','2017-03-17 21:58:34','2017-03-17 21:58:34'),(13,'分类12','2017-03-17 21:58:35','2017-03-17 21:58:35'),(14,'分类13','2017-03-17 21:58:35','2017-03-17 21:58:35'),(15,'分类14','2017-03-17 21:58:35','2017-03-17 21:58:35'),(16,'分类15','2017-03-17 21:58:35','2017-03-17 21:58:35');
+insert  into `classifier`(`cid`,`title`,`createTime`,`modifyTime`) values (1,'分类1','2017-05-05 11:01:39','2017-05-05 11:01:39'),(2,'分类2','2017-05-05 11:01:39','2017-05-05 11:01:39'),(3,'分类3','2017-05-05 11:01:39','2017-05-05 11:01:39'),(4,'分类4','2017-05-05 11:01:40','2017-05-05 11:01:40'),(5,'分类5','2017-05-05 11:01:40','2017-05-05 11:01:40');
 
 /*Table structure for table `classifier_problem` */
 
@@ -87,9 +87,11 @@ CREATE TABLE `classifier_problem` (
   `cid` bigint(20) DEFAULT NULL COMMENT '分类标识',
   PRIMARY KEY (`cpid`),
   KEY `cid` (`cid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `classifier_problem` */
+
+insert  into `classifier_problem`(`cpid`,`pid`,`cid`) values (1,1,1),(2,2,1),(3,3,1),(4,4,2),(5,5,2),(6,6,3),(7,7,3),(8,8,4),(9,9,5);
 
 /*Table structure for table `code` */
 
@@ -115,11 +117,11 @@ CREATE TABLE `contest` (
   `defunct` char(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'N',
   `description` text COLLATE utf8_unicode_ci COMMENT '比赛描述',
   PRIMARY KEY (`cid`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `contest` */
 
-insert  into `contest`(`cid`,`title`,`startTime`,`endTime`,`defunct`,`description`) values (1,'比赛0','2017-03-17 21:58:35','2017-03-17 21:58:35','N','这是比赛0的描述'),(2,'比赛1','2017-03-17 21:58:35','2017-03-17 21:58:35','N','这是比赛1的描述'),(3,'比赛2','2017-03-17 21:58:35','2017-03-17 21:58:35','N','这是比赛2的描述'),(4,'比赛3','2017-03-17 21:58:35','2017-03-17 21:58:35','N','这是比赛3的描述'),(5,'比赛4','2017-03-17 21:58:35','2017-03-17 21:58:35','N','这是比赛4的描述'),(6,'比赛5','2017-03-17 21:58:35','2017-03-17 21:58:35','N','这是比赛5的描述'),(7,'比赛6','2017-03-17 21:58:35','2017-03-17 21:58:35','N','这是比赛6的描述'),(8,'比赛7','2017-03-17 21:58:35','2017-03-17 21:58:35','N','这是比赛7的描述'),(9,'比赛8','2017-03-17 21:58:35','2017-03-17 21:58:35','N','这是比赛8的描述'),(10,'比赛9','2017-03-17 21:58:35','2017-03-17 21:58:35','N','这是比赛9的描述'),(11,'比赛10','2017-03-17 21:58:35','2017-03-17 21:58:35','N','这是比赛10的描述'),(12,'比赛11','2017-03-17 21:58:35','2017-03-17 21:58:35','N','这是比赛11的描述'),(13,'比赛12','2017-03-17 21:58:36','2017-03-17 21:58:36','N','这是比赛12的描述'),(14,'比赛13','2017-03-17 21:58:36','2017-03-17 21:58:36','N','这是比赛13的描述'),(15,'比赛14','2017-03-17 21:58:36','2017-03-17 21:58:36','N','这是比赛14的描述'),(16,'比赛15','2017-03-17 21:58:36','2017-03-17 21:58:36','N','这是比赛15的描述');
+insert  into `contest`(`cid`,`title`,`startTime`,`endTime`,`defunct`,`description`) values (1,'比赛1','2017-05-05 11:01:40','2017-05-05 11:01:40','N','这是比赛1的描述'),(2,'比赛2','2017-05-05 11:01:40','2017-05-05 11:01:40','N','这是比赛2的描述'),(3,'比赛3','2017-05-05 11:01:40','2017-05-05 11:01:40','N','这是比赛3的描述'),(4,'比赛4','2017-05-05 11:01:40','2017-05-05 11:01:40','N','这是比赛4的描述'),(5,'比赛5','2017-05-05 11:01:40','2017-05-05 11:01:40','N','这是比赛5的描述');
 
 /*Table structure for table `contest_problem` */
 
@@ -132,9 +134,11 @@ CREATE TABLE `contest_problem` (
   `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '标题',
   `num` int(11) DEFAULT NULL,
   PRIMARY KEY (`cpid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `contest_problem` */
+
+insert  into `contest_problem`(`cpid`,`cid`,`pid`,`title`,`num`) values (1,1,1,'aa',1),(2,1,2,'bb',2),(3,1,3,'cc',3),(4,2,4,'a',1),(5,3,5,'aa',1),(6,4,8,'aa',1),(7,5,9,'aaa',1);
 
 /*Table structure for table `link` */
 
@@ -148,6 +152,8 @@ CREATE TABLE `link` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `link` */
+
+insert  into `link`(`id`,`name`,`url`,`type`) values (1,'浙江大学ACM','http://www.zju.edu.cn/','学校ACM'),(2,'杭州科技大学ACM','http://acm.hdu.edu.cn/','学校ACM'),(3,'北京大学ACM','http://poj.org/','大学ACM'),(4,'南阳理工学院ACM','http://acm.nyist.net/JudgeOnline/problemset.php','oj'),(5,'九度Online Judge','http://ac.jobdu.com/index.php','oj'),(6,'神技大学的oj','http://acm.uestc.edu.cn/#/','oj');
 
 /*Table structure for table `problem` */
 
@@ -213,11 +219,11 @@ CREATE TABLE `role` (
   `uid` bigint(20) DEFAULT NULL COMMENT '用户标识',
   `username` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '用户名称',
   PRIMARY KEY (`rid`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `role` */
 
-insert  into `role`(`rid`,`type`,`uid`,`username`) values (1,'root',2,'test1');
+insert  into `role`(`rid`,`type`,`uid`,`username`) values (1,'root',1,'test1'),(2,'admin',2,'test2'),(3,'user',3,'test3');
 
 /*Table structure for table `status` */
 
@@ -233,6 +239,7 @@ CREATE TABLE `status` (
   `memory` int(11) DEFAULT NULL COMMENT '运行大小',
   `language` int(11) DEFAULT NULL COMMENT '运行语言',
   `submittime` datetime DEFAULT NULL COMMENT '提交时间',
+  `code` text COLLATE utf8_unicode_ci COMMENT '代码',
   PRIMARY KEY (`sid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -256,11 +263,11 @@ CREATE TABLE `user` (
   `nick` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '昵称',
   `school` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '学校',
   PRIMARY KEY (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `user` */
 
-insert  into `user`(`uid`,`username`,`email`,`submit`,`accepted`,`solved`,`defunct`,`password`,`createtime`,`accesstime`,`nick`,`school`) values (1,'test0','test0@qq.com',0,0,0,'N','test0','2017-03-17 21:58:32',NULL,'测试0','内蒙古师范大学'),(2,'test1','test1@qq.com',0,0,0,'N','test1','2017-03-17 21:58:32',NULL,'测试1','内蒙古师范大学'),(3,'test2','test2@qq.com',0,0,0,'N','test2','2017-03-17 21:58:33',NULL,'测试2','内蒙古师范大学'),(4,'test3','test3@qq.com',0,0,0,'N','test3','2017-03-17 21:58:33',NULL,'测试3','内蒙古师范大学'),(5,'test4','test4@qq.com',0,0,0,'N','test4','2017-03-17 21:58:33',NULL,'测试4','内蒙古师范大学'),(6,'test5','test5@qq.com',0,0,0,'N','test5','2017-03-17 21:58:33',NULL,'测试5','内蒙古师范大学'),(7,'test6','test6@qq.com',0,0,0,'N','test6','2017-03-17 21:58:33',NULL,'测试6','内蒙古师范大学'),(8,'test7','test7@qq.com',0,0,0,'N','test7','2017-03-17 21:58:33',NULL,'测试7','内蒙古师范大学'),(9,'test8','test8@qq.com',0,0,0,'N','test8','2017-03-17 21:58:33',NULL,'测试8','内蒙古师范大学'),(10,'test9','test9@qq.com',0,0,0,'N','test9','2017-03-17 21:58:33',NULL,'测试9','内蒙古师范大学'),(11,'test10','test10@qq.com',0,0,0,'N','test10','2017-03-17 21:58:33',NULL,'测试10','内蒙古师范大学'),(12,'test11','test11@qq.com',0,0,0,'N','test11','2017-03-17 21:58:33',NULL,'测试11','内蒙古师范大学'),(13,'test12','test12@qq.com',0,0,0,'N','test12','2017-03-17 21:58:33',NULL,'测试12','内蒙古师范大学'),(14,'test13','test13@qq.com',0,0,0,'N','test13','2017-03-17 21:58:33',NULL,'测试13','内蒙古师范大学'),(15,'test14','test14@qq.com',0,0,0,'N','test14','2017-03-17 21:58:33',NULL,'测试14','内蒙古师范大学'),(16,'test15','test15@qq.com',0,0,0,'N','test15','2017-03-17 21:58:34',NULL,'测试15','内蒙古师范大学'),(17,'test16','test16@qq.com',0,0,0,'N','test16','2017-03-17 21:58:34',NULL,'测试16','内蒙古师范大学'),(18,'test17','test17@qq.com',0,0,0,'N','test17','2017-03-17 21:58:34',NULL,'测试17','内蒙古师范大学'),(19,'test18','test18@qq.com',0,0,0,'N','test18','2017-03-17 21:58:34',NULL,'测试18','内蒙古师范大学'),(20,'test19','test19@qq.com',0,0,0,'N','test19','2017-03-17 21:58:34',NULL,'测试19','内蒙古师范大学'),(21,'test20','test20@qq.com',0,0,0,'N','test20','2017-03-17 21:58:34',NULL,'测试20','内蒙古师范大学');
+insert  into `user`(`uid`,`username`,`email`,`submit`,`accepted`,`solved`,`defunct`,`password`,`createtime`,`accesstime`,`nick`,`school`) values (1,'test1','test1@qq.com',0,0,0,'N','test1','2017-05-05 11:01:39',NULL,'测试1','内蒙古师范大学'),(2,'test2','test2@qq.com',0,0,0,'N','test2','2017-05-05 11:01:39',NULL,'测试2','内蒙古师范大学'),(3,'test3','test3@qq.com',0,0,0,'N','test3','2017-05-05 11:01:39',NULL,'测试3','内蒙古师范大学'),(4,'test4','test4@qq.com',0,0,0,'N','test4','2017-05-05 11:01:39',NULL,'测试4','内蒙古师范大学'),(5,'test5','test5@qq.com',0,0,0,'N','test5','2017-05-05 11:01:39',NULL,'测试5','内蒙古师范大学'),(6,'test6','test6@qq.com',0,0,0,'N','test6','2017-05-05 11:01:39',NULL,'测试6','内蒙古师范大学'),(7,'test7','test7@qq.com',0,0,0,'N','test7','2017-05-05 11:01:39',NULL,'测试7','内蒙古师范大学'),(8,'test8','test8@qq.com',0,0,0,'N','test8','2017-05-05 11:01:39',NULL,'测试8','内蒙古师范大学'),(9,'test9','test9@qq.com',0,0,0,'N','test9','2017-05-05 11:01:39',NULL,'测试9','内蒙古师范大学'),(10,'test10','test10@qq.com',0,0,0,'N','test10','2017-05-05 11:01:39',NULL,'测试10','内蒙古师范大学'),(11,'test11','test11@qq.com',0,0,0,'N','test11','2017-05-05 11:01:39',NULL,'测试11','内蒙古师范大学'),(12,'test12','test12@qq.com',0,0,0,'N','test12','2017-05-05 11:01:39',NULL,'测试12','内蒙古师范大学'),(13,'test13','test13@qq.com',0,0,0,'N','test13','2017-05-05 11:01:39',NULL,'测试13','内蒙古师范大学'),(14,'test14','test14@qq.com',0,0,0,'N','test14','2017-05-05 11:01:39',NULL,'测试14','内蒙古师范大学'),(15,'test15','test15@qq.com',0,0,0,'N','test15','2017-05-05 11:01:39',NULL,'测试15','内蒙古师范大学');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
