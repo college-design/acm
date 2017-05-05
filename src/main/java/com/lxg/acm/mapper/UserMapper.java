@@ -64,6 +64,10 @@ public interface UserMapper {
 	public List<User> queryForList(@Param(value = "offset") Long offset,
 			@Param(value = "pageSize") Long pageSize);
 
+	@Select("<script>select * from user where 1=1 <if test='username!=null'>and username like '%#{username}%'</if> order by solved desc,accepted asc,submit desc limit #{offset},#{pageSize}</script>")
+	public List<User> queryForListByUser(@Param(value = "offset") Long offset,
+								   @Param(value = "pageSize") Long pageSize,User user);
+
 	/**
 	 * 用户运行状态查询
 	 * @param s_uid

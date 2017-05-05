@@ -11,6 +11,9 @@
 <script type="text/javascript" src="${contentPath}/resources/jquery-easyui-1.3.3/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="${contentPath}/resources/jquery-easyui-1.3.3/locale/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript">
+    function contestInfo(val,row){
+        return "<a target='_blank' href='${contentPath}/contest/"+row.cid+"'>"+val+"</a>"
+    }
 	// easyui datagrid dateFormatter
 	function formatterdate(val, row) {
 		if (val != null) {
@@ -111,7 +114,7 @@
 		   	<tr>
 		   		<th field="cb" checkbox="true" align="center"></th>
 		   		<th field="cid" width="50" align="center">比赛标识</th>
-		   		<th field="title" width="200" align="center">比赛标题</th>
+		   		<th field="title" width="200" align="center" formatter="contestInfo">比赛标题</th>
 				<th field="startTime" width="200" align="center" formatter="formatterdate">开始时间</th>
 				<th field="endTime" width="200" align="center" formatter="formatterdate">结束时间</th>
 				<th field="defunct" width="200" align="center">是否显示</th>

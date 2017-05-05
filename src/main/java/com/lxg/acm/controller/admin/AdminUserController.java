@@ -1,6 +1,7 @@
 package com.lxg.acm.controller.admin;
 
 import com.alibaba.fastjson.JSONObject;
+import com.lxg.acm.context.ServerContext;
 import com.lxg.acm.entity.User;
 import com.lxg.acm.mapper.UserMapper;
 import com.lxg.acm.util.ResponseUtil;
@@ -26,7 +27,7 @@ public class AdminUserController {
     // 用户列表
     @RequestMapping("/userlist.action")
     public void userList1(@RequestParam(value="page",required=false)Long page, HttpServletResponse response,
-                          @RequestParam(value="rows",required=false)Long pageSize) throws Exception{
+                          @RequestParam(value="rows",required=false)Long pageSize,User user) throws Exception{
         Long offset = (page - 1) * pageSize;
         List<User> userList = userMapper.queryForList(offset,pageSize);
         JSONObject result=new JSONObject();
@@ -69,6 +70,7 @@ public class AdminUserController {
         if(user.getUid()!=null){
             userMapper.update(user);
             result.append("<script language='javascript'>alert('修改成功！');</script>");
+            ServerContext.setCurrentUser(userMapper.query(user.getUid()));
         }else{
             result.append("<script language='javascript'>alert('修改失败！');</script>");
         }
