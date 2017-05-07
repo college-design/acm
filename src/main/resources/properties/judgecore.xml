@@ -37,8 +37,8 @@
 			<exe>class</exe>
 			<timelimit>3000</timelimit>
 			<memorylimit>65535</memorylimit>
-			<comshell>javac ${path} ${name}.${ext}</comshell>
-			<runshell>java -classpath ${path} ${name}</runshell>
+			<comshell>javac ${path}${name}.${ext}</comshell>
+			<runshell>java -classpath ${path}  ${name}</runshell>
 		</lang>
 		<!--<lang type="pascal">
 			<ext>cpp</ext>

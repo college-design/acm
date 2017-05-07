@@ -21,7 +21,7 @@ public class JudgeCoreTest {
     public void testJava() {
         JudgeCore judge = new JudgeCore();
         judge.compileShell = "javac D:\\acm\\test\\Main.java";
-        judge.executeShell = "java -classpath D:\\acm\\test\\Main.class";
+        judge.executeShell = "java -classpath D:\\acm\\test Main";
         judge.dataForNum = "D:\\acm\\test\\data\\1";
         judge.run();
         System.out.println("result: " + judge.result);
