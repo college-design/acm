@@ -2,30 +2,17 @@
 <config>
 
 	<default>
-		<!--<data>d:\acm\data</data>-->
-		<!--<temp>d:\acm\temp</temp>-->
 		<data>D:\acm\test\data</data>
 		<temp>D:\acm\test\temp</temp>
 		<!-- 3s -->
 		<timelimit>3000</timelimit>
 		<!-- 64M -->
 		<memorylimit>65535</memorylimit>
-		<buildpath>
-		</buildpath>
+		<buildpath></buildpath>
 	</default>
 
 	<languages>
-		<!-- 不要随意动 lang type的顺序 -->
-		<lang type="c++">
-			<ext>cpp</ext>
-			<exe>exe</exe>
-			<path></path>
-			<timelimit>3000</timelimit>
-			<memorylimit>65535</memorylimit>
-			<comshell>g++ -o ${path}${name} ${path}${name}.${ext}
-			</comshell>
-			<runshell>${path}${name}.${exe}</runshell>
-		</lang>
+		<!--  C,C++,JAVA -->
 		<lang type="c">
 			<!-- 源文件，扩展名 -->
 			<ext>c</ext>
@@ -33,11 +20,27 @@
 			<exe>exe</exe>
 			<timelimit>3000</timelimit>
 			<memorylimit>65535</memorylimit>
-			<comshell>gcc -o ${path}${name} ${path}${name}.${ext}
-			</comshell>
+			<comshell>gcc -o ${path}${name} ${path}${name}.${ext}</comshell>
 			<runshell>${path}${name}.${exe}</runshell>
 		</lang>
-		<lang type="pascal">
+		<lang type="c++">
+			<ext>cpp</ext>
+			<exe>exe</exe>
+			<path></path>
+			<timelimit>3000</timelimit>
+			<memorylimit>65535</memorylimit>
+			<comshell>g++ -o ${path}${name} ${path}${name}.${ext}</comshell>
+			<runshell>${path}${name}.${exe}</runshell>
+		</lang>
+		<lang type="java">
+			<ext>java</ext>
+			<exe>class</exe>
+			<timelimit>3000</timelimit>
+			<memorylimit>65535</memorylimit>
+			<comshell>javac ${path} ${name}.${ext}</comshell>
+			<runshell>java -classpath ${path} ${name}</runshell>
+		</lang>
+		<!--<lang type="pascal">
 			<ext>cpp</ext>
 			<exe>exe</exe>
 			<path></path>
@@ -46,17 +49,7 @@
 			<comshell>g++ -o ${path}${name} ${path}${name}.${ext}
 			</comshell>
 			<runshell>${path}${name}.${exe}</runshell>
-		</lang>
-		<lang type="java">
-			<ext>java</ext>
-			<exe>class</exe>
-			<timelimit>3000</timelimit>
-			<memorylimit>65535</memorylimit>
-			<comshell>javac ${path}${name}.${ext}
-			</comshell>
-			<runshell>java -classpath ${path} ${name}
-			</runshell>
-		</lang>
+		</lang>-->
 	</languages>
 
 </config>

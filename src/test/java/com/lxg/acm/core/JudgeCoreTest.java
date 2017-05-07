@@ -17,21 +17,21 @@ public class JudgeCoreTest {
     public void init() {
     }
 
-//    @Test
-//    public void testJava() {
-//        JudgeCore judge = new JudgeCore();
-//        judge.compileShell = "javac D:\\acm\\test Main.java";
-//        judge.executeShell = "java D:\\acm\\test Main";
-//        judge.dataForNum = "D:\\acm\\test\\data\\1";
-//        judge.run();
-//        System.out.println("result: " + judge.result);
-//        System.out.println("timeused: " + judge.timeUsed);
-//        System.out.println("memory: " + judge.memory);
-//        System.out.println("errorInfo: " + judge.errorInfo);
-//    }
+    @Test
+    public void testJava() {
+        JudgeCore judge = new JudgeCore();
+        judge.compileShell = "javac D:\\acm\\test\\Main.java";
+        judge.executeShell = "java -classpath D:\\acm\\test\\Main.class";
+        judge.dataForNum = "D:\\acm\\test\\data\\1";
+        judge.run();
+        System.out.println("result: " + judge.result);
+        System.out.println("timeused: " + judge.timeUsed);
+        System.out.println("memory: " + judge.memory);
+        System.out.println("errorInfo: " + judge.errorInfo);
+    }
 
     @Test
-    public void testCpp() {
+    public void testC() {
         JudgeCore judge = new JudgeCore();
         judge.compileShell = "gcc -o D:\\acm\\test\\Hello D:\\acm\\test\\Hello.c";
         judge.executeShell = "D:\\acm\\test\\Hello.exe";

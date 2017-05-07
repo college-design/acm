@@ -60,7 +60,7 @@ public interface UserMapper {
 	 * @param pageSize
 	 * @return
 	 */
-	@Select("select * from user order by solved desc,accepted asc,submit desc limit #{offset},#{pageSize}")
+	@Select("select * from user order by solved desc,submit asc,accepted desc limit #{offset},#{pageSize}")
 	public List<User> queryForList(@Param(value = "offset") Long offset,
 			@Param(value = "pageSize") Long pageSize);
 
