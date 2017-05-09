@@ -16,6 +16,9 @@ public interface ProblemMapper {
 	@Delete("delete from problemstatus")
 	void clearProblemStatus();
 
+	@Select("select * from problem")
+	List<Problem> selectAll();
+
 	/**
 	 * 添加问题
 	 * @param e

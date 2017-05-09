@@ -69,10 +69,10 @@ public class ContestsController {
 			pidcountList[i][4]=contestMapper.countResult5(problemList.get(i).getPid());//result=4
 			pidcountList[i][5]=contestMapper.countResult6(problemList.get(i).getPid());//result=5
 			pidcountList[i][6]=contestMapper.countResult7(problemList.get(i).getPid());//result=6
-			pidcountList[i][7]=contestMapper.countResult8(problemList.get(i).getPid());//language=0
-			pidcountList[i][8]=contestMapper.countResult9(problemList.get(i).getPid());//language=1
-			pidcountList[i][9]=contestMapper.countResult10(problemList.get(i).getPid());//language=2
-			pidcountList[i][10]=contestMapper.countResult11(problemList.get(i).getPid());//language=3
+			pidcountList[i][7]=contestMapper.countResultC(problemList.get(i).getPid());//language=0 C
+			pidcountList[i][8]=contestMapper.countResultGCC(problemList.get(i).getPid());//language=1 GCC
+			pidcountList[i][9]=contestMapper.countResultJAVA(problemList.get(i).getPid());//language=2 JAVA
+//			pidcountList[i][10]=contestMapper.countResult11(problemList.get(i).getPid());//language=3
 			sum[i]=pidcountList[i][0]+pidcountList[i][1]+pidcountList[i][2]+pidcountList[i][3]+
 					+pidcountList[i][4]+pidcountList[i][5]+pidcountList[i][6];//总共提交数
 		}

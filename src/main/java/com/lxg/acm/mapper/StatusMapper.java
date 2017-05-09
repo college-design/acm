@@ -45,7 +45,6 @@ public interface StatusMapper {
 	@Update("update status set memory=#{memory},time=#{time},result=#{result} where sid=#{sid}")
 	public void update(Status status);
 
-
 	/**
 	 * 判断用户是否已通过该题目
 	 * @param pid 题目id
@@ -54,5 +53,28 @@ public interface StatusMapper {
 	 */
 	@Select("select count(1) from status where pid=#{pid} and uid = #{uid} and result=0")
 	public int isUserSolvedByPid(@Param("pid")  Long pid,@Param("uid")  Long uid);
+
+	@Select("select count(result) from status where result>=0 and pid=#{pid}")
+	Long countResultCount(Long pid);
+	@Select("select count(result) from status where result=0 and pid=#{pid}")
+	Long countResultAC(Long pid);
+	@Select("select count(result) from status where result=1 and pid=#{pid}")
+	public Long countResultis1(Long pid);
+	@Select("select count(result) from status where result=2 and pid=#{pid}")
+	public Long countResultTLE(Long pid);
+	@Select("select count(result) from status where result=3 and pid=#{pid}")
+	public Long countResultMLE(Long pid);
+	@Select("select count(result) from status where result=4 and pid=#{pid}")
+	public Long countResultWA(Long pid);
+	@Select("select count(result) from status where result=5 and pid=#{pid}")
+	public Long countResultRE(Long pid);
+	@Select("select count(result) from status where result=6 and pid=#{pid}")
+	public Long countResultOLE(Long pid);
+	@Select("select count(language) from status where language=0 and pid=#{pid}")
+	public Long countResultC(Long pid);
+	@Select("select count(language) from status where language=1 and pid=#{pid}")
+	public Long countResultGCC(Long pid);
+	@Select("select count(language) from status where language=2 and pid=#{pid}")
+	public Long countResultJAVA(Long pid);
 
 }

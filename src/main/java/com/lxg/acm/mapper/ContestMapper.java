@@ -1,15 +1,14 @@
 package com.lxg.acm.mapper;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import com.lxg.acm.entity.Contest;
 import com.lxg.acm.entity.ContestProblem;
+import com.lxg.acm.entity.Problem;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
-import com.lxg.acm.entity.Contest;
-import com.lxg.acm.entity.Problem;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 // 比赛
 @Repository
@@ -63,17 +62,17 @@ public interface ContestMapper {
 	@Select("select count(result) from status where result=6 and pid=#{pid}")
 	public Long countResult7(Long pid);
 
-	// 按pid查询language=0的language通过的个数
+	// 按pid查询language=0的language通过的个数==C
 	@Select("select count(language) from status where language=0 and pid=#{pid}")
-	public Long countResult8(Long pid);
+	public Long countResultC(Long pid);
 
 	// 按pid查询language=1的language通过的个数
 	@Select("select count(language) from status where language=1 and pid=#{pid}")
-	public Long countResult9(Long pid);
+	public Long countResultGCC(Long pid);
 
 	// 按pid查询language=2的language通过的个数
 	@Select("select count(language) from status where language=2 and pid=#{pid}")
-	public Long countResult10(Long pid);
+	public Long countResultJAVA(Long pid);
 
 	// 按pid查询language=3的language通过的个数
 	@Select("select count(language) from status where language=3 and pid=#{pid}")
