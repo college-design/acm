@@ -39,7 +39,7 @@
 					%>
 					<tbody>
 							<tr>
-								<td align="center">${problem.pid}</td>
+								<td align="center"><a href="${contentPath}/problem/${problem.pid}">${problem.pid}</a></td>
 								<td align="center">${psCount[problemLP.index-1][0]}</td>
 								<!--<td>${psCount[problemLP.index-1][1]}</td>-->
 								<td align="center">${psCount[problemLP.index-1][2]}</td>
@@ -47,7 +47,7 @@
 								<td align="center">${psCount[problemLP.index-1][4]}</td>
 								<td align="center">${psCount[problemLP.index-1][5]}</td>
 								<td align="center">${psCount[problemLP.index-1][6]}</td>
-								<td align="center">${psCount[problemLP.index-1][10]}</td>
+								<td align="center"><a href="${contentPath}/statuslist/1/50?pid=${problem.pid}">${psCount[problemLP.index-1][10]}</a></td>
 								<td align="center">${psCount[problemLP.index-1][7]}</td>
 								<td align="center">${psCount[problemLP.index-1][8]}</td>
 								<td align="center">${psCount[problemLP.index-1][9]}</td>
