@@ -33,10 +33,12 @@
 			<a href="javascript:openUserRoleModifyTab()" class="easyui-linkbutton" iconCls="icon-edit" plain="true">修改</a>
 			<a href="javascript:deleteRole()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
 		</div>
+		<!--
 		<div>
             &nbsp;用户名：&nbsp;<input type="text" id="username" size="20" onkeydown="if(event.keyCode==13) searchRole()"/>
             <a href="javascript:searchRole()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
         </div>
+        -->
 	</div>
 	<!-- 添加修改 弹出框 -->
 	<div id="dlg" class="easyui-dialog" style="width:400px;height:300px;padding:10px 20px"

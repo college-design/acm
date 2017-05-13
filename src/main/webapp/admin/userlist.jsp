@@ -34,13 +34,6 @@
 			<a href="javascript:openUserModifyTab()" class="easyui-linkbutton" iconCls="icon-edit" plain="true">修改</a>
 			<a href="javascript:deleteUser()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
 		</div>
-		<div>
-            &nbsp;用户名：&nbsp;<input type="text" id="username" size="20" onkeydown="if(event.keyCode==13) searchUser()"/>
-            &nbsp;用户昵称：&nbsp;<input type="text" id="nick" size="20" onkeydown="if(event.keyCode==13) searchUser()"/>
-            &nbsp;用户邮箱：&nbsp;<input type="text" id="email" size="20" onkeydown="if(event.keyCode==13) searchUser()"/>
-            &nbsp;学校：&nbsp;<input type="text" id="school" size="20" onkeydown="if(event.keyCode==13) searchUser()"/>
-            <a href="javascript:searchUser()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
-        </div>
 	</div>
 	<!-- 添加修改 弹出框 -->
 	<div id="dlg" class="easyui-dialog" style="width:500px;height:400px;padding:10px 20px"
@@ -59,6 +52,10 @@
 					<td>email：</td>
 					<td><input type="text" id="email" name="email" class="easyui-validatebox" validtype="email" required="true"/></td>
 				</tr>
+				<tr>
+                    <td>password：</td>
+                    <td><input type="text" id="password" name="password" class="easyui-validatebox" required="true"/></td>
+                </tr>
 				<tr>
 					<td>学校：</td>
 					<td><input type="text" id="school" name="school" class="easyui-validatebox" required="true" /></td>
@@ -146,12 +143,6 @@
 			$("#dlg").dialog("close");
 			resetValue();
 		}
-        function searchUser(){
-            alert(1);
-            $("#dg").datagrid('load',{
-                "username":$("#username").val();
-            });
-        }
 	</script>
 </body>
 </html>

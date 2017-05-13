@@ -35,10 +35,12 @@
 			<a href="javascript:openProblemModifyTab()" class="easyui-linkbutton" iconCls="icon-edit" plain="true">修改</a>
 			<a href="javascript:deleteProblem()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
 		</div>
+		<!--
 		<div>
             &nbsp;标题：&nbsp;<input type="text" id="title" size="20" onkeydown="if(event.keyCode==13) searchProblem()"/>
             <a href="javascript:searchProblem()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
         </div>
+        -->
 	</div>
 	<!-- 添加修改 弹出框 -->
 	<div id="dlg" class="easyui-dialog" style="width:1000px;padding:10px 20px"
