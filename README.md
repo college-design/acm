@@ -2,7 +2,6 @@
 
 2017毕业设计(20131106103-刘雪岗)[ACM在线评测系统]
 
-=====
 
 # 系统技术说明
 
@@ -12,7 +11,6 @@
 
 > - 后台:easy-ui
 
-=====
 
 # 系统功能说明
 
@@ -34,12 +32,11 @@
 
 > 3. 链接管理
 
-=====
 
 # 个人联系
 
 > - email:[lxghoney@163.com](lxghoney@163.com)
 
-> - 个人网站:[http://liuxuegang.xyz](http://liuxuegang.xyz)
+> - 个人网站:[https://xuegangliu.githu.io](https://xuegangliu.githu.io)
 
 > - github:[https://github.com/xuegangliu](https://github.com/xuegangliu)
