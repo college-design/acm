@@ -37,6 +37,6 @@
 
 > - email:[lxghoney@163.com](lxghoney@163.com)
 
-> - 个人网站:[https://xuegangliu.githu.io](https://xuegangliu.githu.io)
+> - 个人网站:[https://xuegangliu.github.io](https://xuegangliu.github.io)
 
 > - github:[https://github.com/xuegangliu](https://github.com/xuegangliu)
