@@ -9,16 +9,18 @@ import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Date;
 
 /**
  * Created by 刘雪岗 on 2017/3/17.
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath*:spring/spring-*.xml" })
+@SpringBootTest
+@RunWith(SpringRunner.class)
 public class InitDB {
 
     private static final Log logger = LogFactory.getLog(InitDB.class);
