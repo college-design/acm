@@ -5,7 +5,9 @@ import com.lxg.acm.support.OnlineUserSupport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.event.EventListener;
 
+import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
@@ -14,6 +16,7 @@ import javax.servlet.http.HttpSessionListener;
  * @author Administrator
  *
  */
+@WebListener
 public class SessionListener implements HttpSessionListener {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());

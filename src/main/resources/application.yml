@@ -1,0 +1,21 @@
+beetl:
+  enabled: true
+#  suffix: html
+beetl-beetlsql:
+  dev: true
+
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+spring:
+  mvc:
+    static-path-pattern: /static/**
+    resources:
+      static-locations: classpath:/static/
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: lxgmysql
+    url: jdbc:mysql://150.158.52.6:3306/db_acm?useUnicode=true&amp;characterEncoding=UTF-8

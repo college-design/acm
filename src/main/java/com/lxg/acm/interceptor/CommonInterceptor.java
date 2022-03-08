@@ -2,6 +2,7 @@ package com.lxg.acm.interceptor;
 
 import com.lxg.acm.mapper.UserMapper;
 import com.lxg.acm.support.OnlineUserSupport;
+import org.apache.ibatis.plugin.Intercepts;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,13 +29,14 @@ public class CommonInterceptor implements HandlerInterceptor {
 		String contentPath = request.getContextPath();
 		request.setAttribute("contentPath", contentPath);
 		request.setAttribute("adminPath", contentPath + "/admin");
-		request.setAttribute("imagesPath", contentPath + "/resources/images");
-		request.setAttribute("cssPath", contentPath + "/resources/css");
-		request.setAttribute("jsPath", contentPath + "/resources/js");
+		request.setAttribute("imagesPath", contentPath + "/static/images");
+		request.setAttribute("cssPath", contentPath + "/static/css");
+		request.setAttribute("jsPath", contentPath + "/static/js");
 
 		//online user 在线用户数量
 		request.setAttribute("userOnlineNum",OnlineUserSupport.size());
-		request.setAttribute("accessNum", userMapper.count());
+//		request.setAttribute("accessNum", userMapper.count());
+		request.setAttribute("accessNum", 0);
 		return true;
 	}
 

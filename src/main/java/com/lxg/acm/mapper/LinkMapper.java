@@ -10,7 +10,7 @@ import java.util.List;
  * LinkMapper
  * Created by 刘雪岗 on 2017/2/9.
  */
-@Repository
+@Mapper
 public interface LinkMapper {
 
     @Delete("delete from link")

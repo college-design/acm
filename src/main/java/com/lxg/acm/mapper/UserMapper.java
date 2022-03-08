@@ -138,7 +138,6 @@ public interface UserMapper {
 	 * @return
 	 */
 	@Select("select * from user where username=#{username}")
-	@Options(useCache = true, flushCache = false, timeout = 1000)
 	public User queryByUsername(String username);
 
 	/**
