@@ -12,37 +12,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.lxg.acm.mapper.ProblemMapper;
 
-/**
- * 首页
- * @author Administrator
- *
- */
 @Controller
 public class IndexController {
 
-	@Autowired
-	private ProblemMapper problemMapper;
+    @Autowired
+    private ProblemMapper problemMapper;
 
-//	@Autowired
-//	private LinkMapper linkMapper;
+    @Autowired
+    private LinkMapper linkMapper;
 
-	/**
-	 * 首页
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping("/")
-	public String index(Model model) {
-//		List<Link> links = linkMapper.selectAll();
-		model.addAttribute("msg", "hello world!");
-		model.addAttribute("date", new Date());
-//		model.addAttribute("links",links);
-		return "index";
-	}
+    @RequestMapping("/")
+    public String index(Model model) {
+        List<Link> links = linkMapper.selectAll();
+        model.addAttribute("msg", "hello world!");
+        model.addAttribute("date", new Date());
+        model.addAttribute("links", links);
+        return "index";
+    }
 
-	// 关于我们
-	@RequestMapping("/about")
-	public String about(){
-		return "about";
-	}
+    @RequestMapping("/about")
+    public String about() {
+        return "about";
+    }
 }

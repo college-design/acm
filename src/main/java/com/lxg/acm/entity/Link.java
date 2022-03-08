@@ -2,11 +2,7 @@ package com.lxg.acm.entity;
 
 import java.io.Serializable;
 
-/**
- * 链接实体类
- * Created by 刘雪岗 on 2017/2/9.
- */
-public class Link implements Serializable{
+public class Link implements Serializable {
 
     private int id; // 主键id
 

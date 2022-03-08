@@ -2,10 +2,6 @@ package com.lxg.acm.entity;
 
 import java.io.Serializable;
 
-/**
- * 用户角色
- * Created by 刘雪岗 on 2017/2/13.
- */
 public class Role implements Serializable {
 
     private Long rid; // 用户角色标识

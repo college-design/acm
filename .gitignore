@@ -19,3 +19,5 @@ build/
 
 .idea/
 *.iml
+
+**/LxgTest.java

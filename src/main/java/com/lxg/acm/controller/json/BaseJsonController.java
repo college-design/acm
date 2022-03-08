@@ -12,19 +12,19 @@
 //@Component
 //public class BaseJsonController {
 //
-//	@Autowired
-//	protected ProblemMapper problemMapper;
+//    @Autowired
+//    protected ProblemMapper problemMapper;
 //
-//	@Autowired
-//	protected StatusMapper statusMapper;
+//    @Autowired
+//    protected StatusMapper statusMapper;
 //
-//	@Autowired
-//	UserMapper userMapper;
+//    @Autowired
+//    UserMapper userMapper;
 //
-//	@Autowired
-//	protected ClassifierMapper classifierMapper;
+//    @Autowired
+//    protected ClassifierMapper classifierMapper;
 //
-//	@Autowired
-//	protected ContestMapper contestMapper;
+//    @Autowired
+//    protected ContestMapper contestMapper;
 //
 //}

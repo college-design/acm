@@ -5,12 +5,25 @@ beetl-beetlsql:
   dev: true
 
 server:
+  tomcat:
+    uri-encoding: UTF-8
   port: 8080
   servlet:
     context-path: /
 
+shiro:
+  userNativeSessionManager: true
+
 spring:
+  http:
+    encoding:
+      force: true
+      charset: UTF-8
+      enabled: true
   mvc:
+    view:
+      prefix: /
+      suffix: .jsp
     static-path-pattern: /static/**
     resources:
       static-locations: classpath:/static/
@@ -18,4 +31,4 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     username: root
     password: lxgmysql
-    url: jdbc:mysql://150.158.52.6:3306/db_acm?useUnicode=true&amp;characterEncoding=UTF-8
+    url: jdbc:mysql://127.0.0.1:3306/db_acm?useUnicode=true&amp;characterEncoding=UTF-8

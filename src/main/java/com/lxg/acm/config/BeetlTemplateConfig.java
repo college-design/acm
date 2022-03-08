@@ -1,6 +1,5 @@
 package com.lxg.acm.config;
 
-import com.lxg.acm.context.BeetlFunction;
 import com.lxg.acm.context.OJConfig;
 import com.lxg.acm.entity.Link;
 import com.lxg.acm.mapper.LinkMapper;
@@ -48,7 +47,6 @@ public class BeetlTemplateConfig {
         beetlGroupUtilConfiguration.setResourceLoader(classPathLoader);
         beetlGroupUtilConfiguration.setSharedVars(sharedVars);
         beetlGroupUtilConfiguration.init();
-        beetlGroupUtilConfiguration.getGroupTemplate().registerFunctionPackage("so", BeetlFunction.class);
         ResourcePatternResolver patternResolver = ResourcePatternUtils.getResourcePatternResolver(new DefaultResourceLoader());
         beetlGroupUtilConfiguration.setConfigFileResource(patternResolver.getResource("classpath:beetl.properties"));
         return beetlGroupUtilConfiguration;
@@ -59,9 +57,9 @@ public class BeetlTemplateConfig {
             @Qualifier("beetlConfig") BeetlGroupUtilConfiguration beetlGroupUtilConfiguration) {
         BeetlSpringViewResolver beetlSpringViewResolver = new BeetlSpringViewResolver();
         beetlSpringViewResolver.setContentType("text/html;charset=UTF-8");
-//        beetlSpringViewResolver.setPrefix("/");
         beetlSpringViewResolver.setSuffix(".html");
         beetlSpringViewResolver.setOrder(0);
+        beetlGroupUtilConfiguration.getGroupTemplate().registerFunctionPackage("so", new BeetlFunction());
         beetlSpringViewResolver.setConfig(beetlGroupUtilConfiguration);
         return beetlSpringViewResolver;
     }

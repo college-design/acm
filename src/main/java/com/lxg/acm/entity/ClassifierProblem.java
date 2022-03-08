@@ -1,8 +1,5 @@
 package com.lxg.acm.entity;
 
-/**
- * Created by 刘雪岗 on 2017/2/15.
- */
 public class ClassifierProblem {
     private Long cpid;// 分类问题关联标识
     private Long pid;//问题标识

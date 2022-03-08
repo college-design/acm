@@ -1,8 +1,5 @@
 package com.lxg.acm.entity;
 
-/**
- * Created by 刘雪岗 on 2017/2/16.
- */
 public class ContestProblem {
     private Long cpid;
     private Long cid;

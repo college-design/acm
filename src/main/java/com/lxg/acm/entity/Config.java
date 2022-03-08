@@ -1,10 +1,5 @@
 //package com.lxg.acm.entity;
 //
-///**
-// * 配置实体类
-// * @author Administrator
-// *
-// */
 //public class Config {
 //	String key;
 //	String value;

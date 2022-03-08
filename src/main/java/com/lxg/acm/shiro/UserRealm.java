@@ -1,8 +1,8 @@
 package com.lxg.acm.shiro;
 
+import com.lxg.acm.context.ServerContext;
 import com.lxg.acm.entity.User;
 import com.lxg.acm.mapper.UserMapper;
-import com.lxg.acm.util.SpringUtil;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
@@ -10,17 +10,16 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-/**
- * 用户权限
- * @author Administrator
- *
- */
+@Component
 public class UserRealm extends AuthorizingRealm {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	UserMapper userMapper = SpringUtil.getBean(UserMapper.class);
+	@Autowired
+	private UserMapper userMapper;
 
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken atoken) throws AuthenticationException {
 		UsernamePasswordToken token = (UsernamePasswordToken) atoken;
@@ -29,12 +28,12 @@ public class UserRealm extends AuthorizingRealm {
 		if (user == null) {
 			throw new UnknownAccountException();
 		}
+		ServerContext.setCurrentUser(user);
 		SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(
 				username,user.getPassword(), getName());
 		return info;
 	}
 	
-	// 为当前登录的用户授予角色和权限
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 		String username = (String) principals.getPrimaryPrincipal();
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();

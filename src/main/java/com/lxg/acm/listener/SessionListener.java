@@ -5,30 +5,23 @@ import com.lxg.acm.support.OnlineUserSupport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.event.EventListener;
+import org.springframework.stereotype.Component;
 
-import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
-/**
- * Session监听
- * @author Administrator
- *
- */
-@WebListener
+@Component
 public class SessionListener implements HttpSessionListener {
 
-	private Logger logger = LoggerFactory.getLogger(this.getClass());
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	ApplicationContext ac;
+    private ApplicationContext applicationContext;
 
-	public void sessionCreated(HttpSessionEvent event) {
-	}
+    public void sessionCreated(HttpSessionEvent event) {
+    }
 
-	// 用户退出或超时等
-	public void sessionDestroyed(HttpSessionEvent event) {
-		OnlineUserSupport.remove(ServerContext.getCurrentUser());
-	}
+    public void sessionDestroyed(HttpSessionEvent event) {
+        OnlineUserSupport.remove(ServerContext.getCurrentUser());
+    }
 
 }

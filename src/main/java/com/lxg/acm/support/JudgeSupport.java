@@ -10,10 +10,10 @@ import com.lxg.acm.entity.User;
 import com.lxg.acm.mapper.ProblemMapper;
 import com.lxg.acm.mapper.StatusMapper;
 import com.lxg.acm.mapper.UserMapper;
-import com.lxg.acm.util.SpringUtil;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.File;
 import java.io.IOException;
@@ -30,9 +30,12 @@ public class JudgeSupport extends Thread {
 
 	private static final ExecutorService executor = Executors.newCachedThreadPool();
 
-	StatusMapper statusMapper = SpringUtil.getBean(StatusMapper.class);
-	ProblemMapper problemMapper = SpringUtil.getBean(ProblemMapper.class);
-	UserMapper userMapper = SpringUtil.getBean(UserMapper.class);
+	@Autowired
+	private StatusMapper statusMapper;
+	@Autowired
+	private ProblemMapper problemMapper;
+	@Autowired
+	private UserMapper userMapper;
 
 	Status status;
 	String code;

@@ -1,5 +1,6 @@
 package com.lxg.acm.core;
 
+import com.lxg.acm.constant.Constants;
 import com.lxg.acm.constant.JudgeResultType;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
@@ -10,11 +11,6 @@ import java.io.*;
 import java.lang.management.ManagementFactory;
 import java.lang.management.MemoryMXBean;
 import java.util.concurrent.*;
-
-/**
- *
- * @author Administrator
- */
 
 public final class JudgeCore {
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -48,7 +44,8 @@ public final class JudgeCore {
 	}
 
 	public boolean compile() throws Exception {
-		logger.info("编译开始={}",compileShell);
+		logger.info("编译开始 compileShell: {}",compileShell);
+		logger.info("executeShell: {}",executeShell);
 
 		final Process process = Runtime.getRuntime().exec(compileShell);
 		ScheduledFuture<Integer> checkTimeFuture = schedule.schedule(
@@ -64,7 +61,7 @@ public final class JudgeCore {
 		if (checkTimeFuture.isDone()) {
 			this.result = checkTimeFuture.get();
 			InputStream is = process.getErrorStream();
-			this.errorInfo = IOUtils.toString(is, "gbk");
+			this.errorInfo = IOUtils.toString(is, Constants.ENCODING_DEFAULT);
 			is.close();
 			return false;
 		}
@@ -75,7 +72,7 @@ public final class JudgeCore {
 		} else {
 			// ce
 			InputStream is = process.getErrorStream();
-			this.errorInfo = IOUtils.toString(is, "gbk");
+			this.errorInfo = IOUtils.toString(is, Constants.ENCODING_DEFAULT);
 			this.result = JudgeResultType.CE;
 			is.close();
 		}
@@ -149,7 +146,7 @@ public final class JudgeCore {
 				} else {
 					// runtime error
 					InputStream pes = process.getErrorStream();
-					this.errorInfo = IOUtils.toString(pes, "gbk");
+					this.errorInfo = IOUtils.toString(pes, Constants.ENCODING_DEFAULT);
 					pes.close();
 					this.result = JudgeResultType.RE;
 					return;

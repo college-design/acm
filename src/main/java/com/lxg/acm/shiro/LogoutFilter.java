@@ -8,11 +8,6 @@ import org.slf4j.LoggerFactory;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
-/**
- * 退出
- * @author Administrator
- *
- */
 public class LogoutFilter extends
 		org.apache.shiro.web.filter.authc.LogoutFilter {
 

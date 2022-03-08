@@ -4,11 +4,11 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>修改个人信息页面</title>
-	<link rel="stylesheet" type="text/css" href="${contentPath}/resources//jquery-easyui-1.3.3/themes/default/easyui.css">
-	<link rel="stylesheet" type="text/css" href="${contentPath}/resources/jquery-easyui-1.3.3/themes/icon.css">
-	<script type="text/javascript" src="${contentPath}/resources/jquery-easyui-1.3.3/jquery.min.js"></script>
-	<script type="text/javascript" src="${contentPath}/resources/jquery-easyui-1.3.3/jquery.easyui.min.js"></script>
-	<script type="text/javascript" src="${contentPath}/resources/jquery-easyui-1.3.3/locale/easyui-lang-zh_CN.js"></script>
+	<link rel="stylesheet" type="text/css" href="${contentPath}/static//jquery-easyui-1.3.3/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="${contentPath}/static/jquery-easyui-1.3.3/themes/icon.css">
+	<script type="text/javascript" src="${contentPath}/static/jquery-easyui-1.3.3/jquery.min.js"></script>
+	<script type="text/javascript" src="${contentPath}/static/jquery-easyui-1.3.3/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="${contentPath}/static/jquery-easyui-1.3.3/locale/easyui-lang-zh_CN.js"></script>
 	<script type="text/javascript">
 		function submitData(){
 			var username=$("#username").val();
