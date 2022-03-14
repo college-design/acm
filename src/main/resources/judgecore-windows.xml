@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+
+	<default>
+		<data>D:\acm\doc\case_file\test_case</data>
+		<temp>D:\acm\doc\case_file\temp</temp>
+		<timelimit>3000</timelimit>
+		<memorylimit>65535</memorylimit>
+		<buildpath></buildpath>
+	</default>
+
+	<languages>
+		<lang type="c">
+			<ext>.c</ext>
+			<exe>.exe</exe>
+			<timelimit>3000</timelimit>
+			<memorylimit>65535</memorylimit>
+			<comshell>gcc -o ${path}${name} ${path}${name}${ext}</comshell>
+			<runshell>${path}${name}${exe}</runshell>
+		</lang>
+		<lang type="java">
+			<ext>.java</ext>
+			<exe>.class</exe>
+			<timelimit>3000</timelimit>
+			<memorylimit>65535</memorylimit>
+			<comshell>javac ${path}${name}${ext}</comshell>
+			<runshell>java -classpath ${path} ${name}</runshell>
+		</lang>
+	</languages>
+
+</config>

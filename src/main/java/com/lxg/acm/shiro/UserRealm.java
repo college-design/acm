@@ -3,20 +3,20 @@ package com.lxg.acm.shiro;
 import com.lxg.acm.context.ServerContext;
 import com.lxg.acm.entity.User;
 import com.lxg.acm.mapper.UserMapper;
+import com.lxg.acm.util.SpringUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+
+@Slf4j
 @Component
 public class UserRealm extends AuthorizingRealm {
-
-	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	private UserMapper userMapper;

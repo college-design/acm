@@ -2,18 +2,17 @@ package com.lxg.acm.core;
 
 import com.lxg.acm.constant.Constants;
 import com.lxg.acm.constant.JudgeResultType;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.lang.management.ManagementFactory;
 import java.lang.management.MemoryMXBean;
 import java.util.concurrent.*;
 
+@Slf4j
 public final class JudgeCore {
-	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	String compileShell;  // 编译命令
 	String executeShell;  // 执行命令
@@ -38,14 +37,14 @@ public final class JudgeCore {
 			if (compile())
 				execute();
 		} catch (Exception e) {
-			logger.error("编译异常",e);
+			log.error("编译异常",e);
 			this.result = JudgeResultType.SE;
 		}
 	}
 
 	public boolean compile() throws Exception {
-		logger.info("编译开始 compileShell: {}",compileShell);
-		logger.info("executeShell: {}",executeShell);
+		log.info("编译开始 compileShell: {}",compileShell);
+		log.info("executeShell: {}",executeShell);
 
 		final Process process = Runtime.getRuntime().exec(compileShell);
 		ScheduledFuture<Integer> checkTimeFuture = schedule.schedule(
@@ -57,7 +56,7 @@ public final class JudgeCore {
 				}, COMPILETIMELIMIT, TimeUnit.MILLISECONDS);
 		int wait = process.waitFor();
 		int exit = process.exitValue();
-		logger.info("编译等待时间wait={}，exit={}",wait,exit);
+		log.info("编译等待时间wait:{}，exit:{}",wait,exit);
 		if (checkTimeFuture.isDone()) {
 			this.result = checkTimeFuture.get();
 			InputStream is = process.getErrorStream();
@@ -80,7 +79,7 @@ public final class JudgeCore {
 	}
 
 	public void execute() throws Exception {
-		logger.info("===========对比开始===========");
+		log.info("===========对比开始===========");
 		File dataFile = new File(dataForNum);
 		File[] dataOutFiles = getDataOutFiles(dataFile);
 		for (int i = 0; i < dataOutFiles.length; i++) {

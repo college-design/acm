@@ -1,4 +1,4 @@
-package com.lxg.acm.config;
+package com.lxg.acm.config.beetl;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;

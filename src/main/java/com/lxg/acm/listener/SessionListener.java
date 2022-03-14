@@ -2,19 +2,20 @@ package com.lxg.acm.listener;
 
 import com.lxg.acm.context.ServerContext;
 import com.lxg.acm.support.OnlineUserSupport;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.lxg.acm.util.SpringUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
 @Component
+@Slf4j
 public class SessionListener implements HttpSessionListener {
 
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
-
+    @Resource
     private ApplicationContext applicationContext;
 
     public void sessionCreated(HttpSessionEvent event) {

@@ -1,4 +1,6 @@
-package com.lxg.acm.shiro;
+package com.lxg.acm.filter;
+
+import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -6,7 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = "/*",filterName = "characterEncodingFilter")
+@WebFilter(urlPatterns = "/*")
+@Slf4j
 public class CharacterEncodingFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {

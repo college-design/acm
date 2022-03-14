@@ -2,23 +2,20 @@ package com.lxg.acm.interceptor;
 
 import com.lxg.acm.mapper.UserMapper;
 import com.lxg.acm.support.OnlineUserSupport;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.DependsOn;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @Component
+@Slf4j
 public class CommonInterceptor implements HandlerInterceptor {
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @Autowired(required = false)
+    @Resource
     private UserMapper userMapper;
 
     public boolean preHandle(HttpServletRequest request,

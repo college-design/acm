@@ -1,12 +1,11 @@
 package com.lxg.acm.context;
 
 import com.alibaba.fastjson.JSON;
+import lombok.extern.slf4j.Slf4j;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -14,10 +13,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+@Slf4j
 public class OJConfig {
-
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
-
     public String dataFile;  // 文件目录
     public String tempFile;  // 缓存目录
     public int timeLimit;    // 时间限制
@@ -25,9 +22,9 @@ public class OJConfig {
     public String buildPath; // 构建路径
     public Map<Integer, Language> langs = new LinkedHashMap<Integer, Language>(); // 编译语言
     public List<String> languages = new ArrayList<String>(); // 编译语言类型
-    private String configXml = "judgecore.xml";
-//	private String configXml = "../judgecore.xml";// jedgecore文件路径
-//	private String configXml = "/src/main/webapp/WEB-INF/judgecore.xml";
+//    private String configXml = "judgecore.xml";
+    private String configXml = "judgecore-linux.xml";
+//    private String configXml = "judgecore-windows.xml";
 
     public static OJConfig instance = new OJConfig();
 
@@ -43,25 +40,14 @@ public class OJConfig {
      * 加载资源
      */
     public void loadResource() {
-        logger.info("加载编译配置文件start");
+        log.info("加载编译配置文件start");
         SAXReader saxReader = new SAXReader();
         try {
             URL url = getClass().getClassLoader().getResource(configXml); // 加载configxml路径
-            logger.info("配置文件路径={}", url.getPath());
+            log.info("配置文件路径={}", url.getPath());
             Document document = saxReader.read(url);
             Element root = document.getRootElement();
             if (root.getName().equalsIgnoreCase("config")) {
-
-//				<default>
-//					<data>d:\acm\data</data>
-//					<temp>d:\acm\temp</temp>
-//					<!-- 3s -->
-//					<timelimit>3000</timelimit>
-//					<!-- 64M -->
-//					<memorylimit>65535</memorylimit>
-//					<buildpath>
-//					</buildpath>
-//				</default>
                 Element defaultElem = root.element("default");
                 if (defaultElem != null) {
                     dataFile = defaultElem.elementText("data");
@@ -70,19 +56,6 @@ public class OJConfig {
                     memoryLimit = Integer.parseInt(defaultElem.elementText("memorylimit"));
                     //	buildPath = defaultElem.elementText("buildpath");
                 }
-
-//				<languages>
-//				<lang type="c++">
-//					<ext>cpp</ext>
-//					<exe>exe</exe>
-//					<path></path>
-//					<timelimit>3000</timelimit>
-//					<memorylimit>65535</memorylimit>
-//					<comshell>g++ -o ${path}${name} ${path}${name}.${ext}
-//					</comshell>
-//					<runshell>${path}${name}.${exe}</runshell>
-//				</lang>
-//				</languages>
                 Element langsElem = root.element("languages");
                 if (langsElem != null) {
                     int index = 0;
@@ -102,15 +75,11 @@ public class OJConfig {
                 }
             }
         } catch (DocumentException e) {
-            logger.error("加载编译配置文件信息，异常", e);
+            log.error("加载编译配置文件信息，异常", e);
         }
-        logger.info("languages={}", JSON.toJSON(languages));
-        logger.info("langs={}", JSON.toJSON(langs));
-        logger.info("加载编译配置文件end");
-    }
-
-    public void setConfigXml(String configXml) {
-        this.configXml = configXml;
+        log.info("languages={}", JSON.toJSON(languages));
+        log.info("langs={}", JSON.toJSON(langs));
+        log.info("加载编译配置文件end");
     }
 
     // 静态编译语言对象

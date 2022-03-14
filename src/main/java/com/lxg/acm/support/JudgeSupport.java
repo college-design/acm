@@ -10,10 +10,11 @@ import com.lxg.acm.entity.User;
 import com.lxg.acm.mapper.ProblemMapper;
 import com.lxg.acm.mapper.StatusMapper;
 import com.lxg.acm.mapper.UserMapper;
+import com.lxg.acm.util.SpringUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.File;
 import java.io.IOException;
@@ -24,21 +25,19 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+@Slf4j
 public class JudgeSupport extends Thread {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	private static final ExecutorService executor = Executors.newCachedThreadPool();
 
-	@Autowired
-	private StatusMapper statusMapper;
-	@Autowired
-	private ProblemMapper problemMapper;
-	@Autowired
-	private UserMapper userMapper;
+	private StatusMapper statusMapper = SpringUtil.getBean(StatusMapper.class);
+	private ProblemMapper problemMapper = SpringUtil.getBean(ProblemMapper.class);
+	private UserMapper userMapper = SpringUtil.getBean(UserMapper.class);
 
-	Status status;
-	String code;
+	private Status status;
+	private String code;
 
 	public JudgeSupport(Status status, String code) {
 		this.status = status;
@@ -57,13 +56,13 @@ public class JudgeSupport extends Thread {
 	public void run() {
 		logger.info("=====代码编译开始start=====");
 		Language language = OJConfig.instance.langs.get(status.getLanguage());
-		logger.info("编译语言信息{}"+ JSON.toJSON(language));
+		logger.info("编译语言信息{}", JSON.toJSON(language));
 		String folderName = randomFileName();
-		logger.info("随机名称生成{}"+folderName);
+		logger.info("随机名称生成{}", folderName);
 		File folder = new File(OJConfig.instance.tempFile, folderName);
-		File mainFile = new File(folder, "Main." + language.ext);
+		File mainFile = new File(folder, "Main" + language.ext);
 		try {
-			logger.info("将用户提交代码code={}添加到预编译文件中",code);
+			logger.info("将用户提交代码code=\n{}",code);
 			FileUtils.write(mainFile, code);
 		} catch (IOException e) {
 			logger.error("将用户提交代码添加到预编译文件，异常"+e);
@@ -78,7 +77,7 @@ public class JudgeSupport extends Thread {
 		core.setMEMORYLIMIT(language.getMemorylimit());
 		core.setTIMELIMIT(language.getTimelimit());
 		core.run();
-		logger.info("代码编译结果{}"+JSON.toJSON(core));
+		logger.info("代码编译结果:{}", JSON.toJSON(core));
 		// 题目AC/ALL
 		Long pid = status.getPid();
 		Problem problem= problemMapper.query(pid);
@@ -104,8 +103,8 @@ public class JudgeSupport extends Thread {
 		status.setMemory(core.getMemory());
 		status.setResult(core.getResult());
 		status.setTime(core.getTimeUsed());
-		logger.info("题目提交结果信息{}"+ JSON.toJSON(status));
-		logger.info("编译错误信息error:" + core.getErrorInfo());
+		logger.info("题目提交结果信息:{}", JSON.toJSON(status));
+		logger.info("编译错误信息error:{}" , core.getErrorInfo());
 		statusMapper.update(status);   // 更新代码状态
 		problemMapper.update(problem); // 更新题目提交率
 		userMapper.update(user);//更新用户解决题数，总提交数

@@ -1,12 +1,23 @@
 # 使用说明
 
 ---
+## doc描述
+- code-sample 代码实例
+- data 
+  - temp 缓存目录
+  - 题目测试样例
+  
+- db 数据库脚本
+- paper.zip 开题报告与论文
+
+
+---
 ## 操作步骤
 
 ### 服务器搭建
 - 搭建mysql数据库服务，导入数据库脚本
-    - `db/acm-build.sql`表结构数据
-    - `db/data/acm-data.sql`表结构与测试数据
+    - `doc/db/acm-init.sql`初始化表结构数据
+    - `doc/db/acm-data.sql`表结构与测试数据
     
 - 代码执行环境配置
     - Java

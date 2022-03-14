@@ -32,3 +32,7 @@ spring:
     username: root
     password: lxgmysql
     url: jdbc:mysql://127.0.0.1:3306/db_acm?useUnicode=true&amp;characterEncoding=UTF-8
+  messages:
+    encoding: UTF-8
+  banner:
+    charset: UTF-8
